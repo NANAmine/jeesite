@@ -1,0 +1,224 @@
+<% layout('/layouts/default.html', {title: '通用字典表管理', libs: ['validate','fileupload']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-list-alt"></i> ${text(status == 'true'? '查看通用字典':(dimDictionary.isNewRecord ? '新增通用字典表' : '编辑通用字典表'))}
+			</div>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${dimDictionary}" action="${ctx}/dim/dimDictionary/save" method="post" class="form-horizontal">
+			<div class="box-body">
+				<div class="form-unit">${text('基本信息')}</div>
+				<#form:hidden path="ddicId"/>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span>${text('编码')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ddicCode" maxlength="50" readonly="true" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ${text(dimDictionary.ddicCode =='SPBHPP' ? 'hide' : '')} ">*</span>${text(dimDictionary.ddicCode == 'GDBBMD'? '门店名称': (dimDictionary.ddicCode =='JPPPCODE' ? '团队名称' : (dimDictionary.ddicCode =='GCYJZDDP' ? '系列名称' : (dimDictionary.ddicCode =='SPBHPP' ? '名称' : (dimDictionary.ddicCode =='JSCQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBZCGX' ? '资产关系名称' : (dimDictionary.ddicCode =='XHPPHL' ? '品牌编码' : (dimDictionary.ddicCode =='XHMD' ? '门店名称' : (dimDictionary.ddicCode =='HOLIDAY' ? '节日名称' : (dimDictionary.ddicCode =='QXKZ' ? '用户名称' : (dimDictionary.ddicCode =='GCYJZDMD' ? '重点门店名称' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店分类名称' : (dimDictionary.ddicCode =='ZDMD' ? '重点门店名称' : '门店名称'))))))))))))))} ：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<!--
+								num:数值验证
+								digits：正整数验证
+								abc：数字字母验证
+								-->
+								<#form:input path="ddicName" maxlength="200" readonly="${status == 'true'}" class="form-control ${text(dimDictionary.ddicCode =='SPBHPP' ? '' : 'required')} ${text(dimDictionary.ddicCode == 'GDBBMD'? 'Chinese': (dimDictionary.ddicCode =='JPPPCODE' ? 'English' : (dimDictionary.ddicCode =='GCYJZDDP' ? 'Chinese' : (dimDictionary.ddicCode =='SPBHPP' ? ' ' : (dimDictionary.ddicCode =='JSCQD' ? 'Chinese' : (dimDictionary.ddicCode =='ZLBQD' ? 'Chinese' : (dimDictionary.ddicCode =='ZLBZCGX' ? 'Chinese' : (dimDictionary.ddicCode =='XHPPHL' ? 'digits' : (dimDictionary.ddicCode =='XHMD' ? ' ' : (dimDictionary.ddicCode =='HOLIDAY' ? 'Chinese' : (dimDictionary.ddicCode =='QXKZ' ? ' ' : (dimDictionary.ddicCode =='GCYJZDMD' ? 'Chinese' : (dimDictionary.ddicCode =='MDZLBFL' ? 'Chinese' : (dimDictionary.ddicCode =='ZDMD' ? 'Chinese' : ' '))))))))))))))}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span>${text(dimDictionary.ddicCode == 'GDBBMD'? '门店简称': (dimDictionary.ddicCode =='JPPPCODE' ? '团队简称' : (dimDictionary.ddicCode =='GCYJZDDP' ? '系列简称' : (dimDictionary.ddicCode =='SPBHPP' ? '简称' : (dimDictionary.ddicCode =='JSCQD' ? '渠道简称' : (dimDictionary.ddicCode =='ZLBQD' ? '渠道简称' : (dimDictionary.ddicCode =='ZLBZCGX' ? '资产关系简称' : (dimDictionary.ddicCode =='XHPPHL' ? '品牌简称' : (dimDictionary.ddicCode =='XHMD' ? '门店简称' : (dimDictionary.ddicCode =='HOLIDAY' ? '节日简称' : (dimDictionary.ddicCode =='QXKZ' ? '用户简称' : (dimDictionary.ddicCode =='GCYJZDMD' ? '门店简称' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店简称' : (dimDictionary.ddicCode =='ZDMD' ? '简称' : '简称'))))))))))))))}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ddicEname" maxlength="200" readonly="${status == 'true'}" class="form-control "/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required">*</span>${text(dimDictionary.ddicCode == 'GDBBMD'? '门店编码': (dimDictionary.ddicCode =='JPPPCODE' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDDP' ? '商品编码' : (dimDictionary.ddicCode =='SPBHPP' ? '品牌编码' : (dimDictionary.ddicCode =='JSCQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBZCGX' ? '门店编码' : (dimDictionary.ddicCode =='XHPPHL' ? '汇率值' : (dimDictionary.ddicCode =='XHMD' ? '门店编码' : (dimDictionary.ddicCode =='HOLIDAY' ? '日期' : (dimDictionary.ddicCode =='QXKZ' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDMD' ? '门店编码' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店编码' : (dimDictionary.ddicCode =='ZDMD' ? '门店编码' : '编码'))))))))))))))} ：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<!--
+								number:数值验证
+								digits：正整数验证
+								abc：数字字母验证
+								-->
+								<#form:input path="ddicValue" maxlength="200" readonly="${status == 'true'}"  class="form-control required ${text(dimDictionary.ddicCode == 'GDBBMD'? 'nae': (dimDictionary.ddicCode =='JPPPCODE' ? 'digits' : (dimDictionary.ddicCode =='GCYJZDDP' ? 'nae' : (dimDictionary.ddicCode =='SPBHPP' ? 'digits' : (dimDictionary.ddicCode =='JSCQD' ? 'digits' : (dimDictionary.ddicCode =='ZLBQD' ? 'digits' : (dimDictionary.ddicCode =='ZLBZCGX' ? 'digits' : (dimDictionary.ddicCode =='XHPPHL' ? 'number' : (dimDictionary.ddicCode =='XHMD' ? 'digits' : (dimDictionary.ddicCode =='HOLIDAY' ? 'date' : (dimDictionary.ddicCode =='QXKZ' ? 'digits' : (dimDictionary.ddicCode =='GCYJZDMD' ? 'digits' : (dimDictionary.ddicCode =='MDZLBFL' ? 'digits' : (dimDictionary.ddicCode =='ZDMD' ? 'digits' : ''))))))))))))))}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="xhpphl" style="display: none">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required">*</span>${text('门店编码')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ddicExpand2" maxlength="200" readonly="${status == 'true'}" class="form-control required digits"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required">*</span>${text('门店名称')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<!--
+								number:数值验证
+								digits：正整数验证
+								abc：数字字母验证
+								-->
+								<#form:input path="ddicExpand3" maxlength="200" readonly="${status == 'true'}"  class="form-control required  Chinese"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('描述')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ddicDesc" maxlength="1000" readonly="${status == 'true'}" class="form-control nae"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6" id="bm">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ${text(dimDictionary.ddicCode =='QXKZ' ? ' ' : 'hide')}">*</span> ${text('部门名称')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ddicExpand1" readonly="${status == 'true'}" maxlength="200" class="form-control ${text(dimDictionary.ddicCode =='QXKZ' ? 'required Chinese' : '')}"/>
+							</div>
+						</div>
+					</div>
+					<!--<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('父级编码')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ddicPid" maxlength="30" class="form-control"/>
+							</div>
+						</div>
+					</div>-->
+				</div>
+				<div class="row">
+					<!--<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label class="control-label col-sm-2" title="">
+									<span class="required hide">*</span> ${text('状态')}：<i class="fa icon-question hide"></i></label>
+								<div class="col-sm-5">
+									<#form:radio path="status" dictType="sys_search_status" class="form-control" />
+								</div>
+							</div>
+						</div>
+					</div>-->
+					<!--<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('备用4')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ddicSort" maxlength="11" class="form-control"/>
+							</div>
+						</div>
+					</div>-->
+				</div>
+				<!--<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2">${text('附件上传')}：</label>
+							<div class="col-sm-10">
+								<#form:fileupload id="uploadFile" bizKey="${dimDictionary.id}" bizType="dimDictionary_file"
+									uploadType="all" class="" readonly="false"/>
+							</div>
+						</div>
+					</div>
+				</div>-->
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('dim:dimDictionary:edit')){ %>
+                            <button type="submit" class="btn btn-sm btn-primary" id="btnSubmit">
+                                <i class="fa fa-check"></i> ${text((status == 'true')? '确认' : '保存')}
+                            </button>&nbsp;
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+<script>
+	(function start(status){
+		var ddicCode =  "${dimDictionary.ddicCode}"
+		var ddicExpand3 =  "${dimDictionary.ddicExpand3}"
+		var ddicExpand2 =  "${dimDictionary.ddicExpand2}"
+
+		if(ddicCode != "QXKZ" ){
+			document.getElementById("bm").style.display="none";
+		}
+		if(ddicCode == "SPBHPP"){
+               document.getElementById("ddicName").setAttribute("value","食品香化百货");
+        }
+		if(status==null){ }else if(status.toString() == "true"){
+			        document.getElementById("btnSubmit").style.display="none";
+		}
+		if(ddicCode == "XHPPHL"){
+			document.getElementById("xhpphl").style.display="";
+		}
+		if(ddicExpand3 !=""&&ddicExpand3!=null){
+			document.getElementById('ddicExpand2').className="form-control digits";
+		}
+		if(ddicExpand2 !=""&&ddicExpand2!=null){
+			document.getElementById('ddicExpand3').className="form-control Chinese";
+		}
+	})(${status})
+	$("#ddicExpand3").bind("input propertychange",function(event){
+		var ddicExpand3 =  "${dimDictionary.ddicExpand3}"
+		var ddicExpand2 =  "${dimDictionary.ddicExpand2}"
+		document.getElementById('ddicExpand2').className="form-control digits";
+		if(ddicExpand2==""&&ddicExpand2==null){
+			document.getElementById('ddicExpand3').className="form-control required Chinese";
+		}
+	})
+	$("#ddicExpand2").bind("input propertychange",function(event){
+		var ddicExpand3 =  "${dimDictionary.ddicExpand3}"
+		var ddicExpand2 =  "${dimDictionary.ddicExpand2}"
+		document.getElementById('ddicExpand3').className="form-control Chinese";
+		if(ddicExpand3==null&&ddicExpand3==""){
+			document.getElementById('ddicExpand2').className="form-control required digits";
+		}
+
+	})
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			if(data.result == Global.TRUE){
+				js.closeCurrentTabPage(function(contentWindow){
+					contentWindow.page();
+				});
+			}
+		}, "json");
+    }
+});
+</script>

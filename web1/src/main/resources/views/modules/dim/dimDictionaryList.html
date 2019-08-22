@@ -1,0 +1,296 @@
+<% layout('/layouts/default.html', {title: '通用字典表管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-list-alt"></i> ${text('通用字典表管理')}
+			</div>
+			<div class="box-tools pull-right">
+                ${text(dimDictionary.ddicCode == 'GDBBMD'? '门店名称': (dimDictionary.ddicCode =='JPPPCODE' ? '团队名称' : (dimDictionary.ddicCode =='GCYJZDDP' ? '系列名称' : (dimDictionary.ddicCode =='SPBHPP' ? '名称' : (dimDictionary.ddicCode =='JSCQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBZCGX' ? '资产关系名称' : (dimDictionary.ddicCode =='XHPPHL' ? '品牌编码' : (dimDictionary.ddicCode =='XHMD' ? '门店名称' : (dimDictionary.ddicCode =='HOLIDAY' ? '节日名称' : (dimDictionary.ddicCode =='QXKZ' ? '用户名称' : (dimDictionary.ddicCode =='GCYJZDMD' ? '重点门店名称' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店分类名称' : '门店名称')))))))))))))}：<input type="text" id="mdmc" />
+                ${text(dimDictionary.ddicCode == 'GDBBMD'? '门店编码': (dimDictionary.ddicCode =='JPPPCODE' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDDP' ? '商品编码' : (dimDictionary.ddicCode =='SPBHPP' ? '品牌编码' : (dimDictionary.ddicCode =='JSCQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBZCGX' ? '门店编码' : (dimDictionary.ddicCode =='XHPPHL' ? '汇率值' : (dimDictionary.ddicCode =='XHMD' ? '门店编码' : (dimDictionary.ddicCode =='HOLIDAY' ? '日期' : (dimDictionary.ddicCode =='QXKZ' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDMD' ? '门店编码' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店编码' : (dimDictionary.ddicCode =='ZDMD' ? '门店编码' : '编码'))))))))))))))}：<input type="text" id="mdbm" />
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('dim:dimDictionary:edit')){ %>
+					<a href="${ctx}/dim/dimDictionary/form?ddicCode=${dimDictionary.ddicCode}" class="btn btn-default btnTool" title="${text('新增通用字典表')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+				<div class="btn-group">
+					<a href="javascript:" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						<i class="fa fa-navicon"></i> <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:" id="btnExport"><i class="glyphicon glyphicon-export"></i> 导出</a></li>
+						<li><a href="javascript:" id="btnImport"><i class="glyphicon glyphicon-import"></i> 导入</input></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${dimDictionary}" action="${ctx}/dim/dimDictionary/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('编码')}：</label>
+					<div class="control-inline">
+						<#form:input path="ddicCode" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text(dimDictionary.ddicCode == 'GDBBMD'? '门店名称': (dimDictionary.ddicCode =='JPPPCODE' ? '团队名称' : (dimDictionary.ddicCode =='GCYJZDDP' ? '系列名称' : (dimDictionary.ddicCode =='SPBHPP' ? '名称' : (dimDictionary.ddicCode =='JSCQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBZCGX' ? '资产关系名称' : (dimDictionary.ddicCode =='XHPPHL' ? '品牌编码' : (dimDictionary.ddicCode =='XHMD' ? '门店名称' : (dimDictionary.ddicCode =='HOLIDAY' ? '节日名称' : (dimDictionary.ddicCode =='QXKZ' ? '用户名称' : (dimDictionary.ddicCode =='GCYJZDMD' ? '重点门店名称' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店分类名称' : '门店名称')))))))))))))}：</label>
+					<div class="control-inline">
+						<#form:input path="ddicName" maxlength="200" class="form-control width-120"/>
+					</div>
+				</div>
+				<!--<div class="form-group">
+					<label class="control-label">${text(dimDictionary.ddicCode == 'GDBBMD'? '门店简称': (dimDictionary.ddicCode =='JPPPCODE' ? '团队简称' : (dimDictionary.ddicCode =='GCYJZDDP' ? '系列简称' : (dimDictionary.ddicCode =='SPBHPP' ? '简称' : (dimDictionary.ddicCode =='JSCQD' ? '渠道简称' : (dimDictionary.ddicCode =='ZLBQD' ? '渠道简称' : (dimDictionary.ddicCode =='ZLBZCGX' ? '资产关系简称' : (dimDictionary.ddicCode =='XHPPHL' ? '品牌简称' : (dimDictionary.ddicCode =='XHMD' ? '门店简称' : (dimDictionary.ddicCode =='HOLIDAY' ? '节日简称' : (dimDictionary.ddicCode =='QXKZ' ? '用户简称' : (dimDictionary.ddicCode =='GCYJZDMD' ? '门店简称' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店简称' : '简称')))))))))))))}：</label>
+					<div class="control-inline">
+						<#form:input path="ddicEname" maxlength="200" class="form-control width-120"/>
+					</div>
+				</div>-->
+				<div class="form-group">
+					<label class="control-label">${text(dimDictionary.ddicCode == 'GDBBMD'? '门店编码': (dimDictionary.ddicCode =='JPPPCODE' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDDP' ? '商品编码' : (dimDictionary.ddicCode =='SPBHPP' ? '品牌编码' : (dimDictionary.ddicCode =='JSCQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBZCGX' ? '门店编码' : (dimDictionary.ddicCode =='XHPPHL' ? '汇率值' : (dimDictionary.ddicCode =='XHMD' ? '门店编码' : (dimDictionary.ddicCode =='HOLIDAY' ? '日期' : (dimDictionary.ddicCode =='QXKZ' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDMD' ? '门店编码' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店编码' : (dimDictionary.ddicCode =='ZDMD' ? '门店编码' : '编码'))))))))))))))}：</label>
+					<div class="control-inline">
+						<#form:input path="ddicValue" maxlength="200" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('门店编码')}：</label>
+					<div class="control-inline">
+						<#form:input path="ddicExpand2" maxlength="1000" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('门店名称')}：</label>
+					<div class="control-inline">
+						<#form:input path="ddicExpand3" maxlength="200" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('状态')}：</label>
+					<div class="control-inline width-120">
+						<#form:select path="status" dictType="sys_search_status" blankOption="true" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('数据插入时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="createDate_gte" readonly="true" maxlength="20" class="form-control Wdate-date"
+							dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,onpicked:function(){createDate_lte.click()}});"/>
+						&nbsp;--&nbsp;
+						<#form:input path="createDate_lte" readonly="true" maxlength="20" class="form-control Wdate-date"
+							dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('更数据最近新时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="updateDate_gte" readonly="true" maxlength="20" class="form-control Wdate-date"
+							dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,onpicked:function(){updateDate_lte.click()}});"/>
+						&nbsp;--&nbsp;
+						<#form:input path="updateDate_lte" readonly="true" maxlength="20" class="form-control Wdate-date"
+							dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('最近更新人')}：</label>
+					<div class="control-inline">
+						<#form:input path="updateBy" maxlength="64" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+
+    $("#mdmc").bind("input propertychange",function(event){
+	    document.getElementById('ddicName').value = document.getElementById('mdmc').value;
+        document.getElementById('ddicValue').value = document.getElementById('mdbm').value;
+        $('#searchForm').submit();
+    })
+    $("#mdbm").bind("input propertychange",function(event){
+        document.getElementById('ddicValue').value = document.getElementById('mdbm').value;
+        document.getElementById('ddicName').value = document.getElementById('mdmc').value;
+	    $('#searchForm').submit();
+    })
+
+// 初始化DataGrid对象
+	if("${dimDictionary.ddicCode}"!="XHPPHL"){
+		console.log("11111")
+	$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		/*{header:'${text("编码")}', name:'ddicCode', index:'a.ddic_code', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+				return '<a href="${ctx}/dim/dimDictionary/form?ddicId='+row.ddicId+'&&status='+1+'" class="btnList" data-title="${text("查看通用字典表")}">'+(val||row.id)+'</a>';
+		}},*/
+		{header:'${text(dimDictionary.ddicCode == "GDBBMD"? "门店名称": (dimDictionary.ddicCode =="JPPPCODE" ? "团队名称" : (dimDictionary.ddicCode == "GCYJZDDP" ? "系列名称" : (dimDictionary.ddicCode == "SPBHPP" ? "名称" : (dimDictionary.ddicCode == "JSCQD" ? "渠道名称" : (dimDictionary.ddicCode =="ZLBQD" ? "渠道名称" : (dimDictionary.ddicCode == "ZLBZCGX" ? "资产关系名称" : (dimDictionary.ddicCode =="XHPPHL" ? "品牌编码" : (dimDictionary.ddicCode == "XHMD" ? "门店名称" : (dimDictionary.ddicCode == "HOLIDAY" ? "节日名称" : (dimDictionary.ddicCode == "QXKZ" ? "用户名称" : (dimDictionary.ddicCode == "GCYJZDMD" ? "重点门店名称" : (dimDictionary.ddicCode == "MDZLBFL" ? "门店分类名称" : (dimDictionary.ddicCode =="ZDMD" ? "重点门店名称" : "门店名称"))))))))))))))}', name:'ddicName', index:'a.ddic_name', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+				return '<a href="${ctx}/dim/dimDictionary/form?ddicId='+row.ddicId+'&&status='+1+'" class="btnList" data-title="${text("查看通用字典表")}">'+(val||row.id)+'</a>';
+			}},
+		/*{header:'${text(dimDictionary.ddicCode == "GDBBMD"? "门店简称": (dimDictionary.ddicCode == "JPPPCODE" ? "团队简称" : (dimDictionary.ddicCode == "GCYJZDDP" ? "系列简称" : (dimDictionary.ddicCode == "SPBHPP" ? "简称" : (dimDictionary.ddicCode == "JSCQD" ? "渠道简称" : (dimDictionary.ddicCode == "ZLBQD" ? "渠道简称" : (dimDictionary.ddicCode == "ZLBZCGX" ? "资产关系简称" : (dimDictionary.ddicCode == "XHPPHL" ? "品牌简称" : (dimDictionary.ddicCode == "XHMD" ? "门店简称" : (dimDictionary.ddicCode == "HOLIDAY" ? "节日简称" : (dimDictionary.ddicCode == "QXKZ" ? "用户简称" : (dimDictionary.ddicCode == "GCYJZDMD" ? "门店简称" : (dimDictionary.ddicCode == "MDZLBFL" ? "门店简称" : "简称")))))))))))))}', name:'ddicEname', index:'a.ddic_ename', width:150, align:"left"},*/
+		{header:'${text(dimDictionary.ddicCode == "GDBBMD"? "门店编码": (dimDictionary.ddicCode =="JPPPCODE" ? "品牌编码" : (dimDictionary.ddicCode =="GCYJZDDP" ? "商品编码" : (dimDictionary.ddicCode == "SPBHPP" ? "品牌编码" : (dimDictionary.ddicCode == "JSCQD" ? "门店编码" : (dimDictionary.ddicCode == "ZLBQD" ? "门店编码" : (dimDictionary.ddicCode == "ZLBZCGX" ? "门店编码" : (dimDictionary.ddicCode == "XHPPHL" ? "汇率值" : (dimDictionary.ddicCode == "XHMD" ? "门店编码" : (dimDictionary.ddicCode == "HOLIDAY" ? "日期" : (dimDictionary.ddicCode == "QXKZ" ? "品牌编码" : (dimDictionary.ddicCode == "GCYJZDMD" ? "门店编码" : (dimDictionary.ddicCode == "MDZLBFL" ? "门店编码" : (dimDictionary.ddicCode =="ZDMD" ? "门店编码" : "编码"))))))))))))))}', name:'ddicValue', index:'a.ddic_value', width:150, align:"left"},
+		/*{header:'${text("描述")}', name:'ddicDesc', index:'a.ddic_desc', width:150, align:"left"},*/
+		// {header:'${text("部门名称")}', name:'ddicExpand1', index:'a.ddic_expand1', width:150, align:"left",class:"",id:"",name:""},
+		{header:'${text("状态")}', name:'status', index:'a.status', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.getDictLabel(${@DictUtils.getDictListJson('sys_search_status')}, val, '${text("未知")}', true);
+		}},
+		{header:'${text("数据插入时间")}', name:'createDate', index:'a.create_date', width:150, align:"center"},
+		{header:'${text("数据最近新时间")}', name:'updateDate', index:'a.update_date', width:150, align:"center"},
+		{header:'${text("最近更新人")}', name:'updateBy', index:'a.update_by', width:150, align:"left"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('dim:dimDictionary:edit')){ %>
+				actions.push('<a href="${ctx}/dim/dimDictionary/form?ddicId='+row.ddicId+'" class="btnList" title="${text("编辑通用字典表")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				<% } %>;
+			<% if(hasPermi('dim:dimDictionary:del')){ %>
+					actions.push('<a href="${ctx}/dim/dimDictionary/delete?ddicId='+row.ddicId+'" class="btnList" title="${text("删除通用字典表")}" data-confirm="${text("确认要删除该通用字典表吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+				<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+	}
+});
+}else {
+		console.log("22222")
+		$('#dataGrid').dataGrid({
+			searchForm: $("#searchForm"),
+			columnModel: [
+				/*{header:'${text("编码")}', name:'ddicCode', index:'a.ddic_code', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+                        return '<a href="${ctx}/dim/dimDictionary/form?ddicId='+row.ddicId+'&&status='+1+'" class="btnList" data-title="${text("查看通用字典表")}">'+(val||row.id)+'</a>';
+                }},*/
+				{header:'${text("品牌编码")}', name:'ddicName', index:'a.ddic_name', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+						return '<a href="${ctx}/dim/dimDictionary/form?ddicId='+row.ddicId+'&&status='+1+'" class="btnList" data-title="${text("查看通用字典表")}">'+(val||row.id)+'</a>';
+					}},
+				/*{header:'${text(dimDictionary.ddicCode == "GDBBMD"? "门店简称": (dimDictionary.ddicCode == "JPPPCODE" ? "团队简称" : (dimDictionary.ddicCode == "GCYJZDDP" ? "系列简称" : (dimDictionary.ddicCode == "SPBHPP" ? "简称" : (dimDictionary.ddicCode == "JSCQD" ? "渠道简称" : (dimDictionary.ddicCode == "ZLBQD" ? "渠道简称" : (dimDictionary.ddicCode == "ZLBZCGX" ? "资产关系简称" : (dimDictionary.ddicCode == "XHPPHL" ? "品牌简称" : (dimDictionary.ddicCode == "XHMD" ? "门店简称" : (dimDictionary.ddicCode == "HOLIDAY" ? "节日简称" : (dimDictionary.ddicCode == "QXKZ" ? "用户简称" : (dimDictionary.ddicCode == "GCYJZDMD" ? "门店简称" : (dimDictionary.ddicCode == "MDZLBFL" ? "门店简称" : "简称")))))))))))))}', name:'ddicEname', index:'a.ddic_ename', width:150, align:"left"},*/
+				{header:'${text("汇率值")}', name:'ddicValue', index:'a.ddic_value', width:150, align:"left"},
+				{header:'${text("门店编码")}', name:'ddicExpand2', index:'a.ddic_expand2', width:150, align:"left"},
+				{header:'${text("门店名称")}', name:'ddicExpand3', index:'a.ddic_expand3', width:150, align:"left"},
+				{header:'${text("状态")}', name:'status', index:'a.status', width:150, align:"center", formatter: function(val, obj, row, act){
+						return js.getDictLabel(${@DictUtils.getDictListJson('sys_search_status')}, val, '${text("未知")}', true);
+					}},
+				{header:'${text("数据插入时间")}', name:'createDate', index:'a.create_date', width:150, align:"center"},
+				{header:'${text("数据最近新时间")}', name:'updateDate', index:'a.update_date', width:150, align:"center"},
+				{header:'${text("最近更新人")}', name:'updateBy', index:'a.update_by', width:150, align:"left"},
+				{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+						var actions = [];
+					<% if(hasPermi('dim:dimDictionary:edit')){ %>
+							actions.push('<a href="${ctx}/dim/dimDictionary/form?ddicId='+row.ddicId+'" class="btnList" title="${text("编辑通用字典表")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+						<% } %>;
+					<% if(hasPermi('dim:dimDictionary:del')){ %>
+							actions.push('<a href="${ctx}/dim/dimDictionary/delete?ddicId='+row.ddicId+'" class="btnList" title="${text("删除通用字典表")}" data-confirm="${text("确认要删除该通用字典表吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+						<% } %>
+						return actions.join('');
+					}}
+			],
+			// 加载成功后执行事件
+			ajaxSuccess: function(data){
+			}
+		});
+	}
+
+	$('#btnExport').click(function(){
+		js.ajaxSubmitForm($('#searchForm'), {
+			url:'${ctx}/test/ReportForm/exportData',
+			data:{id:'${dimDictionary.ddicCode}',status:''},
+			downloadFile:true
+		});
+	});
+	$('#btnImport').click(function(){
+		js.layer.open({
+			type: 1,
+			area: ["400px"],
+			title: '导入数据',
+			resize: false,
+			scrollbar: true,
+			content: js.template('importTpl'),
+			success: function(layero, index){
+				layero.find("input[type='checkbox']").iCheck();
+			},
+			btn: ['<i class="fa fa-check"></i> 导入',
+				'<i class="fa fa-remove"></i> 取消'],
+			btn1: function(index, layero){
+				var form = {
+					inputForm: layero.find('#inputForm'),
+					file: layero.find('#file').val()
+				}
+				console.log(form.file)
+				//console.log(form.file.files)
+				console.log(layero.find('#file')[0].files[0].size)
+				console.log(form.file[0].size)
+				//var filePath = form.file;
+				//console.log(filePath);
+				if (form.file == ''|| (!js.endWith(form.file, '.xls') && !js.endWith(form.file, '.xlsx'))){
+					js.showMessage("${text('文件不正确，请选择后缀为 “xls”或“xlsx”的文件。')}", null, 'warning');
+					return false;
+				}
+				if(layero.find('#file')[0].files[0].size>5*1048576){
+					js.showMessage("${text('文件太大，上传文件大小不得超过5兆！')}", null, 'warning');
+					return false;
+				}
+				/*$.ajax({
+                    url: "${ctx}/test/ReportForm/inputData",
+                    type: "get",
+                    dataType: "json",
+                    data: {"filePath":form.file},
+                    success: function (json_data) {
+                        alert("恭喜你！上传成功");
+                    },
+                });*/
+				/*console.log(form)
+                js.ajaxSubmitForm($('#searchForm'), {
+                    url:'${ctx}/test/ReportForm/inputData?filePath=D:\\chrome下载\\顾客信息1556602176046.xls'
+                });*/
+				js.ajaxSubmitForm(form.inputForm, function(data){
+					console.log(data)
+					js.showMessage(data.message);
+					if(data.result == Global.TRUE){
+						js.layer.closeAll();
+					}
+					page();
+				}, "json");
+				return true;
+			}
+		});
+	});
+
+</script>
+<script id="importTpl" type="text/template">//<!--
+<form id="inputForm" action="${ctx}/test/ReportForm/inputData" method="post" enctype="multipart/form-data"
+	class="form-horizontal mt20 mb10" style="overflow:auto;max-height:200px;">
+	<div class="row">
+		<div class="col-xs-12 col-xs-offset-1">
+			<input type="file" id="file" name="file" class="form-file"/>
+			<div class="mt10 pt5">
+				<#form:checkbox name="updateSupport" style="display:none" label="${text('是否更新已经存在的用户数据')}" class="form-control"
+					title="${text('如果用户编码已经存在，更新这条数据。')}"/> &nbsp;
+				<a href="${ctx}/test/ReportForm/exportData?id=${dimDictionary.ddicCode}&&status=1" class="btn btn-default btn-xs"><i class="fa fa-file-excel-o"></i> ${text('下载模板')}</a>
+			</div>
+			<div class="form-group" style="display: none">
+					<label class="control-label">${text('编码')}：</label>
+					<div class="control-inline">
+						<#form:input path="ddicCode" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+			<font color="red" class="pull-left mt10">
+				${text('提示：仅允许导入“xls”或“xlsx”格式文件')}
+			</font>
+		</div>
+	</div>
+</form>
+</script>
+<script>
+	$("#file").bind("input propertychange",function(event){
+		var size = $("#file")[0].files[0].size*1024;
+		console.log(size)
+		console.log($('#file').value)
+		if(size>5242){
+			alert("文件太大了！")
+			$("#file").value = "";
+		}
+	})
+</script>
