@@ -68,8 +68,12 @@ public class EvaReportController extends BaseController {
 	 */
 	@RequiresPermissions("eva:evaReport:view")
 	@RequestMapping(value = "form")
-	public String form(EvaReport evaReport, Model model) {
+	public String form(EvaReport evaReport, Model model, String status) {
 		model.addAttribute("evaReport", evaReport);
+		if("1".equals(status)){
+			status = "true";
+		}
+		model.addAttribute("status",status);
 		return "modules/eva/evaReportForm";
 	}
 

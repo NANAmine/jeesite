@@ -86,7 +86,7 @@ $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
 	columnModel: [
 		{header:'${text("日期")}', name:'djfktDdId', index:'a.djfkt_dd_id', width:150, align:"center", frozen:true, formatter: function(val, obj, row, act){
-			return '<a href="${ctx}/eva/evaReport/form?id='+row.id+'" class="btnList" data-title="${text("编辑EVA")}">'+(val||row.id)+'</a>';
+			return '<a href="${ctx}/eva/evaReport/form?id='+row.id+'&&status='+1+'" class="btnList" data-title="${text("编辑EVA")}">'+(val||row.id)+'</a>';
 		}},
 		{header:'${text("本月累计")}', name:'djfktEva', index:'a.djfkt_eva', width:150, align:"center", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);

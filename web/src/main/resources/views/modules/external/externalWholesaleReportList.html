@@ -55,20 +55,20 @@
 $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
 	columnModel: [
-		{header:'${text("日期")}', name:'ewrDdId', index:'a.ewr_dd_id', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
-			return '<a href="${ctx}/external/externalWholesaleReport/form?id='+row.id+'" class="btnList" data-title="${text("编辑对外批发")}">'+(val||row.id)+'</a>';
+		{header:'${text("日期")}', name:'ewrDdId', index:'a.ewr_dd_id', width:150, align:"center", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/external/externalWholesaleReport/form?id='+row.id+'&&status='+1+'" class="btnList" data-title="${text("编辑对外批发")}">'+(val||row.id)+'</a>';
 		}},
-		{header:'${text("品类名称")}', name:'ewrCategoryName', index:'a.ewr_category_name', width:150, align:"left"},
-		{header:'${text("营业收入本年累计")}', name:'ewrYysrBnlj', index:'a.ewr_yysr_bnlj', width:150, align:"right", formatter: function(val, obj, row, act){
+		{header:'${text("品类名称")}', name:'ewrCategoryName', index:'a.ewr_category_name', width:150, align:"center"},
+		{header:'${text("营业收入本年累计")}', name:'ewrYysrBnlj', index:'a.ewr_yysr_bnlj', width:150, align:"center", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
 		}},
-		{header:'${text("营业收入全年预算")}', name:'ewrYysrQnys', index:'a.ewr_yysr_qnys', width:150, align:"right", formatter: function(val, obj, row, act){
+		{header:'${text("营业收入全年预算")}', name:'ewrYysrQnys', index:'a.ewr_yysr_qnys', width:150, align:"center", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
 		}},
-		{header:'${text("营业收入上年同期")}', name:'ewrYysrSntq', index:'a.ewr_yysr_sntq', width:150, align:"right", formatter: function(val, obj, row, act){
+		{header:'${text("营业收入上年同期")}', name:'ewrYysrSntq', index:'a.ewr_yysr_sntq', width:150, align:"center", formatter: function(val, obj, row, act){
 			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
 		}},
-		{header:'${text("最近更新用户")}', name:'updateBy', index:'a.update_by', width:150, align:"left"},
+		{header:'${text("最近更新用户")}', name:'updateBy', index:'a.update_by', width:150, align:"center"},
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
 			var actions = [];
 			<% if(hasPermi('external:externalWholesaleReport:edit')){ %>

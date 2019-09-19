@@ -3,7 +3,7 @@
 	<div class="box box-main">
 		<div class="box-header with-border">
 			<div class="box-title">
-				<i class="fa fa-list-alt"></i> ${text(evaReport.isNewRecord ? '新增EVA' : '编辑EVA')}
+				<i class="fa fa-list-alt"></i> ${text(status == 'true'? '查看EVA':(evaReport.isNewRecord ? '新增EVA' : '编辑EVA'))}
 			</div>
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -19,7 +19,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('品类名称')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="djfktCategory" maxlength="255" class="form-control"/>
+								<#form:input path="djfktCategory" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -28,7 +28,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('门店名称')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="djfktDsName" maxlength="255" class="form-control"/>
+								<#form:input path="djfktDsName" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -39,7 +39,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('日期')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="djfktDdId" maxlength="255" class="form-control dateym"/>
+								<#form:input path="djfktDdId" readonly="${status == 'true'}" maxlength="255" class="form-control dateym"/>
 							</div>
 						</div>
 					</div>
@@ -48,7 +48,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('本月累计')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="djfktEva" class="form-control number"/>
+								<#form:input path="djfktEva" readonly="${status == 'true'}" class="form-control number"/>
 							</div>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('本年累计')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="djfktEvaLj" class="form-control number"/>
+								<#form:input path="djfktEvaLj" readonly="${status == 'true'}" class="form-control number"/>
 							</div>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('本期完成进度')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="djfktEvaWcl" class="form-control number"/>
+								<#form:input path="djfktEvaWcl" readonly="${status == 'true'}" class="form-control number"/>
 							</div>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('同期完成进度')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="djfktEvaTqwcl" class="form-control number"/>
+								<#form:input path="djfktEvaTqwcl" readonly="${status == 'true'}" class="form-control number"/>
 							</div>
 						</div>
 					</div>
@@ -88,7 +88,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('同比增幅')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="djfktEvaTbzf" class="form-control number"/>
+								<#form:input path="djfktEvaTbzf" readonly="${status == 'true'}" class="form-control number"/>
 							</div>
 						</div>
 					</div>
@@ -109,7 +109,15 @@
 </div>
 <% } %>
 <script>
-$("#inputForm").validate({
+	(function start(status){
+		console.log(status)
+		if(status==null){ }else if(status.toString() == "true"){
+			document.getElementById("btnSubmit").style.display="none";
+		}
+	})(${status})
+
+
+	$("#inputForm").validate({
 	submitHandler: function(form){
 		js.ajaxSubmitForm($(form), function(data){
 			js.showMessage(data.message);
