@@ -31,7 +31,7 @@ server:
 #======================================#
 
 # 数据库连接
-jdbc: 
+jdbc:
   
   # Mysql 数据库配置
   type: mysql
@@ -40,6 +40,16 @@ jdbc:
   username: root
   password: root
   testSql: SELECT 1
+
+#jdbc2:
+#    # Mysql 数据库配置
+#      type: mysql
+#      driver: com.mysql.jdbc.Driver
+#      url: jdbc:mysql://10.153.252.118:3306/cdf_bi?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+#      username: cdf_bi
+#      password: cdf_bi
+#      testSql: SELECT 1
+
 
 
   # Mysql 数据库配置
@@ -111,33 +121,33 @@ jdbc:
 #    removeAbandoned: true
 #    removeAbandonedTimeout: 2100
 
-#  # 多数据源名称列表，启用方式：@MyBatisDao(dataSourceName="ds2")
-#  dataSourceNames: ds2
-#  
-#  # 多数据源配置：ds2
-#  ds2:
-#    type: mysql
-#    driver: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://127.0.0.1:3306/jeesite2?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
-#    username: root
-#    password: 123456
-#    testSql: SELECT 1
-#    encrypt:
-#      username: false
-#      password: true
-#    pool:
-#      init: 1
-#      minIdle: 3
-#      maxActive: 20
-      
-#  # JTA 分布式事务（v4.0.4+）
-#  jta:
-#    enabled: false
-#    # 事务超时时间，单位毫秒（3分钟）
-#    transactionTimeout: 180000
+  # 多数据源名称列表，启用方式：@MyBatisDao(dataSourceName="ds2")
+  dataSourceNames: ds2
 
-#  # 表名前缀
-#  tablePrefix: js_
+  # 多数据源配置：ds2
+  ds2:
+    type: mysql
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://10.153.252.118:3306/cdf_bi?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    username: cdf_bi
+    password: cdf_bi
+    testSql: SELECT 1
+    encrypt:
+      username: false
+      password: true
+    pool:
+      init: 1
+      minIdle: 3
+      maxActive: 20
+      
+  # JTA 分布式事务（v4.0.4+）
+  jta:
+    enabled: false
+    # 事务超时时间，单位毫秒（3分钟）
+    transactionTimeout: 180000
+
+  # 表名前缀
+  tablePrefix: js_
 
 #======================================#
 #========== Spring settings ===========#

@@ -1152,6 +1152,14 @@ jQuery.validator.addMethod("date", function (c, b) {
     var a = /^((?!0000)[0-9]{4}((0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])|(0[13-9]|1[0-2])-(29|30)|(0[13578]|1[02])-31)|([0-9]{2}(0[48]|[2468][048]|[13579][26])|(0[48]|[2468][048]|[13579][26])00)0229)$/;
     return this.optional(b) || (a.test(c))
 }, "请输入正确日期!格式:20190501");
+jQuery.validator.addMethod("dateym", function (c, b) {
+    var a = /^\d{4}((0([1-9]))|(1(0|1|2)))$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入正确日期!格式:年月");
+jQuery.validator.addMethod("datey-m", function (c, b) {
+    var a = /^\d{4}-((0([1-9]))|(1(0|1|2)))$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入正确日期!格式:年-月");
 jQuery.validator.addMethod("number", function (c, b) {
     var a = /^([1-9][0-9]*)(\.[0-9]*)?$|^(0\.[0-9]*)$/;
     return this.optional(b) || (a.test(c))
@@ -1160,6 +1168,14 @@ jQuery.validator.addMethod("digits", function (c, b) {
     var a = /^\d+$/;
     return this.optional(b) || (a.test(c))
 }, "请输入有效数字!");
+jQuery.validator.addMethod("intnum", function (c, b) {
+    var a = /^(0|[1-9][0-9]*)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入有效数字!");
+jQuery.validator.addMethod("ss", function (c, b) {
+    var a = /^([0-9])+(\.[0-9]+)?$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入有效非负数!");
 jQuery.validator.addMethod("idcard", function (c, a) {
     var b = {
         provinceAndCitys: {
