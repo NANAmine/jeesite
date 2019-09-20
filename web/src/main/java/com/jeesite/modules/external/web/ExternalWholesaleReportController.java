@@ -70,10 +70,17 @@ public class ExternalWholesaleReportController extends BaseController {
 	@RequestMapping(value = "form")
 	public String form(ExternalWholesaleReport externalWholesaleReport, Model model, String status) {
 		model.addAttribute("externalWholesaleReport", externalWholesaleReport);
-		if("1".equals(status)){
+		if("1".equals(status)) {
 			status = "true";
+		}else {
+			status = "false";
+		}
+		String ewr = "false";
+		if ("合计".equals(externalWholesaleReport.getEwrCategoryName())){
+			ewr = "true";
 		}
 		model.addAttribute("status",status);
+		model.addAttribute("ewr",ewr);
 		return "modules/external/externalWholesaleReportForm";
 	}
 

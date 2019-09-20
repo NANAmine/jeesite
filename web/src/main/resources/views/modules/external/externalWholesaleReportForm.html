@@ -19,7 +19,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('日期')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="ewrDdId" readonly="${status == 'true'}" maxlength="100" class="form-control date"/>
+								<#form:input path="ewrDdId" readonly="${status == 'true'}" maxlength="100" class="form-control dateym"/>
 							</div>
 						</div>
 					</div>
@@ -28,7 +28,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('渠道名称')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="ewrChannelName" readonly="${status == 'true'}" maxlength="100" class="form-control"/>
+								<#form:input path="ewrChannelName" readonly="true" maxlength="100" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -39,7 +39,7 @@
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('门店名称')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="ewrDsName" readonly="${status == 'true'}" maxlength="100" class="form-control"/>
+								<#form:input path="ewrDsName" readonly="true" maxlength="100" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="ewrYysrSnqn">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('营业收入上年全年')}：<i class="fa icon-question hide"></i></label>
@@ -94,7 +94,7 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="ewrLrzeBnlj">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('利润总额本年累计')}：<i class="fa icon-question hide"></i></label>
@@ -103,7 +103,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="ewrLrzeQnys">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('利润总额全年预算')}：<i class="fa icon-question hide"></i></label>
@@ -113,8 +113,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-xs-6">
+				<div class="row" id="ewrLrzeSntq">
+					<div class="col-xs-6" >
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
 								<span class="required hide">*</span> ${text('利润总额上年同期')}：<i class="fa icon-question hide"></i></label>
@@ -133,7 +133,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="ewrYycbBnlj">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
@@ -153,7 +153,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="ewrYycbSntq">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
@@ -173,7 +173,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="ewrMleBnlj">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
@@ -193,7 +193,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="ewrMleSntq">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
@@ -213,7 +213,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="ewrQjfyBnlj">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
@@ -233,7 +233,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="ewrQjfySntq">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
@@ -260,13 +260,23 @@
 </div>
 <% } %>
 <script>
-	(function start(status){
-		console.log(status)
-		if(status==null){ }else if(status.toString() == "true"){
+	(function start(status,ewr){
+		if(status == false){ }else if(status == true){
 			document.getElementById("btnSubmit").style.display="none";
 		}
-	})(${status})
-
+		if(ewr == false){
+			document.getElementById("ewrYysrSnqn").style.display="none";
+			document.getElementById("ewrLrzeBnlj").style.display="none";
+			document.getElementById("ewrLrzeQnys").style.display="none";
+			document.getElementById("ewrLrzeSntq").style.display="none";
+			document.getElementById("ewrYycbBnlj").style.display="none";
+			document.getElementById("ewrYycbSntq").style.display="none";
+			document.getElementById("ewrMleBnlj").style.display="none";
+			document.getElementById("ewrMleSntq").style.display="none";
+			document.getElementById("ewrQjfyBnlj").style.display="none";
+			document.getElementById("ewrQjfySntq").style.display="none";
+		}else if(ewr.toString() == "true"){}
+	})(${status},${ewr})
 
 	$("#inputForm").validate({
 	submitHandler: function(form){
