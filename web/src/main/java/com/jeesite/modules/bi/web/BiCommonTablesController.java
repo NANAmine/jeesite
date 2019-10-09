@@ -63,6 +63,8 @@ public class BiCommonTablesController extends BaseController {
 			biCommonTables.setTableName("dim_sale_target_yyy");
 		}else if("8".equals(id)){
 			biCommonTables.setTableName("dim_lxs_yyrs");
+		}else if("9".equals(id)){
+			biCommonTables.setTableName("dim_instructions_detail");
 		}
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";
