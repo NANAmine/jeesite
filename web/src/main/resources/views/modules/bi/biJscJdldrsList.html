@@ -25,7 +25,7 @@
 <!--					<label class="control-label">${text('状态')}：</label>-->
 <!--				</div>-->
 				<div class="form-group">
-					<label class="control-label">${text('更新人')}：</label>
+					<label class="control-label">${text('最近更新人')}：</label>
 					<div class="control-inline">
 						<#form:input path="updateBy" maxlength="64" class="form-control width-120"/>
 					</div>
@@ -51,7 +51,7 @@ $('#dataGrid').dataGrid({
 		}},
 		{header:'${text("进店人数")}', name:'bsjJdrs', index:'a.bsj_jdrs', width:150, align:"center"},
 		{header:'${text("离岛人数")}', name:'bsjLdrs', index:'a.bsj_ldrs', width:150, align:"center"},
-		{header:'${text("更新人")}', name:'updateBy', index:'a.update_by', width:150, align:"center"},
+		{header:'${text("最近更新人")}', name:'updateBy', index:'a.update_by', width:150, align:"center"},
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
 			var actions = [];
 			<% if(hasPermi('bi:biJscJdldrs:edit')){ %>

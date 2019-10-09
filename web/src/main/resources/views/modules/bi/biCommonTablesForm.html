@@ -1,0 +1,478 @@
+<% layout('/layouts/default.html', {title: '通用字典表管理', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-list-alt"></i> ${text(status == 'true'? '查看通用字典表':(biCommonTables.isNewRecord ? '新增通用字典表' : '编辑通用字典表'))}
+			</div>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${biCommonTables}" action="${ctx}/bi/biCommonTables/save" method="post" class="form-horizontal">
+			<div class="box-body">
+				<div class="form-unit">${text('基本信息')}</div>
+				<#form:hidden path="id"/>
+				<div class="row">
+					<div class="col-xs-6" style="display: none">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('表名称')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="tableName" readonly="${status == 'true'}" maxlength="100" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": ))))))))}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonA" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "进店人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月累计": (biCommonTables.tableName == "eva_repor"? "本月累计": (biCommonTables.tableName == "external_wholesale_report"? "渠道名称": (biCommonTables.tableName == "dim_hotel"? "酒店名称": (biCommonTables.tableName == "dim_map_brand_locate"? "店铺号": (biCommonTables.tableName == "dim_sale_target_yyy"? "门店编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展编码": ))))))))}<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonB" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "离岛人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月预算": (biCommonTables.tableName == "eva_repor"? "本年累计": (biCommonTables.tableName == "external_wholesale_report"? "门店名称": (biCommonTables.tableName == "dim_hotel"? "酒店位置": (biCommonTables.tableName == "dim_map_brand_locate"? "落位ID": (biCommonTables.tableName == "dim_sale_target_yyy"? "店面编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展名称": ))))))))}<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonC" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6" id="commond">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数去年同期月累计": (biCommonTables.tableName == "eva_repor"? "本期完成进度": (biCommonTables.tableName == "external_wholesale_report"? "品类名称": (biCommonTables.tableName == "dim_hotel"? "酒店星级": (biCommonTables.tableName == "dim_map_brand_locate"? "店铺面积": (biCommonTables.tableName == "dim_sale_target_yyy"? "柜组编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "预约人数": )))))))}<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonD" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6" id="commone">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数去年同期月预算": (biCommonTables.tableName == "eva_repor"? "同期完成进度": (biCommonTables.tableName == "external_wholesale_report"? "营业收入本年累计": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员号": )))))}<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonE" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6" id="commonf">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "eva_repor"? "同比增幅": (biCommonTables.tableName == "external_wholesale_report"? "营业收入全年预算": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": ))))}<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonF" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6" id="commong">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "营业收入上年同期": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": )))}<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonG" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6" id="commonh">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_map_brand_locate"? "品牌名称")}<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonH" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonI" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonJ" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonK" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonL" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonM" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonN" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonO" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonP" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonQ" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonR" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonS" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonT" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonU" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonV" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonW" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonX" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonY" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonZ" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAa" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAb" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAc" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAd" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAe" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAf" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAg" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAh" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAi" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAj" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAk" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAl" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAm" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="commonAn" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>-->
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('bi:biCommonTables:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> ${text('保 存')}</button>&nbsp;
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+<script>
+	(function start(status){
+		var tableName =  "${biCommonTables.tableName}"
+		console.log(status)
+		console.log(tableName)
+		console.log(status)
+		if(status==null){ }else if(status.toString() == "true"){
+			document.getElementById("btnSubmit").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"){
+			document.getElementById("commond").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hotel" || tableName == "dim_lxs_yyrs"){
+			document.getElementById("commone").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "dim_hotel" || tableName == "dim_lxs_yyrs"){
+			document.getElementById("commonf").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "dim_hotel" || tableName == "dim_lxs_yyrs"){
+			document.getElementById("commong").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs"){
+			document.getElementById("commonh").style.display="none";
+		}
+	})(${status})
+
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			if(data.result == Global.TRUE){
+				js.closeCurrentTabPage(function(contentWindow){
+					contentWindow.page();
+				});
+			}
+		}, "json");
+    }
+});
+</script>
