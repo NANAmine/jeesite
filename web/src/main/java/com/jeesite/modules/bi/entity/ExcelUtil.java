@@ -196,12 +196,13 @@ public class ExcelUtil {
                 }
             }else if("dim_instructions_detail".equals(tableName)){
                 System.out.println(arr.get(0));
-                if(!isEN(arr.get(0)) || !isEN(arr.get(1)) || arr.get(0).isEmpty()) {
+                if(!isEN(arr.get(0)) || arr.get(0).isEmpty()) {
                     if (!isEN(arr.get(0)) || arr.get(0).isEmpty()) {
                         mark = "第" + i + "条数据错误,请校验:商品编码只能为数字和英文。您实际输入的内容为：" + arr.get(0);
                         return mark;
                     } else {
-                        mark = "第" + i + "条数据错误,请校验:厂商货号只能为数字和英文。您实际输入的内容为：" + arr.get(1);
+                        //mark = "第" + i + "条数据错误,请校验:厂商货号只能为数字和英文。您实际输入的内容为：" + arr.get(1);
+                        mark = "第" + i + "条数据错误,请校验";
                         return mark;
                     }
                 }else if(arr.get(3).length() > 10000 || arr.get(4).length() > 10000 || arr.get(10).length() > 10000){
