@@ -51,6 +51,7 @@ public class BiCommonTablesController extends BaseController {
 			biCommonTables.setTableName("bi_jsc_jdldrs");
 		}else if("2".equals(id)){
 			biCommonTables.setTableName("dim_hk_passenger_flow");
+			biCommonTables.setCommonF("6915");
 		}else if("3".equals(id)){
 			biCommonTables.setTableName("eva_repor");
 		}else if("4".equals(id)){
@@ -65,6 +66,8 @@ public class BiCommonTablesController extends BaseController {
 			biCommonTables.setTableName("dim_lxs_yyrs");
 		}else if("9".equals(id)){
 			biCommonTables.setTableName("dim_instructions_detail");
+		}else if("10".equals(id)){
+			biCommonTables.setTableName("dim_texchange_rate");
 		}
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";
@@ -91,6 +94,11 @@ public class BiCommonTablesController extends BaseController {
 		if("1".equals(status)){
 			status = "true";
 		}
+		/*String ewr = "false";
+		if ("合计".equals(biCommonTables.getCommonD())){
+			ewr = "true";
+		}
+		model.addAttribute("ewr",ewr);*/
 		model.addAttribute("status",status);
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesForm";

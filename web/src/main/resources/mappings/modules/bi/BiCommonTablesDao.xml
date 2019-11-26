@@ -11,5 +11,14 @@
 		</where>
 		ORDER BY ${sqlMap.order.toSql()}
 	</select> -->
-	
+	<update id="deleteAll" parameterType="com.jeesite.modules.bi.entity.BiCommonTables">
+		update bi_common_tables
+		set status = '1'
+		where table_name = #{tableName}
+	</update>
+	<update id="upDelete" parameterType="com.jeesite.modules.bi.entity.BiCommonTables">
+		update bi_common_tables
+		set DDIC_STATUS = '0'
+		where ID = #{id}
+	</update>
 </mapper>

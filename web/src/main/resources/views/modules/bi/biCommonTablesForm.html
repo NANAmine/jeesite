@@ -26,19 +26,21 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": ))))))))}：<i class="fa icon-question hide"></i></label>
+								<span class="required">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": ))))))))))}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonA" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonA" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "dateym": (biCommonTables.tableName == "dim_hk_passenger_flow"? "datey-m": (biCommonTables.tableName == "eva_repor"? "dateym": (biCommonTables.tableName == "external_wholesale_report"? "dateym": (biCommonTables.tableName == "dim_hotel"? "required": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "datey required": (biCommonTables.tableName == "dim_instructions_detail"? "nae required": ))))))))))}'/>
 							</div>
+                            <label class="control-label col-sm-4" id="dim_texchange_ratea" style="display: none">${text('(例：2019)')}</label>
 						</div>
 					</div>
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "进店人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月累计": (biCommonTables.tableName == "eva_repor"? "本月累计": (biCommonTables.tableName == "external_wholesale_report"? "渠道名称": (biCommonTables.tableName == "dim_hotel"? "酒店名称": (biCommonTables.tableName == "dim_map_brand_locate"? "店铺号": (biCommonTables.tableName == "dim_sale_target_yyy"? "门店编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展编码": ))))))))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "进店人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月累计": (biCommonTables.tableName == "eva_repor"? "本月累计": (biCommonTables.tableName == "external_wholesale_report"? "渠道名称": (biCommonTables.tableName == "dim_hotel"? "酒店名称": (biCommonTables.tableName == "dim_map_brand_locate"? "店铺号": (biCommonTables.tableName == "dim_sale_target_yyy"? "门店编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展编码": (biCommonTables.tableName == "dim_texchange_rate"? "门店编码": (biCommonTables.tableName == "dim_instructions_detail"? "厂商货号": ))))))))))}:<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonB" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonB" readonly="${status == 'true'}" maxlength="255" class='form-control  ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "intnum": (biCommonTables.tableName == "dim_hk_passenger_flow"? "number": (biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "": (biCommonTables.tableName == "dim_hotel"? "required": (biCommonTables.tableName == "dim_map_brand_locate"? "店铺号": (biCommonTables.tableName == "dim_sale_target_yyy"? "门店编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展编码": (biCommonTables.tableName == "dim_texchange_rate"? "nae": (biCommonTables.tableName == "dim_instructions_detail"? "nae": ))))))))))}'/>
 							</div>
+                            <label class="control-label col-sm-4" id="dim_texchange_rateb" style="display: none">${text('(例：6915)')}</label>
 						</div>
 					</div>
 				</div>
@@ -46,19 +48,22 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "离岛人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月预算": (biCommonTables.tableName == "eva_repor"? "本年累计": (biCommonTables.tableName == "external_wholesale_report"? "门店名称": (biCommonTables.tableName == "dim_hotel"? "酒店位置": (biCommonTables.tableName == "dim_map_brand_locate"? "落位ID": (biCommonTables.tableName == "dim_sale_target_yyy"? "店面编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展名称": ))))))))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "离岛人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月预算": (biCommonTables.tableName == "eva_repor"? "本年累计": (biCommonTables.tableName == "external_wholesale_report"? "门店名称": (biCommonTables.tableName == "dim_hotel"? "酒店位置": (biCommonTables.tableName == "dim_map_brand_locate"? "落位ID": (biCommonTables.tableName == "dim_sale_target_yyy"? "店面编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展名称": (biCommonTables.tableName == "dim_texchange_rate"? "大类编码": (biCommonTables.tableName == "dim_instructions_detail"? "品牌编码": ))))))))))}:<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonC" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonC" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "intnum": (biCommonTables.tableName == "dim_hk_passenger_flow"? "number": (biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "dateym": (biCommonTables.tableName == "dim_hotel"? "required": (biCommonTables.tableName == "dim_map_brand_locate"? "落位ID": (biCommonTables.tableName == "dim_sale_target_yyy"? "店面编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展名称": (biCommonTables.tableName == "dim_texchange_rate"? "nae": )))))))))}'/>
 							</div>
+                            <label class="control-label col-sm-4" id="dim_texchange_ratec" style="display: none">${text('(例：01)')}</label>
 						</div>
 					</div>
 					<div class="col-xs-6" id="commond">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数去年同期月累计": (biCommonTables.tableName == "eva_repor"? "本期完成进度": (biCommonTables.tableName == "external_wholesale_report"? "品类名称": (biCommonTables.tableName == "dim_hotel"? "酒店星级": (biCommonTables.tableName == "dim_map_brand_locate"? "店铺面积": (biCommonTables.tableName == "dim_sale_target_yyy"? "柜组编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "预约人数": )))))))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数去年同期月累计": (biCommonTables.tableName == "eva_repor"? "本期完成进度": (biCommonTables.tableName == "external_wholesale_report"? "品类名称": (biCommonTables.tableName == "dim_hotel"? "酒店星级": (biCommonTables.tableName == "dim_map_brand_locate"? "店铺面积": (biCommonTables.tableName == "dim_sale_target_yyy"? "柜组编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "预约人数": (biCommonTables.tableName == "dim_texchange_rate"? "折算率": (biCommonTables.tableName == "dim_instructions_detail"? "批件中文名称": )))))))))}<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonD" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonD" readonly="${status == 'true'}" maxlength="10000" class='form-control ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "number": (biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "": (biCommonTables.tableName == "dim_hotel"? "required": (biCommonTables.tableName == "dim_map_brand_locate"? "店铺面积": (biCommonTables.tableName == "dim_sale_target_yyy"? "柜组编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "预约人数": (biCommonTables.tableName == "dim_texchange_rate"? "number": ))))))))}'/>
 							</div>
+                            <label class="control-label col-sm-4" id="dim_texchange_rated" style="display: none">${text('(例：0.8)')}</label>
+							<label class="control-label " id="dim_texchange_ratedd" style="display: none">&nbsp;&nbsp;&nbsp;&nbsp;${text('折算率=人民币/港币')}</label>
 						</div>
 					</div>
 				</div>
@@ -66,18 +71,20 @@
 					<div class="col-xs-6" id="commone">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数去年同期月预算": (biCommonTables.tableName == "eva_repor"? "同期完成进度": (biCommonTables.tableName == "external_wholesale_report"? "营业收入本年累计": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员号": )))))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数去年同期月预算": (biCommonTables.tableName == "eva_repor"? "同期完成进度": (biCommonTables.tableName == "external_wholesale_report"? "营业收入本年累计": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员号": (biCommonTables.tableName == "dim_texchange_rate"? "毛利额折算率": (biCommonTables.tableName == "dim_instructions_detail"? "批件英文名称": )))))))}<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonE" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonE" readonly="${status == 'true'}" maxlength="10000" class='form-control ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "number": (biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员号": (biCommonTables.tableName == "dim_texchange_rate"? "number": ))))))}'/>
 							</div>
+							<label class="control-label col-sm-4" id="dim_texchange_ratee" style="display: none">${text('(例：0.8)')}</label>
+							<label class="control-label" id="dim_texchange_rateee" style="display: none">&nbsp;&nbsp;&nbsp;&nbsp;${text('折算率=人民币/港币')}</label>
 						</div>
 					</div>
 					<div class="col-xs-6" id="commonf">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "eva_repor"? "同比增幅": (biCommonTables.tableName == "external_wholesale_report"? "营业收入全年预算": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": ))))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "eva_repor"? "同比增幅": (biCommonTables.tableName == "external_wholesale_report"? "营业收入全年预算": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_instructions_detail"? "批准日期": )))))}<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonF" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonF" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_instructions_detail"? "": )))))}'/>
 							</div>
 						</div>
 					</div>
@@ -86,36 +93,36 @@
 					<div class="col-xs-6" id="commong">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "营业收入上年同期": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": )))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "营业收入上年同期": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": (biCommonTables.tableName == "dim_instructions_detail"? "有效日期": ))))}<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonG" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonG" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": )))}'/>
 							</div>
 						</div>
 					</div>
 					<div class="col-xs-6" id="commonh">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_map_brand_locate"? "品牌名称")}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_map_brand_locate"? "品牌名称":(biCommonTables.tableName == "external_wholesale_report"? "营业收入上年全年": (biCommonTables.tableName == "dim_instructions_detail"? "备案地点": )))}<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonH" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonH" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "dim_map_brand_locate"? "品牌名称": (biCommonTables.tableName == "dim_instructions_detail"? "": ))}'/>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!--<div class="row">
-					<div class="col-xs-6">
+				<div class="row">
+					<div class="col-xs-6" id="commoni">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_instructions_detail"? "批件状态": (biCommonTables.tableName == "external_wholesale_report"? "利润总额本年累计":))}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonI" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonj">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_instructions_detail"? "备注": (biCommonTables.tableName == "external_wholesale_report"? "利润总额全年预算":))}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonJ" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
@@ -123,19 +130,19 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonk">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_instructions_detail"? "卫生许可证": (biCommonTables.tableName == "external_wholesale_report"? "利润总额上年同期":))}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonK" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
+								<#form:input path="commonK" readonly="${status == 'true'}" maxlength="10000" class="form-control"/>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonl">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_instructions_detail"? "批件原产国": (biCommonTables.tableName == "external_wholesale_report"? "利润总额上年全年":))}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonL" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
@@ -143,19 +150,19 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonm">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_instructions_detail"? "批件实际生产国": (biCommonTables.tableName == "external_wholesale_report"? "营业成本本年累计":))}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonM" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonn">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_instructions_detail"? "规格": (biCommonTables.tableName == "external_wholesale_report"? "营业成本全年预算":))}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonN" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
@@ -163,19 +170,19 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commono">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "营业成本上年同期":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonO" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonp">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "营业成本上年全年":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonP" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
@@ -183,19 +190,19 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonq">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "毛利额本年累计":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonQ" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonr">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "毛利额全年预算":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonR" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
@@ -203,19 +210,19 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commons">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "毛利额上年同期":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonS" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commont">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "毛利额上年全年":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonT" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
@@ -223,19 +230,19 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonu">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "期间费用本年累计":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonU" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonv">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "期间费用全年预算":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonV" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
@@ -243,26 +250,26 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-xs-6">
+					<div class="col-xs-6" id="commonw">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "期间费用上年同期":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonW" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-6">
+					<!--<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('通用字段')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "期间费用上年同期":)}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
 								<#form:input path="commonX" readonly="${status == 'true'}" maxlength="255" class="form-control"/>
 							</div>
 						</div>
-					</div>
+					</div>-->
 				</div>
-				<div class="row">
+				<!--<div class="row">
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
@@ -443,6 +450,54 @@
 		console.log(status)
 		console.log(tableName)
 		console.log(status)
+		/*if(ewr == false){
+			document.getElementById("ewrYysrSnqn").style.display="none";
+			document.getElementById("ewrLrzeBnlj").style.display="none";
+			document.getElementById("ewrLrzeQnys").style.display="none";
+			document.getElementById("ewrLrzeSntq").style.display="none";
+			document.getElementById("ewrYycbBnlj").style.display="none";
+			document.getElementById("ewrYycbSntq").style.display="none";
+			document.getElementById("ewrMleBnlj").style.display="none";
+			document.getElementById("ewrMleSntq").style.display="none";
+			document.getElementById("ewrQjfyBnlj").style.display="none";
+			document.getElementById("ewrQjfySntq").style.display="none";
+		}*/
+        if (tableName == "dim_texchange_rate") {
+            document.getElementById("dim_texchange_ratea").style.display="";
+            document.getElementById("dim_texchange_rateb").style.display="";
+            document.getElementById("dim_texchange_ratec").style.display="";
+            document.getElementById("dim_texchange_rated").style.display="";
+			document.getElementById("dim_texchange_ratee").style.display="";
+			document.getElementById("dim_texchange_ratedd").style.display="";
+			document.getElementById("dim_texchange_rateee").style.display="";
+			document.getElementById("commonB").setAttribute("maxlength","4");
+			document.getElementById("commonC").setAttribute("maxlength","2");
+        }
+       /* if (tableName == "dim_instructions_detail" || tableName == "dim_texchange_rate"){
+			document.getElementById("commoni").style.display="none";
+			document.getElementById("commonj").style.display="none";
+			document.getElementById("commonk").style.display="none";
+			document.getElementById("commonl").style.display="none";
+			document.getElementById("commonm").style.display="none";
+			document.getElementById("commonn").style.display="none";
+		}*/
+	    /*if (tableName != "external_wholesale_report"){
+			document.getElementById("commoni").style.display="none";
+			document.getElementById("commonj").style.display="none";
+			document.getElementById("commonk").style.display="none";
+			document.getElementById("commonl").style.display="none";
+			document.getElementById("commonm").style.display="none";
+			document.getElementById("commonn").style.display="none";
+			document.getElementById("commono").style.display="none";
+			document.getElementById("commonp").style.display="none";
+			document.getElementById("commonq").style.display="none";
+			document.getElementById("commonr").style.display="none";
+			document.getElementById("commons").style.display="none";
+			document.getElementById("commont").style.display="none";
+			document.getElementById("commonu").style.display="none";
+			document.getElementById("commonv").style.display="none";
+			document.getElementById("commonw").style.display="none";
+		}*/
 		if(status==null){ }else if(status.toString() == "true"){
 			document.getElementById("btnSubmit").style.display="none";
 		}
@@ -452,15 +507,61 @@
 		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hotel" || tableName == "dim_lxs_yyrs"){
 			document.getElementById("commone").style.display="none";
 		}
-		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "dim_hotel" || tableName == "dim_lxs_yyrs"){
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "dim_hotel" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
 			document.getElementById("commonf").style.display="none";
 		}
-		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "dim_hotel" || tableName == "dim_lxs_yyrs"){
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "dim_hotel" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
 			document.getElementById("commong").style.display="none";
 		}
-		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs"){
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
 			document.getElementById("commonh").style.display="none";
 		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
+			document.getElementById("commoni").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
+			document.getElementById("commonj").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
+			document.getElementById("commonk").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
+			document.getElementById("commonl").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
+			document.getElementById("commonm").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate"){
+			document.getElementById("commonn").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commono").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commonp").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commonq").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commonr").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commons").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commont").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commonu").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commonv").style.display="none";
+		}
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_instructions_detail"){
+			document.getElementById("commonw").style.display="none";
+		}
+
 	})(${status})
 
 $("#inputForm").validate({

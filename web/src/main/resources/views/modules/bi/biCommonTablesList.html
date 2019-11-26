@@ -1,360 +1,505 @@
 <% layout('/layouts/default.html', {title: '通用字典表管理', libs: ['dataGrid']}){ %>
 <div class="main-content">
-	<div class="box box-main">
-		<div class="box-header">
-			<div class="box-title">
-				<i class="fa fa-list-alt"></i> ${text('通用字典表管理')}
-			</div>
-			<div class="box-tools pull-right">
-				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
-				<% if(hasPermi('bi:biCommonTables:edit')){ %>
-					<a href="${ctx}/bi/biCommonTables/form?tableName=${biCommonTables.tableName}" class="btn btn-default btnTool" title="${text('新增通用字典表')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
-				<% } %>
-			</div>
-		</div>
-		<div class="box-body">
-			<#form:form id="searchForm" model="${biCommonTables}" action="${ctx}/bi/biCommonTables/listData" method="post" class="form-inline hide"
-					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
-				<div class="form-group">
-					<label class="control-label">${text('表名称')}：</label>
-					<div class="control-inline">
-						<#form:input path="tableName" maxlength="100" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonA" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonB" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonC" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonD" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonE" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonF" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonG" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonH" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonI" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonJ" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonK" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonL" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonM" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonN" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonO" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonP" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonQ" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonR" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonS" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonT" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonU" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonV" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonW" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonX" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonY" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonZ" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAa" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAb" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAc" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAd" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAe" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAf" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAg" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAh" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAi" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAj" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAk" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAl" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAm" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('通用字段')}：</label>
-					<div class="control-inline">
-						<#form:input path="commonAn" maxlength="255" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('最近更新人')}：</label>
-					<div class="control-inline">
-						<#form:input path="updateBy" maxlength="100" class="form-control width-120"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('最近更新时间')}：</label>
-					<div class="control-inline">
-						<#form:input path="updateDate" readonly="true" maxlength="20" class="form-control Wdate-date"
-							dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="control-label">${text('状态')}：</label>
-					<div class="control-inline width-120">
-						<#form:select path="status" dictType="sys_search_status" blankOption="true" class="form-control"/>
-					</div>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
-					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
-				</div>
-			</#form:form>
-			<table id="dataGrid"></table>
-			<div id="dataGridPage"></div>
-		</div>
-	</div>
+    <div class="box box-main">
+        <div class="box-header">
+            <div class="box-title">
+                <i class="fa fa-list-alt"></i> ${text('通用字典表管理')}
+            </div>
+            <div class="box-tools pull-right">
+                <a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i>
+                    ${text('查询')}</a>
+                <% if(hasPermi('bi:biCommonTables:edit')){ %>
+                <a href="${ctx}/bi/biCommonTables/form?tableName=${biCommonTables.tableName}&&commonF=${biCommonTables.commonF}"
+                   class="btn btn-default btnTool" title="${text('新增通用字典表')}"><i class="fa fa-plus"></i>
+                    ${text('新增')}</a>
+                <% } %>
+                <div class="btn-group">
+                    <a href="javascript:" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-navicon"></i> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:" id="btnExport"><i class="glyphicon glyphicon-export"></i> 导出</a></li>
+                        <li><a href="javascript:" id="btnImport"><i class="glyphicon glyphicon-import"></i> 导入</input></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="box-body">
+            <#form:form id="searchForm" model="${biCommonTables}" action="${ctx}/bi/biCommonTables/listData" method="post" class="form-inline hide" data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+            <div class="form-group" style="display: none">
+                <label class="control-label">${text('表名称')}：</label>
+                <div class="control-inline">
+                    <#form:input path="tableName" maxlength="100" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": ))))))))))}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonA" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "进店人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月累计": (biCommonTables.tableName == "eva_repor"? "本月累计": (biCommonTables.tableName == "external_wholesale_report"? "品类名称": (biCommonTables.tableName == "dim_hotel"? "酒店名称": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展名称": (biCommonTables.tableName == "dim_texchange_rate"? "门店编码": (biCommonTables.tableName == "dim_instructions_detail"? "品牌编码": ))))))))))}：</label>
+                <div class="control-inline">
+                    <#form:input path='${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "commonB": (biCommonTables.tableName == "dim_hk_passenger_flow"? "commonB": (biCommonTables.tableName == "eva_repor"? "commonB": (biCommonTables.tableName == "external_wholesale_report"? "commonD": (biCommonTables.tableName == "dim_hotel"? "commonB": (biCommonTables.tableName == "dim_map_brand_locate"? "commonF": (biCommonTables.tableName == "dim_sale_target_yyy"? "commonF": (biCommonTables.tableName == "dim_lxs_yyrs"? "commonC": (biCommonTables.tableName == "dim_texchange_rate"? "commonB": (biCommonTables.tableName == "dim_instructions_detail"? "commonC": ))))))))))}' maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "离岛人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月预算": (biCommonTables.tableName == "eva_repor"? "本年累计": (biCommonTables.tableName == "external_wholesale_report"? "营业收入本年累计": (biCommonTables.tableName == "dim_hotel"? "酒店位置": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": (biCommonTables.tableName == "dim_lxs_yyrs"? "预约人数": (biCommonTables.tableName == "dim_texchange_rate"? "大类编码": (biCommonTables.tableName == "dim_instructions_detail"? "批件中文名称": ))))))))))}：</label>
+                <div class="control-inline">
+                    <#form:input path='${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "commonC": (biCommonTables.tableName == "dim_hk_passenger_flow"? "commonC": (biCommonTables.tableName == "eva_repor"? "commonC": (biCommonTables.tableName == "external_wholesale_report"? "commonE": (biCommonTables.tableName == "dim_hotel"? "commonC": (biCommonTables.tableName == "dim_map_brand_locate"? "commonH": (biCommonTables.tableName == "dim_sale_target_yyy"? "commonG": (biCommonTables.tableName == "dim_lxs_yyrs"? "commonD": (biCommonTables.tableName == "dim_texchange_rate"? "commonC": (biCommonTables.tableName == "dim_instructions_detail"? "commonD": ))))))))))}' maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <!--<div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonD" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonE" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonF" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonG" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonH" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonI" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonJ" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonK" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonL" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonM" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonN" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonO" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonP" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonQ" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonR" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonS" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonT" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonU" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonV" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonW" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonX" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonY" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonZ" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAa" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAb" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAc" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAd" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAe" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAf" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAg" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAh" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAi" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAj" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAk" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAl" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAm" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('通用字段')}：</label>
+                <div class="control-inline">
+                    <#form:input path="commonAn" maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>-->
+            <div class="form-group">
+                <label class="control-label">${text('最近更新人')}：</label>
+                <div class="control-inline">
+                    <#form:input path="updateBy" maxlength="100" class="form-control width-120"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">${text('最近更新时间')}：</label>
+                <div class="control-inline">
+                    <#form:input path="updateDate_gte" readonly="true" maxlength="20" class="form-control Wdate-date"
+                    dataFormat="date"
+                    onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,onpicked:function(){updateDate_lte.click()}});"/>
+                    &nbsp;--&nbsp;
+                    <#form:input path="updateDate_lte" readonly="true" maxlength="20" class="form-control Wdate-date"
+                    dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+                </div>
+            </div>
+            <!--<div class="form-group">
+                <label class="control-label">${text('状态')}：</label>
+                <div class="control-inline width-120">
+                    <#form:select path="status" dictType="sys_search_status" blankOption="true" class="form-control"/>
+                </div>
+            </div>-->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+                <button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+            </div>
+        </#form:form>
+        <table id="dataGrid"></table>
+        <div id="dataGridPage"></div>
+    </div>
+</div>
 </div>
 <% } %>
 <script>
-// 初始化DataGrid对象
-$('#dataGrid').dataGrid({
-	searchForm: $("#searchForm"),
-	columnModel: [
-		/*{header:'${text("表名称")}', name:'tableName', index:'a.table_name', width:150, align:"center", frozen:true, formatter: function(val, obj, row, act){
-			return '<a href="${ctx}/bi/biCommonTables/form?id='+row.id+'&&status='+1+'" class="btnList" data-title="${text("编辑通用字典表")}">'+(val||row.id)+'</a>';
-		}},*/
-		{header:'${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": ))))))))}', name:'commonA', index:'a.common_a', width:150, align:"center", frozen:true, formatter: function(val, obj, row, act){
-				return '<a href="${ctx}/bi/biCommonTables/form?id='+row.id+'&&status='+1+'" class="btnList" data-title="${text("编辑通用字典表")}">'+(val||row.id)+'</a>';
-		}},
-		{header:'${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "进店人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月累计": (biCommonTables.tableName == "eva_repor"? "本月累计": (biCommonTables.tableName == "external_wholesale_report"? "品类名称": (biCommonTables.tableName == "dim_hotel"? "酒店名称": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展名称": ))))))))}', name:'commonB', index:'a.common_b', width:150, align:"center"},
-		{header:'${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "离岛人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月预算": (biCommonTables.tableName == "eva_repor"? "本年累计": (biCommonTables.tableName == "external_wholesale_report"? "营业收入本年累计": (biCommonTables.tableName == "dim_hotel"? "酒店位置": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": (biCommonTables.tableName == "dim_lxs_yyrs"? "预约人数": ))))))))}', name:'commonC', index:'a.common_c', width:150, align:"center"},
-		//{header:'${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": ))))))))}', name:'commonD', index:'a.common_d', width:150, align:"center"},
-		/*{header:'${text("通用字段")}', name:'commonE', index:'a.common_e', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonF', index:'a.common_f', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonG', index:'a.common_g', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonH', index:'a.common_h', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonI', index:'a.common_i', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonJ', index:'a.common_j', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonK', index:'a.common_k', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonL', index:'a.common_l', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonM', index:'a.common_m', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonN', index:'a.common_n', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonO', index:'a.common_o', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonP', index:'a.common_p', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonQ', index:'a.common_q', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonR', index:'a.common_r', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonS', index:'a.common_s', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonT', index:'a.common_t', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonU', index:'a.common_u', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonV', index:'a.common_v', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonW', index:'a.common_w', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonX', index:'a.common_x', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonY', index:'a.common_y', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonZ', index:'a.common_z', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAa', index:'a.common_aa', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAb', index:'a.common_ab', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAc', index:'a.common_ac', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAd', index:'a.common_ad', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAe', index:'a.common_ae', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAf', index:'a.common_af', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAg', index:'a.common_ag', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAh', index:'a.common_ah', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAi', index:'a.common_ai', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAj', index:'a.common_aj', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAk', index:'a.common_ak', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAl', index:'a.common_al', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAm', index:'a.common_am', width:150, align:"left"},
-		{header:'${text("通用字段")}', name:'commonAn', index:'a.common_an', width:150, align:"left"},*/
-		{header:'${text("最近更新人")}', name:'updateBy', index:'a.update_by', width:150, align:"center"},
-		{header:'${text("最近更新时间")}', name:'updateDate', index:'a.update_date', width:150, align:"center"},
-		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
-			var actions = [];
-			<% if(hasPermi('bi:biCommonTables:edit')){ %>
-				actions.push('<a href="${ctx}/bi/biCommonTables/form?id='+row.id+'" class="btnList" title="${text("编辑通用字典表")}"><i class="fa fa-pencil"></i></a>&nbsp;');
-				actions.push('<a href="${ctx}/bi/biCommonTables/delete?id='+row.id+'" class="btnList" title="${text("删除通用字典表")}" data-confirm="${text("确认要删除该通用字典表吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
-			<% } %>
-			return actions.join('');
-		}}
-	],
-	// 加载成功后执行事件
-	ajaxSuccess: function(data){
-		
-	}
-});
+    // 初始化DataGrid对象
+    $('#dataGrid').dataGrid({
+        searchForm: $("#searchForm"),
+        columnModel: [
+            /*{header:'${text("表名称")}', name:'tableName', index:'a.table_name', width:150, align:"center", frozen:true, formatter: function(val, obj, row, act){
+                return '<a href="${ctx}/bi/biCommonTables/form?id='+row.id+'&&status='+1+'" class="btnList" data-title="${text("编辑通用字典表")}">'+(val||row.id)+'</a>';
+            }},*/
+            {
+                header: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": ))))))))))}',
+                name: 'commonA',
+                index: 'a.common_a',
+                width: 150,
+                align: "center",
+                frozen: true,
+                formatter: function (val, obj, row, act) {
+                    return '<a href="${ctx}/bi/biCommonTables/form?id=' + row.id + '&&status=' + 1 + '" class="btnList" data-title="${text("编辑通用字典表")}">' + (val || row.id) + '</a>';
+                }
+            },
+            {
+                header: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "进店人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月累计": (biCommonTables.tableName == "eva_repor"? "本月累计": (biCommonTables.tableName == "external_wholesale_report"? "品类名称": (biCommonTables.tableName == "dim_hotel"? "酒店名称": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展名称": (biCommonTables.tableName == "dim_texchange_rate"? "大类编码": (biCommonTables.tableName == "dim_instructions_detail"? "品牌编码": ))))))))))}',
+                name: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "commonB": (biCommonTables.tableName == "dim_hk_passenger_flow"? "commonB": (biCommonTables.tableName == "eva_repor"? "commonB": (biCommonTables.tableName == "external_wholesale_report"? "commonD": (biCommonTables.tableName == "dim_hotel"? "commonB": (biCommonTables.tableName == "dim_map_brand_locate"? "commonF": (biCommonTables.tableName == "dim_sale_target_yyy"? "commonF": (biCommonTables.tableName == "dim_lxs_yyrs"? "commonC": (biCommonTables.tableName == "dim_texchange_rate"? "commonC": (biCommonTables.tableName == "dim_instructions_detail"? "commonC": ))))))))))}',
+                index: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "a.common_b": (biCommonTables.tableName == "dim_hk_passenger_flow"? "a.common_b": (biCommonTables.tableName == "eva_repor"? "a.common_b": (biCommonTables.tableName == "external_wholesale_report"? "a.common_d": (biCommonTables.tableName == "dim_hotel"? "a.common_b": (biCommonTables.tableName == "dim_map_brand_locate"? "a.common_f": (biCommonTables.tableName == "dim_sale_target_yyy"? "a.common_f": (biCommonTables.tableName == "dim_lxs_yyrs"? "a.common_c": (biCommonTables.tableName == "dim_texchange_rate"? "a.common_c": (biCommonTables.tableName == "dim_instructions_detail"? "a.common_c": ))))))))))}',
+                width: 150,
+                align: "center"
+            },
+            {
+                header: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "离岛人数": (biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数本月预算": (biCommonTables.tableName == "eva_repor"? "本年累计": (biCommonTables.tableName == "external_wholesale_report"? "营业收入本年累计": (biCommonTables.tableName == "dim_hotel"? "酒店位置": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": (biCommonTables.tableName == "dim_lxs_yyrs"? "预约人数": (biCommonTables.tableName == "dim_texchange_rate"? "折算率": (biCommonTables.tableName == "dim_instructions_detail"? "批件中文名称": ))))))))))}',
+                name: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "commonC": (biCommonTables.tableName == "dim_hk_passenger_flow"? "commonC": (biCommonTables.tableName == "eva_repor"? "commonC": (biCommonTables.tableName == "external_wholesale_report"? "commonE": (biCommonTables.tableName == "dim_hotel"? "commonC": (biCommonTables.tableName == "dim_map_brand_locate"? "commonH": (biCommonTables.tableName == "dim_sale_target_yyy"? "commonG": (biCommonTables.tableName == "dim_lxs_yyrs"? "commonD": (biCommonTables.tableName == "dim_texchange_rate"? "commonD": (biCommonTables.tableName == "dim_instructions_detail"? "commonD": ))))))))))}',
+                index: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "a.common_c": (biCommonTables.tableName == "dim_hk_passenger_flow"? "a.common_c": (biCommonTables.tableName == "eva_repor"? "a.common_c": (biCommonTables.tableName == "external_wholesale_report"? "a.common_e": (biCommonTables.tableName == "dim_hotel"? "a.common_c": (biCommonTables.tableName == "dim_map_brand_locate"? "a.common_h": (biCommonTables.tableName == "dim_sale_target_yyy"? "a.common_g": (biCommonTables.tableName == "dim_lxs_yyrs"? "a.common_d": (biCommonTables.tableName == "dim_texchange_rate"? "a.common_d": (biCommonTables.tableName == "dim_instructions_detail"? "a.common_d": ))))))))))}',
+                width: 150,
+                align: "center"
+            },
+            //{header:'${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": ))))))))}', name:'commonD', index:'a.common_d', width:150, align:"center"},
+            /*{header:'${text("通用字段")}', name:'commonE', index:'a.common_e', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonF', index:'a.common_f', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonG', index:'a.common_g', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonH', index:'a.common_h', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonI', index:'a.common_i', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonJ', index:'a.common_j', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonK', index:'a.common_k', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonL', index:'a.common_l', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonM', index:'a.common_m', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonN', index:'a.common_n', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonO', index:'a.common_o', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonP', index:'a.common_p', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonQ', index:'a.common_q', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonR', index:'a.common_r', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonS', index:'a.common_s', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonT', index:'a.common_t', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonU', index:'a.common_u', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonV', index:'a.common_v', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonW', index:'a.common_w', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonX', index:'a.common_x', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonY', index:'a.common_y', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonZ', index:'a.common_z', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAa', index:'a.common_aa', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAb', index:'a.common_ab', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAc', index:'a.common_ac', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAd', index:'a.common_ad', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAe', index:'a.common_ae', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAf', index:'a.common_af', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAg', index:'a.common_ag', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAh', index:'a.common_ah', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAi', index:'a.common_ai', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAj', index:'a.common_aj', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAk', index:'a.common_ak', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAl', index:'a.common_al', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAm', index:'a.common_am', width:150, align:"left"},
+            {header:'${text("通用字段")}', name:'commonAn', index:'a.common_an', width:150, align:"left"},*/
+            {header: '${text("最近更新人")}', name: 'updateBy', index: 'a.update_by', width: 150, align: "center"},
+            {header: '${text("最近更新时间")}', name: 'updateDate', index: 'a.update_date', width: 150, align: "center"},
+            {
+                header: '${text("操作")}',
+                name: 'actions',
+                width: 120,
+                sortable: false,
+                title: false,
+                formatter: function (val, obj, row, act) {
+                    var actions = [];
+                <%
+                    if (hasPermi('bi:biCommonTables:edit')) { %>
+                        actions.push('<a href="${ctx}/bi/biCommonTables/form?id=' + row.id + '" class="btnList" title="${text("编辑通用字典表")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+                        actions.push('<a href="${ctx}/bi/biCommonTables/delete?id=' + row.id + '" class="btnList" title="${text("删除通用字典表")}" data-confirm="${text("确认要删除该通用字典表吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+                    <%
+                    }
+                %>
+                    return actions.join('');
+                }
+            }
+        ],
+        // 加载成功后执行事件
+        ajaxSuccess: function (data) {
+
+        }
+    });
+
+    $('#btnExport').click(function () {
+        js.ajaxSubmitForm($('#searchForm'), {
+            url: '${ctx}/test/BiReportForm/exportData',
+            data: {id: '${biCommonTables.tableName}', status: ''},
+            downloadFile: true
+        });
+    });
+    $('#btnImport').click(function () {
+        js.layer.open({
+            type: 1,
+            area: ["400px"],
+            title: '导入数据',
+            resize: false,
+            scrollbar: true,
+            content: js.template('importTpl'),
+            success: function (layero, index) {
+                layero.find("input[type='checkbox']").iCheck();
+            },
+            btn: ['<i class="fa fa-check"></i> 导入',
+                '<i class="fa fa-remove"></i> 取消'],
+            btn1: function (index, layero) {
+                var form = {
+                    inputForm: layero.find('#inputForm'),
+                    file: layero.find('#file').val()
+                }
+                console.log(form.file)
+                //console.log(form.file.files)
+                console.log(layero.find('#file')[0].files[0].size)
+                console.log(form.file[0].size)
+                //var filePath = form.file;
+                //console.log(filePath);
+                if (form.file == '' || (!js.endWith(form.file, '.xls') && !js.endWith(form.file, '.xlsx'))) {
+                    js.showMessage("${text('文件不正确，请选择后缀为 “xls”或“xlsx”的文件。')}", null, 'warning');
+                    return false;
+                }
+                if (layero.find('#file')[0].files[0].size > 5 * 1048576) {
+                    js.showMessage("${text('文件太大，上传文件大小不得超过5兆！')}", null, 'warning');
+                    return false;
+                }
+                /*$.ajax({
+                    url: "${ctx}/test/ReportForm/inputData",
+                    type: "get",
+                    dataType: "json",
+                    data: {"filePath":form.file},
+                    success: function (json_data) {
+                        alert("恭喜你！上传成功");
+                    },
+                });*/
+                /*console.log(form)
+                js.ajaxSubmitForm($('#searchForm'), {
+                    url:'${ctx}/test/ReportForm/inputData?filePath=D:\\chrome下载\\顾客信息1556602176046.xls'
+                });*/
+                js.ajaxSubmitForm(form.inputForm, function (data) {
+                    console.log(data)
+                    js.showMessage(data.message);
+                    if (data.result == Global.TRUE) {
+                        js.layer.closeAll();
+                    }
+                    page();
+                }, "json");
+                return true;
+            }
+        });
+    });
+</script>
+<script id="importTpl" type="text/template">//<!--
+<form id="inputForm" action="${ctx}/test/BiReportForm/inputData" method="post" enctype="multipart/form-data"
+	class="form-horizontal mt20 mb10" style="overflow:auto;max-height:200px;">
+	<div class="row">
+		<div class="col-xs-12 col-xs-offset-1">
+			<input type="file" id="file" name="file" class="form-file"/>
+			<div class="mt10 pt5">
+				<#form:checkbox name="updateSupport" style="display:none" label="${text('是否更新已经存在的用户数据')}" class="form-control"
+					title="${text('如果用户编码已经存在，更新这条数据。')}"/> &nbsp;
+				<a href="${ctx}/test/BiReportForm/exportData?id=${biCommonTables.tableName}&&status=1" class="btn btn-default btn-xs"><i class="fa fa-file-excel-o"></i> ${text('下载模板')}</a>
+			</div>
+			<div class="form-group" style="display: none">
+					<label class="control-label">${text('编码')}：</label>
+					<div class="control-inline">
+						<#form:input path="tableName" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+			<font color="red" class="pull-left mt10">
+				${text('提示：仅允许导入“xls”格式文件,且导入数据为全量覆盖,请慎重导入！！')}
+			</font>
+		</div>
+	</div>
+</form>
+</script>
+<script>
+    $("#file").bind("input propertychange", function (event) {
+        var size = $("#file")[0].files[0].size * 1024;
+        console.log(size)
+        console.log($('#file').value)
+        if (size > 5242) {
+            alert("文件太大了！")
+            $("#file").value = "";
+        }
+    })
 </script>

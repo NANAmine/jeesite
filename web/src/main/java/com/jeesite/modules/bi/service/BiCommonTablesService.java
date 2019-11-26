@@ -3,15 +3,13 @@
  */
 package com.jeesite.modules.bi.service;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.service.CrudService;
-import com.jeesite.modules.bi.entity.BiCommonTables;
 import com.jeesite.modules.bi.dao.BiCommonTablesDao;
+import com.jeesite.modules.bi.entity.BiCommonTables;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 通用字典表Service
@@ -21,7 +19,9 @@ import com.jeesite.modules.bi.dao.BiCommonTablesDao;
 @Service
 @Transactional(readOnly=true)
 public class BiCommonTablesService extends CrudService<BiCommonTablesDao, BiCommonTables> {
-	
+
+	@Autowired
+	private BiCommonTablesDao biCommonTablesDao;
 	/**
 	 * 获取单条数据
 	 * @param biCommonTables
@@ -72,5 +72,22 @@ public class BiCommonTablesService extends CrudService<BiCommonTablesDao, BiComm
 	public void delete(BiCommonTables biCommonTables) {
 		super.delete(biCommonTables);
 	}
-	
+
+	/**
+	 * 删除全部数据
+	 * @param biCommonTables
+	 */
+	@Transactional(readOnly=false)
+	public void deleteAll(BiCommonTables biCommonTables) {
+		biCommonTablesDao.deleteAll(biCommonTables);
+	}
+
+	/**
+	 * 删除数据更新状态
+	 * @param biCommonTables
+	 */
+	@Transactional(readOnly=false)
+	public void upDelete(BiCommonTables biCommonTables) {
+		biCommonTablesDao.upDelete(biCommonTables);
+	}
 }

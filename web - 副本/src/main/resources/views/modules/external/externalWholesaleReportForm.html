@@ -1,0 +1,293 @@
+<% layout('/layouts/default.html', {title: '对外批发管理', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-list-alt"></i> ${text(status == 'true'? '查看EVA':(externalWholesaleReport.isNewRecord ? '新增对外批发' : '编辑对外批发'))}
+			</div>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${externalWholesaleReport}" action="${ctx}/external/externalWholesaleReport/save" method="post" class="form-horizontal">
+			<div class="box-body">
+				<div class="form-unit">${text('基本信息')}</div>
+				<#form:hidden path="id"/>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('日期')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrDdId" readonly="${status == 'true'}" maxlength="100" class="form-control dateym"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('渠道名称')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrChannelName" readonly="true" maxlength="100" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('门店名称')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrDsName" readonly="true" maxlength="100" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('品类名称')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrCategoryName" readonly="${status == 'true'}" maxlength="100" class="form-control date"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('营业收入本年累计')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrYysrBnlj" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('营业收入全年预算')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrYysrQnys" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('营业收入上年同期')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrYysrSntq" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6" id="ewrYysrSnqn">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('营业收入上年全年')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrYysrSnqn" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6" id="ewrLrzeBnlj">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('利润总额本年累计')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrLrzeBnlj" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6" id="ewrLrzeQnys">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('利润总额全年预算')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrLrzeQnys" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="ewrLrzeSntq">
+					<div class="col-xs-6" >
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('利润总额上年同期')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrLrzeSntq" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('利润总额上年全年')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrLrzeSnqn" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="ewrYycbBnlj">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('营业成本本年累计')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrYycbBnlj" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('营业成本全年预算')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrYycbQnys" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="ewrYycbSntq">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('营业成本上年同期')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrYycbSntq" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('营业成本上年全年')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrYycbSnqn" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="ewrMleBnlj">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('毛利额本年累计')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrMleBnlj" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('毛利额全年预算')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrMleQnys" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="ewrMleSntq">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('毛利额上年同期')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrMleSntq" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('毛利额上年全年')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrMleSnqn" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="ewrQjfyBnlj">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('期间费用本年累计')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrQjfyBnlj" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('期间费用全年预算')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrQjfyQnys" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" id="ewrQjfySntq">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('期间费用上年同期')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ewrQjfySntq" readonly="${status == 'true'}" class="form-control number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('external:externalWholesaleReport:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> ${text('保 存')}</button>&nbsp;
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+<script>
+	(function start(status,ewr){
+		if(status == false){ }else if(status == true){
+			document.getElementById("btnSubmit").style.display="none";
+		}
+		if(ewr == false){
+			document.getElementById("ewrYysrSnqn").style.display="none";
+			document.getElementById("ewrLrzeBnlj").style.display="none";
+			document.getElementById("ewrLrzeQnys").style.display="none";
+			document.getElementById("ewrLrzeSntq").style.display="none";
+			document.getElementById("ewrYycbBnlj").style.display="none";
+			document.getElementById("ewrYycbSntq").style.display="none";
+			document.getElementById("ewrMleBnlj").style.display="none";
+			document.getElementById("ewrMleSntq").style.display="none";
+			document.getElementById("ewrQjfyBnlj").style.display="none";
+			document.getElementById("ewrQjfySntq").style.display="none";
+		}else if(ewr.toString() == "true"){}
+	})(${status},${ewr})
+
+	$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			if(data.result == Global.TRUE){
+				js.closeCurrentTabPage(function(contentWindow){
+					contentWindow.page();
+				});
+			}
+		}, "json");
+    }
+});
+</script>

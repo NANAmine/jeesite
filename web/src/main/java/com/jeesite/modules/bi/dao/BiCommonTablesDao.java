@@ -10,9 +10,11 @@ import com.jeesite.modules.bi.entity.BiCommonTables;
 /**
  * 通用字典表DAO接口
  * @author ljw
- * @version 2019-09-25
+ * @version 2019-10-09
  */
-@MyBatisDao(dataSourceName="ds2")
+//@MyBatisDao //开发
+@MyBatisDao(dataSourceName="ds2") //生产
 public interface BiCommonTablesDao extends CrudDao<BiCommonTables> {
-	
+    int deleteAll(BiCommonTables biCommonTables);
+    int upDelete(BiCommonTables biCommonTables);
 }

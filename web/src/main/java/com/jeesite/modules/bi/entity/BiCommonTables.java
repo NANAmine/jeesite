@@ -9,56 +9,57 @@ import com.jeesite.common.entity.DataEntity;
 import com.jeesite.common.mybatis.annotation.Column;
 import com.jeesite.common.mybatis.annotation.Table;
 import com.jeesite.common.mybatis.mapper.query.QueryType;
+import java.util.Date;
 
 /**
  * 通用字典表Entity
  * @author ljw
- * @version 2019-09-25
+ * @version 2019-10-09
  */
 @Table(name="bi_common_tables", alias="a", columns={
 		@Column(name="id", attrName="id", label="主键", isPK=true),
 		@Column(name="table_name", attrName="tableName", label="表名称", queryType=QueryType.LIKE),
-		@Column(name="common_a", attrName="commonA", label="通用字段"),
-		@Column(name="common_b", attrName="commonB", label="通用字段"),
-		@Column(name="common_c", attrName="commonC", label="通用字段"),
-		@Column(name="common_d", attrName="commonD", label="通用字段"),
-		@Column(name="common_e", attrName="commonE", label="通用字段"),
-		@Column(name="common_f", attrName="commonF", label="通用字段"),
-		@Column(name="common_g", attrName="commonG", label="通用字段"),
-		@Column(name="common_h", attrName="commonH", label="通用字段"),
-		@Column(name="common_i", attrName="commonI", label="通用字段"),
-		@Column(name="common_j", attrName="commonJ", label="通用字段"),
-		@Column(name="common_k", attrName="commonK", label="通用字段"),
-		@Column(name="common_l", attrName="commonL", label="通用字段"),
-		@Column(name="common_m", attrName="commonM", label="通用字段"),
-		@Column(name="common_n", attrName="commonN", label="通用字段"),
-		@Column(name="common_o", attrName="commonO", label="通用字段"),
-		@Column(name="common_p", attrName="commonP", label="通用字段"),
-		@Column(name="common_q", attrName="commonQ", label="通用字段"),
-		@Column(name="common_r", attrName="commonR", label="通用字段"),
-		@Column(name="common_s", attrName="commonS", label="通用字段"),
-		@Column(name="common_t", attrName="commonT", label="通用字段"),
-		@Column(name="common_u", attrName="commonU", label="通用字段"),
-		@Column(name="common_v", attrName="commonV", label="通用字段"),
-		@Column(name="common_w", attrName="commonW", label="通用字段"),
-		@Column(name="common_x", attrName="commonX", label="通用字段"),
-		@Column(name="common_y", attrName="commonY", label="通用字段"),
-		@Column(name="common_z", attrName="commonZ", label="通用字段"),
-		@Column(name="common_aa", attrName="commonAa", label="通用字段"),
-		@Column(name="common_ab", attrName="commonAb", label="通用字段"),
-		@Column(name="common_ac", attrName="commonAc", label="通用字段"),
-		@Column(name="common_ad", attrName="commonAd", label="通用字段"),
-		@Column(name="common_ae", attrName="commonAe", label="通用字段"),
-		@Column(name="common_af", attrName="commonAf", label="通用字段"),
-		@Column(name="common_ag", attrName="commonAg", label="通用字段"),
-		@Column(name="common_ah", attrName="commonAh", label="通用字段"),
-		@Column(name="common_ai", attrName="commonAi", label="通用字段"),
-		@Column(name="common_aj", attrName="commonAj", label="通用字段"),
-		@Column(name="common_ak", attrName="commonAk", label="通用字段"),
-		@Column(name="common_al", attrName="commonAl", label="通用字段"),
-		@Column(name="common_am", attrName="commonAm", label="通用字段"),
-		@Column(name="common_an", attrName="commonAn", label="通用字段"),
-		@Column(name="update_by", attrName="updateBy", label="最近更新人"),
+		@Column(name="common_a", attrName="commonA", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_b", attrName="commonB", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_c", attrName="commonC", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_d", attrName="commonD", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_e", attrName="commonE", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_f", attrName="commonF", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_g", attrName="commonG", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_h", attrName="commonH", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_i", attrName="commonI", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_j", attrName="commonJ", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_k", attrName="commonK", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_l", attrName="commonL", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_m", attrName="commonM", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_n", attrName="commonN", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_o", attrName="commonO", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_p", attrName="commonP", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_q", attrName="commonQ", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_r", attrName="commonR", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_s", attrName="commonS", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_t", attrName="commonT", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_u", attrName="commonU", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_v", attrName="commonV", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_w", attrName="commonW", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_x", attrName="commonX", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_y", attrName="commonY", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_z", attrName="commonZ", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_aa", attrName="commonAa", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_ab", attrName="commonAb", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_ac", attrName="commonAc", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_ad", attrName="commonAd", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_ae", attrName="commonAe", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_af", attrName="commonAf", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_ag", attrName="commonAg", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_ah", attrName="commonAh", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_ai", attrName="commonAi", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_aj", attrName="commonAj", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_ak", attrName="commonAk", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_al", attrName="commonAl", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_am", attrName="commonAm", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="common_an", attrName="commonAn", label="通用字段", queryType=QueryType.LIKE),
+		@Column(name="update_by", attrName="updateBy", label="最近更新人", queryType=QueryType.LIKE),
 		@Column(name="update_date", attrName="updateDate", label="最近更新时间"),
 		@Column(name="status", attrName="status", label="状态"),
 	}, orderBy="a.update_date DESC"
@@ -483,6 +484,22 @@ public class BiCommonTables extends DataEntity<BiCommonTables> {
 
 	public void setCommonAn(String commonAn) {
 		this.commonAn = commonAn;
+	}
+	
+	public Date getUpdateDate_gte() {
+		return sqlMap.getWhere().getValue("update_date", QueryType.GTE);
+	}
+
+	public void setUpdateDate_gte(Date updateDate) {
+		sqlMap.getWhere().and("update_date", QueryType.GTE, updateDate);
+	}
+	
+	public Date getUpdateDate_lte() {
+		return sqlMap.getWhere().getValue("update_date", QueryType.LTE);
+	}
+
+	public void setUpdateDate_lte(Date updateDate) {
+		sqlMap.getWhere().and("update_date", QueryType.LTE, updateDate);
 	}
 	
 }

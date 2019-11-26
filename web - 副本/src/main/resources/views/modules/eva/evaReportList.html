@@ -1,0 +1,121 @@
+<% layout('/layouts/default.html', {title: 'EVA管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-list-alt"></i> ${text('EVA管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('eva:evaReport:edit')){ %>
+					<a href="${ctx}/eva/evaReport/form?djfktDsName=公司合并&djfktCategory=合计" class="btn btn-default btnTool" title="${text('新增EVA')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${evaReport}" action="${ctx}/eva/evaReport/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label">${text('日期')}：</label>
+					<div class="control-inline">
+						<#form:input path="djfktDdId" maxlength="255" class="form-control width-120"/>
+					</div>
+				</div>
+<!--				<div class="form-group">-->
+<!--					<label class="control-label">${text('门店名称')}：</label>-->
+<!--					<div class="control-inline">-->
+<!--						<#form:input path="djfktDsName" maxlength="255" class="form-control width-120"/>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<label class="control-label">${text('品类名称')}：</label>-->
+<!--					<div class="control-inline">-->
+<!--						<#form:input path="djfktCategory" maxlength="255" class="form-control width-120"/>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<label class="control-label">${text('本月累计')}：</label>-->
+<!--					<div class="control-inline">-->
+<!--						<#form:input path="djfktEva" class="form-control width-120"/>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<label class="control-label">${text('本年累计')}：</label>-->
+<!--					<div class="control-inline">-->
+<!--						<#form:input path="djfktEvaLj" class="form-control width-120"/>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<label class="control-label">${text('本期完成进度')}：</label>-->
+<!--					<div class="control-inline">-->
+<!--						<#form:input path="djfktEvaWcl" class="form-control width-120"/>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<label class="control-label">${text('同期完成进度')}：</label>-->
+<!--					<div class="control-inline">-->
+<!--						<#form:input path="djfktEvaTqwcl" class="form-control width-120"/>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="form-group">-->
+<!--					<label class="control-label">${text('同比增幅')}：</label>-->
+<!--					<div class="control-inline">-->
+<!--						<#form:input path="djfktEvaTbzf" class="form-control width-120"/>-->
+<!--					</div>-->
+<!--				</div>-->
+				<div class="form-group">
+					<label class="control-label">${text('最近更新人')}：</label>
+					<div class="control-inline">
+						<#form:input path="updateBy" maxlength="255" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("日期")}', name:'djfktDdId', index:'a.djfkt_dd_id', width:150, align:"center", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/eva/evaReport/form?id='+row.id+'&&status='+1+'" class="btnList" data-title="${text("编辑EVA")}">'+(val||row.id)+'</a>';
+		}},
+		{header:'${text("本月累计")}', name:'djfktEva', index:'a.djfkt_eva', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
+		}},
+		{header:'${text("本年累计")}', name:'djfktEvaLj', index:'a.djfkt_eva_lj', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
+		}},
+		{header:'${text("本期完成进度")}', name:'djfktEvaWcl', index:'a.djfkt_eva_wcl', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
+		}},
+		{header:'${text("同期完成进度")}', name:'djfktEvaTqwcl', index:'a.djfkt_eva_tqwcl', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
+		}},
+		{header:'${text("同比增幅")}', name:'djfktEvaTbzf', index:'a.djfkt_eva_tbzf', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.formatNumber(val, 2, false, ''); // 数值类型格式化 (原始数值, 小数位数, 是否千分位, 默认值，金额情况下设置0.00);
+		}},
+		{header:'${text("最近更新人")}', name:'updateBy', index:'a.update_by', width:150, align:"center"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('eva:evaReport:edit')){ %>
+				actions.push('<a href="${ctx}/eva/evaReport/form?id='+row.id+'" class="btnList" title="${text("编辑EVA")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/eva/evaReport/delete?id='+row.id+'" class="btnList" title="${text("删除EVA")}" data-confirm="${text("确认要删除该EVA吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		
+	}
+});
+</script>
