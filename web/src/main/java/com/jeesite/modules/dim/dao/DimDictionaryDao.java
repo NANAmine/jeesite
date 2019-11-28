@@ -12,7 +12,8 @@ import com.jeesite.modules.dim.entity.DimDictionary;
  * @author ljw
  * @version 2019-06-17
  */
-@MyBatisDao
+//@MyBatisDao //开发
+@MyBatisDao(dataSourceName="ds2") //生产
 public interface DimDictionaryDao extends CrudDao<DimDictionary> {
     int deleteAll(DimDictionary dimDictionary);
     int upDelete(DimDictionary dimDictionary);
