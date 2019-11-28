@@ -214,6 +214,11 @@ public class ExcelUtil {
                     mark = "第"+i+"条数据错误,请校验:日期格式为年，门店编码为数字，大类编码为数字，折算率和毛利额折算率为有效数值";
                     return mark;
                 }
+            }else if("dim_gys_ppdz".equals(tableName)){
+                if(!isNum(arr.get(2))){
+                    mark = "第"+i+"条数据错误,请校验:品牌编码为数字，长度为6位";
+                    return mark;
+                }
             }
         }
         return mark;

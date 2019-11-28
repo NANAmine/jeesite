@@ -78,7 +78,9 @@ public class DimDictionaryController extends BaseController {
 			dimDictionary.setDdicCode("QXKZ");
 		}else if("15".equals(id)){
 			dimDictionary.setDdicCode("GZMJ");
-		}
+		}else if("16".equals(id)){
+            dimDictionary.setDdicCode("JPQXKZ");
+        }
 		model.addAttribute("dimDictionary", dimDictionary);
 		return "modules/dim/dimDictionaryList";
 	}

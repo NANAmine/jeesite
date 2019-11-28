@@ -68,7 +68,9 @@ public class BiCommonTablesController extends BaseController {
 			biCommonTables.setTableName("dim_instructions_detail");
 		}else if("10".equals(id)){
 			biCommonTables.setTableName("dim_texchange_rate");
-		}
+		}else if("11".equals(id)){
+            biCommonTables.setTableName("dim_gys_ppdz");
+        }
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";
 	}

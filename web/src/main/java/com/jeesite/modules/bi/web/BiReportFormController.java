@@ -108,6 +108,15 @@ public class BiReportFormController extends BaseController {
             mark = "注意：日期格式为年，门店编码为数字，大类编码为数字，折算率和毛利额折算率为有效数值";
             //excel标题
             title = new String[]{commona, commonb, commonc, commond, commone, mark};
+        } else if ("dim_gys_ppdz".equals(id)) {
+            commona = "供应商编码";
+            commonb = "供应商名称";
+            commonc = "商品编码";
+            commond = "商品名称";
+            etitle = "供应商品牌对照信息";
+            mark = "注意：编码编码为数字且6位";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -194,7 +203,15 @@ public class BiReportFormController extends BaseController {
                 content[i][3] = obj.getCommonD();
                 content[i][4] = obj.getCommonE();
             }
-        } else {
+        } else if ("dim_gys_ppdz".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+            }
+        }else {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
                 content[i][0] = obj.getCommonA();

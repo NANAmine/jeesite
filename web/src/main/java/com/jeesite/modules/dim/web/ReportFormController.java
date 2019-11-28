@@ -106,6 +106,12 @@ public class ReportFormController extends BaseController {
             expend1 = "部门名称";
             etitle = "用户权限映射信息";
             mark = "注意：品牌编码只能为数字，部门名称只能为中文";
+        }else if("JPQXKZ".equals(id)){
+            name = "用户名称";
+            value = "团队名称";
+            expend1 = "部门名称";
+            etitle = "用户权限映射信息";
+            mark = "注意：部门名称只能为中文";
         }
         //获取数据
         List<DimDictionary> list = null;
@@ -131,7 +137,7 @@ public class ReportFormController extends BaseController {
                 DimDictionary obj = list.get(i);
                 content[i][1] = obj.getDdicValue();
             }
-        }else if("QXKZ".equals(id)) {
+        }else if("QXKZ".equals(id)||"JPQXKZ".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 DimDictionary obj = list.get(i);
                 content[i][0] = obj.getDdicName();
@@ -185,8 +191,10 @@ public class ReportFormController extends BaseController {
     public String importData(MultipartFile file, String ddicCode) {
         ExcelUtil er = new ExcelUtil();
         String mark = null;
+        List<Map<Integer, String>> list = null;
+        int i = 0;
         try {
-            List<Map<Integer,String>> list = er.readExcelContentByList(file.getInputStream());
+            list = er.readExcelContentByList(file.getInputStream());
             mark = er.list(list,ddicCode);
             if(mark!=null){
                 return renderResult(Global.FALSE, "上传失败:fail!"+mark);
@@ -203,9 +211,26 @@ public class ReportFormController extends BaseController {
                 dimDictionary.setDdicValue(arr.get(1));
                 dimDictionary.setDdicExpand1(arr.get(2));
                 dimDictionaryService.save(dimDictionary);
+                i++;
             }
             return renderResult(Global.TRUE, "上传成功:success!");
         } catch (Exception ex) {
+            int y = 0;
+            for (Map<Integer, String> arr : list
+            ) {
+                if(y<i) {
+                    DimDictionary dimDictionary = new DimDictionary();
+                    dimDictionary.setDdicCode(ddicCode);
+                    dimDictionary.setDdicName(arr.get(0));
+                    dimDictionary.setDdicValue(arr.get(1));
+                    dimDictionary.setDdicExpand1(arr.get(2));
+                    List<DimDictionary> list1 = dimDictionaryService.findList(dimDictionary);
+                    if(list1.size()>0){
+                        dimDictionaryService.delete(list1.get(0));
+                    }
+                    y++;
+                }
+            }
             return renderResult(Global.FALSE, "上传失败:fail!"+mark+ex.getMessage());
         }
     }

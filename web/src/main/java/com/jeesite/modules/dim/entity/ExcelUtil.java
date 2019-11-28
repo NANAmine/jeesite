@@ -126,79 +126,86 @@ public class ExcelUtil {
      *  */
     public String list(List<Map<Integer,String>> list,String ddicCode){
         String mark = null;
+        int i = 0;
         for (Map<Integer,String> arr: list
         ) {
+            i++;
             DimDictionary dimDictionary = new DimDictionary();
             dimDictionary.setIsNewRecord(true);
             dimDictionary.setDdicCode(ddicCode);
             if("GDBBMD".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isEN(arr.get(1))){
-                    mark = "门店名称只能为中文，门店编码只能包含数字和英文。";
+                    mark = "第"+i+"条数据错误,门店名称只能为中文，门店编码只能包含数字和英文。";
                     return mark;
                 }
             }else if("JPPPCODE".equals(ddicCode)){
-                if(!isEnglish(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "团队名称只能为英文，门店编码只能为数字";
+                if(!isEnglishgang(arr.get(0))||!isNum(arr.get(1))||arr.get(1).length()!=6){
+                    mark = "第"+i+"条数据错误,团队名称只能为英文，门店编码只能为数字";
                     return mark;
                 }
             }else if("ZDMD".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "重点门店名称只能为中文，门店编码只能为数字";
+                    mark = "第"+i+"条数据错误,重点门店名称只能为中文，门店编码只能为数字";
                     return mark;
                 }
             }else if("GCYJZDDP".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isEN(arr.get(1))){
-                    mark = "系列名称只能为中文，门店编码只能包含数字和英文";
+                    mark = "第"+i+"条数据错误,系列名称只能为中文，门店编码只能包含数字和英文";
                     return mark;
                 }
             }else if("GCYJZDMD".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "重点门店名称只能为中文，门店编码只能为数字";
+                    mark = "第"+i+"条数据错误,重点门店名称只能为中文，门店编码只能为数字";
                     return mark;
                 }
             }else if("SPBHPP".equals(ddicCode)){
                 if(!isNum(arr.get(0))){
-                    mark = "品牌编码只能为数字";
+                    mark = "第"+i+"条数据错误,品牌编码只能为数字";
                     return mark;
                 }
             }else if("MDZLBFL".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "门店分类名称只能为中文，门店编码只能为数字";
+                    mark = "第"+i+"条数据错误,门店分类名称只能为中文，门店编码只能为数字";
                     return mark;
                 }
             }else if("JSCQD".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "渠道名称只能为中文，门店编码只能为数字";
+                    mark = "第"+i+"条数据错误,渠道名称只能为中文，门店编码只能为数字";
                     return mark;
                 }
             }else if("ZLBQD".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isChinese(arr.get(2))){
-                    mark = "渠道名称只能为中文，门店编码只能为数字";
+                    mark = "第"+i+"条数据错误,渠道名称只能为中文，门店编码只能为数字";
                     return mark;
                 }
             }else if("ZLBZCGX".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "品牌编码只能为数字，部门名称只能为中文";
+                    mark = "第"+i+"条数据错误,品牌编码只能为数字，部门名称只能为中文";
                     return mark;
                 }
             }else if("XHPPHL".equals(ddicCode)){
                 if(!isNum(arr.get(0))||!isNumVal(arr.get(1))){
-                    mark = "品牌编码只能为数字，汇率只能为数值";
+                    mark = "第"+i+"条数据错误,品牌编码只能为数字，汇率只能为数值";
                     return mark;
                 }
             }else if("XHMD".equals(ddicCode)){
                 if(!isNum(arr.get(1))){
-                    mark = "门店编码只能为数字";
+                    mark = "第"+i+"条数据错误,门店编码只能为数字";
                     return mark;
                 }
             }else if("HOLIDAY".equals(ddicCode)){
                 if(!isChinese(arr.get(0))||!isDate(arr.get(1))){
-                    mark = "节日名称只能为中文，日期格式只能如:20190501";
+                    mark = "第"+i+"条数据错误,节日名称只能为中文，日期格式只能如:20190501";
                     return mark;
                 }
             }else if("QXKZ".equals(ddicCode)){
                 if(!isNum(arr.get(1))||!isChinese(arr.get(2))){
-                    mark = "品牌编码只能为数字，部门名称只能为中文";
+                    mark = "第"+i+"条数据错误,品牌编码只能为数字，部门名称只能为中文";
+                    return mark;
+                }
+            }else if("JPQXKZ".equals(ddicCode)){
+                if(!isChinese(arr.get(2))){
+                    mark = "第"+i+"条数据错误,部门名称只能为中文";
                     return mark;
                 }
             }
@@ -223,6 +230,12 @@ public class ExcelUtil {
     public static boolean isEnglish(String charaString){
 
         return charaString.matches("^[a-zA-Z]*");
+
+    }
+    /*这是英文验证*/
+    public static boolean isEnglishgang(String charaString){
+
+        return charaString.matches("^(-|[A-Za-z]| )*");
 
     }
     /*这是英文和数字验证*/
