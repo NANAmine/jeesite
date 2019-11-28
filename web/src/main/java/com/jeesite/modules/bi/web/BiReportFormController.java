@@ -111,8 +111,8 @@ public class BiReportFormController extends BaseController {
         } else if ("dim_gys_ppdz".equals(id)) {
             commona = "供应商编码";
             commonb = "供应商名称";
-            commonc = "商品编码";
-            commond = "商品名称";
+            commonc = "品牌编码";
+            commond = "品牌名称";
             etitle = "供应商品牌对照信息";
             mark = "注意：编码编码为数字且6位";
             //excel标题
