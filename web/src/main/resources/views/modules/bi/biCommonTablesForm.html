@@ -26,9 +26,9 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": (biCommonTables.tableName == "dim_gys_ppdz"? "供应商编码": )))))))))))}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "日期": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": (biCommonTables.tableName == "dim_gys_ppdz"? "供应商编码": )))))))))))}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonA" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "dateym": (biCommonTables.tableName == "dim_hk_passenger_flow"? "datey-m": (biCommonTables.tableName == "eva_repor"? "dateym": (biCommonTables.tableName == "external_wholesale_report"? "dateym": (biCommonTables.tableName == "dim_hotel"? "required": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "datey required": (biCommonTables.tableName == "dim_instructions_detail"? "nae required": (biCommonTables.tableName == "dim_gys_ppdz"? "": )))))))))))}'/>
+								<#form:input path="commonA" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "dateym": (biCommonTables.tableName == "dim_hk_passenger_flow"? "datey-m": (biCommonTables.tableName == "eva_repor"? "dateym": (biCommonTables.tableName == "external_wholesale_report"? "dateym": (biCommonTables.tableName == "dim_hotel"? "datey-m required": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "datey required": (biCommonTables.tableName == "dim_instructions_detail"? "nae required": (biCommonTables.tableName == "dim_gys_ppdz"? "": )))))))))))}'/>
 							</div>
                             <label class="control-label col-sm-4" id="dim_texchange_ratea" style="display: none">${text('(例：2019)')}</label>
 						</div>
@@ -53,7 +53,7 @@
 								<#form:input path="commonC" readonly="${status == 'true'}" maxlength="${text(biCommonTables.tableName =='dim_gys_ppdz' ? '6' : '255')}" minlength="${text(biCommonTables.tableName =='dim_gys_ppdz' ? '6' : '')}"  class='form-control ${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "intnum": (biCommonTables.tableName == "dim_hk_passenger_flow"? "number": (biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "dateym": (biCommonTables.tableName == "dim_hotel"? "required": (biCommonTables.tableName == "dim_map_brand_locate"? "落位ID": (biCommonTables.tableName == "dim_sale_target_yyy"? "店面编码": (biCommonTables.tableName == "dim_lxs_yyrs"? "旅行社或会展名称": (biCommonTables.tableName == "dim_texchange_rate"? "nae": (biCommonTables.tableName == "dim_gys_ppdz"? "digits": ))))))))))}'/>
 							</div>
                             <label class="control-label col-sm-4" id="dim_texchange_ratec" style="display: none">${text('(例：01)')}</label>
-						</div>
+                        </div>
 					</div>
 					<div class="col-xs-6" id="commond">
 						<div class="form-group">
@@ -71,9 +71,9 @@
 					<div class="col-xs-6" id="commone">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数去年同期月预算": (biCommonTables.tableName == "eva_repor"? "同期完成进度": (biCommonTables.tableName == "external_wholesale_report"? "营业收入本年累计": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员号": (biCommonTables.tableName == "dim_texchange_rate"? "毛利额折算率": (biCommonTables.tableName == "dim_instructions_detail"? "批件英文名称": )))))))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "机场总人数去年同期月预算": (biCommonTables.tableName == "eva_repor"? "同期完成进度": (biCommonTables.tableName == "external_wholesale_report"? "营业收入本年累计": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员号": (biCommonTables.tableName == "dim_texchange_rate"? "毛利额折算率": (biCommonTables.tableName == "dim_instructions_detail"? "批件英文名称": (biCommonTables.tableName == "dim_hotel"? "酒店编码": ))))))))}<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonE" readonly="${status == 'true'}" maxlength="10000" class='form-control ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "number": (biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员号": (biCommonTables.tableName == "dim_texchange_rate"? "number": ))))))}'/>
+								<#form:input path="commonE" readonly="${status == 'true'}" maxlength="10000" class='form-control ${text(biCommonTables.tableName == "dim_hk_passenger_flow"? "number": (biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员号": (biCommonTables.tableName == "dim_texchange_rate"? "number": (biCommonTables.tableName == "dim_hotel"? "required": )))))))}'/>
 							</div>
 							<label class="control-label col-sm-4" id="dim_texchange_ratee" style="display: none">${text('(例：0.8)')}</label>
 							<label class="control-label" id="dim_texchange_rateee" style="display: none">&nbsp;&nbsp;&nbsp;&nbsp;${text('折算率=人民币/港币')}</label>
@@ -82,9 +82,9 @@
 					<div class="col-xs-6" id="commonf">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "eva_repor"? "同比增幅": (biCommonTables.tableName == "external_wholesale_report"? "营业收入全年预算": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_instructions_detail"? "批准日期": )))))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "eva_repor"? "同比增幅": (biCommonTables.tableName == "external_wholesale_report"? "营业收入全年预算": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_instructions_detail"? "批准日期": (biCommonTables.tableName == "dim_hotel"? "客房数": ))))))}<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonF" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_instructions_detail"? "": )))))}'/>
+								<#form:input path="commonF" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "eva_repor"? "number": (biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "柜组名称": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员名称": (biCommonTables.tableName == "dim_instructions_detail"? "": (biCommonTables.tableName == "dim_hotel"? "number": ))))))}'/>
 							</div>
 						</div>
 					</div>
@@ -93,10 +93,12 @@
 					<div class="col-xs-6" id="commong">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "营业收入上年同期": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": (biCommonTables.tableName == "dim_instructions_detail"? "有效日期": ))))}<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text(biCommonTables.tableName == "external_wholesale_report"? "营业收入上年同期": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": (biCommonTables.tableName == "dim_instructions_detail"? "有效日期": (biCommonTables.tableName == "dim_hotel"? "入住率": )))))}<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:input path="commonG" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": )))}'/>
+								<#form:input path="commonG" readonly="${status == 'true'}" maxlength="255" class='form-control ${text(biCommonTables.tableName == "external_wholesale_report"? "number": (biCommonTables.tableName == "dim_map_brand_locate"? "品牌编码": (biCommonTables.tableName == "dim_sale_target_yyy"? "营业员销售目标": (biCommonTables.tableName == "dim_hotel"? "number": ))))}'/>
 							</div>
+                            <label class="control-label col-sm-4" id="dim_hoteld" style="display: none">${text('(例：81.1)')}</label>
+                            <label class="control-label" id="dim_hoteldd" style="display: none">&nbsp;&nbsp;&nbsp;&nbsp;${text('入住率为百分制，只需填数值')}</label>
 						</div>
 					</div>
 					<div class="col-xs-6" id="commonh">
@@ -473,6 +475,10 @@
 			document.getElementById("commonB").setAttribute("maxlength","4");
 			document.getElementById("commonC").setAttribute("maxlength","2");
         }
+        if (tableName == "dim_hotel") {
+            document.getElementById("dim_hoteld").style.display="";
+            document.getElementById("dim_hoteldd").style.display="";
+        }
        /* if (tableName == "dim_instructions_detail" || tableName == "dim_texchange_rate"){
 			document.getElementById("commoni").style.display="none";
 			document.getElementById("commonj").style.display="none";
@@ -504,13 +510,13 @@
 		if(tableName == "bi_jsc_jdldrs"){
 			document.getElementById("commond").style.display="none";
 		}
-		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hotel" || tableName == "dim_lxs_yyrs" || tableName == "dim_gys_ppdz"){
+		if(tableName == "bi_jsc_jdldrs"|| tableName == "dim_lxs_yyrs" || tableName == "dim_gys_ppdz"){
 			document.getElementById("commone").style.display="none";
 		}
-		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "dim_hotel" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_gys_ppdz"){
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow"|| tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_gys_ppdz"){
 			document.getElementById("commonf").style.display="none";
 		}
-		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "dim_hotel" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_gys_ppdz"){
+		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor"|| tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_gys_ppdz"){
 			document.getElementById("commong").style.display="none";
 		}
 		if(tableName == "bi_jsc_jdldrs"||tableName == "dim_hk_passenger_flow" || tableName == "eva_repor" || tableName == "external_wholesale_report" || tableName == "dim_hotel" || tableName == "dim_sale_target_yyy" || tableName == "dim_lxs_yyrs" || tableName == "dim_texchange_rate" || tableName == "dim_gys_ppdz"){

@@ -6,9 +6,9 @@
 				<i class="fa fa-list-alt"></i> ${text('通用字典表管理')}
 			</div>
 			<div class="box-tools pull-right">
-                ${text(dimDictionary.ddicCode == 'GDBBMD'? '门店名称': (dimDictionary.ddicCode =='JPPPCODE' ? '团队名称' : (dimDictionary.ddicCode =='GCYJZDDP' ? '系列名称' : (dimDictionary.ddicCode =='SPBHPP' ? '名称' : (dimDictionary.ddicCode =='JSCQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBZCGX' ? '资产关系名称' : (dimDictionary.ddicCode =='XHPPHL' ? '品牌编码' : (dimDictionary.ddicCode =='XHMD' ? '门店名称' : (dimDictionary.ddicCode =='HOLIDAY' ? '节日名称' : (dimDictionary.ddicCode =='QXKZ' ? '用户名称' : (dimDictionary.ddicCode =='GCYJZDMD' ? '重点门店名称' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店分类名称' : (dimDictionary.ddicCode =='GZMJ' ? '店铺编码' : (dimDictionary.ddicCode =='JPQXKZ' ? '用户名称' : '门店名称')))))))))))))))}：<input type="text" id="mdmc" />
+               <!-- ${text(dimDictionary.ddicCode == 'GDBBMD'? '门店名称': (dimDictionary.ddicCode =='JPPPCODE' ? '团队名称' : (dimDictionary.ddicCode =='GCYJZDDP' ? '系列名称' : (dimDictionary.ddicCode =='SPBHPP' ? '名称' : (dimDictionary.ddicCode =='JSCQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBQD' ? '渠道名称' : (dimDictionary.ddicCode =='ZLBZCGX' ? '资产关系名称' : (dimDictionary.ddicCode =='XHPPHL' ? '品牌编码' : (dimDictionary.ddicCode =='XHMD' ? '门店名称' : (dimDictionary.ddicCode =='HOLIDAY' ? '节日名称' : (dimDictionary.ddicCode =='QXKZ' ? '用户名称' : (dimDictionary.ddicCode =='GCYJZDMD' ? '重点门店名称' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店分类名称' : (dimDictionary.ddicCode =='GZMJ' ? '店铺编码' : (dimDictionary.ddicCode =='JPQXKZ' ? '用户名称' : '门店名称')))))))))))))))}：<input type="text" id="mdmc" />
                 ${text(dimDictionary.ddicCode == 'GDBBMD'? '门店编码': (dimDictionary.ddicCode =='JPPPCODE' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDDP' ? '商品编码' : (dimDictionary.ddicCode =='SPBHPP' ? '品牌编码' : (dimDictionary.ddicCode =='JSCQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBZCGX' ? '门店编码' : (dimDictionary.ddicCode =='XHPPHL' ? '汇率值' : (dimDictionary.ddicCode =='XHMD' ? '门店编码' : (dimDictionary.ddicCode =='HOLIDAY' ? '日期' : (dimDictionary.ddicCode =='QXKZ' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDMD' ? '门店编码' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店编码' : (dimDictionary.ddicCode =='ZDMD' ? '门店编码' : (dimDictionary.ddicCode =='GZMJ' ? '店铺面积' : (dimDictionary.ddicCode =='JPQXKZ' ? '权限' : '编码'))))))))))))))))}：<input type="text" id="mdbm" />
-				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				--><a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
 				<% if(hasPermi('dim:dimDictionary:edit')){ %>
 					<a href="${ctx}/dim/dimDictionary/form?ddicCode=${dimDictionary.ddicCode}" class="btn btn-default btnTool" title="${text('新增通用字典表')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
 				<% } %>
@@ -244,7 +244,7 @@ $('#dataGrid').dataGrid({
 					</div>
 				</div>
 			<font color="red" class="pull-left mt10">
-				${text('提示：仅允许导入“xls”或“xlsx”格式文件')}
+				${text('提示：仅允许导入“xls”格式文件，且导入新增数据不会覆盖历史数据')}
 			</font>
 		</div>
 	</div>

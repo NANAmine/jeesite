@@ -140,7 +140,7 @@ public class ExcelUtil {
                 }
             }else if("JPPPCODE".equals(ddicCode)){
                 if(!isEnglishgang(arr.get(0))||!isNum(arr.get(1))||arr.get(1).length()!=6){
-                    mark = "第"+i+"条数据错误,团队名称只能为英文，门店编码只能为数字";
+                    mark = "第"+i+"条数据错误,团队名称只能为英文，品牌编码只能为数字";
                     return mark;
                 }
             }else if("ZDMD".equals(ddicCode)){

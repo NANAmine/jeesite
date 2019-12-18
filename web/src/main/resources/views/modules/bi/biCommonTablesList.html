@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label">${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": (biCommonTables.tableName == "dim_gys_ppdz"? "供应商编码": )))))))))))}：</label>
+                <label class="control-label">${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "日期": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": (biCommonTables.tableName == "dim_gys_ppdz"? "供应商编码": )))))))))))}：</label>
                 <div class="control-inline">
                     <#form:input path="commonA" maxlength="255" class="form-control width-120"/>
                 </div>
@@ -315,7 +315,7 @@
                 return '<a href="${ctx}/bi/biCommonTables/form?id='+row.id+'&&status='+1+'" class="btnList" data-title="${text("编辑通用字典表")}">'+(val||row.id)+'</a>';
             }},*/
             {
-                header: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": (biCommonTables.tableName == "dim_gys_ppdz"? "供应商编码": )))))))))))}',
+                header: '${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "日期": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": (biCommonTables.tableName == "dim_texchange_rate"? "日期": (biCommonTables.tableName == "dim_instructions_detail"? "商品编码": (biCommonTables.tableName == "dim_gys_ppdz"? "供应商编码": )))))))))))}',
                 name: 'commonA',
                 index: 'a.common_a',
                 width: 150,
@@ -486,7 +486,7 @@
 					</div>
 				</div>
 			<font color="red" class="pull-left mt10">
-				${text('提示：仅允许导入“xls”格式文件,且导入数据为全量覆盖,请慎重导入！！')}
+				${text('提示：仅允许导入“xls”格式文件，且导入新增数据不会覆盖历史数据')}
 			</font>
 		</div>
 	</div>

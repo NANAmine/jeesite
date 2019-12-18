@@ -113,11 +113,18 @@ public class ExcelUtil {
                     map.put(j, day);
                 }*/
                 if(row.getCell(j) != null && row.getCell(j).getCellType() == 0){
-                    Date date = row.getCell(j).getDateCellValue();
-                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
-                    //Date date = new Date(System.currentTimeMillis());
-                    String day = simpleDateFormat.format(date);
-                    map.put(j, day);
+                    String[] strArr = row.getCell(j).toString().split("-");
+                    if(strArr.length == 3){
+                        Date date = row.getCell(j).getDateCellValue();
+                        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
+                        //Date date = new Date(System.currentTimeMillis());
+                        String day = simpleDateFormat.format(date);
+                        map.put(j, day);
+                    }else {
+                        row.getCell(j).setCellType(HSSFCell.CELL_TYPE_STRING);
+                        String data =  row.getCell(j).getStringCellValue();
+                        map.put(j, data);
+                    }
                 }else {
                     if (row.getCell(j) != null) {
                         row.getCell(j).setCellType(HSSFCell.CELL_TYPE_STRING);
@@ -175,8 +182,8 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("dim_hotel".equals(tableName)){
-                if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "第"+i+"条数据错误,请校验:重点门店名称只能为中文，门店编码只能为数字";
+                if(arr.get(0).isEmpty()||!isDateym(arr.get(0))||arr.get(1).isEmpty()||arr.get(2).isEmpty()||arr.get(3).isEmpty()||arr.get(4).isEmpty()||!isNumVal(arr.get(5))||!isNumVal(arr.get(6))){
+                    mark = "第"+i+"条数据错误,请校验:是否存在空值,客房数数字,入住率为百分制（例：81）,日期格式（年-月）";
                     return mark;
                 }
             }else if("dim_map_brand_locate".equals(tableName)){
@@ -279,6 +286,13 @@ public class ExcelUtil {
     public static boolean dateYear(String charaString){
 
         return charaString.matches("^\\d{4}$");
+
+    }
+
+    /*日期年验证 如：2019-05*/
+    public static boolean isDateym(String charaString){
+
+        return charaString.matches("^\\d{4}[-]((0([1-9]))|(1(0|1|2)))$");
 
     }
 

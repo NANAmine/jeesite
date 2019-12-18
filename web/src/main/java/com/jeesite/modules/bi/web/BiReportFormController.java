@@ -61,10 +61,17 @@ public class BiReportFormController extends BaseController {
             etitle = "对外批发数据";
             mark = "注意：系列名称只能为中文，门店编码只能包含数字和英文";
         } else if ("dim_hotel".equals(id)) {
-            commona = "重点门店名称";
-            commona = "门店编码";
+            commona = "日期";
+            commonb = "酒店名称";
+            commonc = "酒店位置";
+            commond = "酒店星级";
+            commone = "酒店编码";
+            commonf = "客房数";
+            commong = "入住率";
             etitle = "三亚酒店基本信息";
-            mark = "注意：重点门店名称只能为中文，门店编码只能为数字";
+            mark = "注意：日期、酒店名称、酒店位置、酒店星级、酒店编码都不为空，客房数和入住率为数值,入住率为百分制（例：81）,日期格式（年-月）";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, commone, commonf, commong,  mark};
         } else if ("dim_map_brand_locate".equals(id)) {
             commona = "品牌编码";
             etitle = "店铺号品牌映射";
@@ -159,7 +166,13 @@ public class BiReportFormController extends BaseController {
         } else if ("dim_hotel".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
-                content[i][1] = obj.getCommonA();
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+                content[i][6] = obj.getCommonG();
             }
         } else if ("dim_map_brand_locate".equals(id)) {
             for (int i = 0; i < list.size(); i++) {

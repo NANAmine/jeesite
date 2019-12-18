@@ -45,7 +45,7 @@ public class ReportFormController extends BaseController {
             name = "团队名称";
             value = "品牌编码";
             etitle = "品牌团队映射信息";
-            mark = "注意：团队名称只能为英文，门店编码只能为数字";
+            mark = "注意：团队名称只能为英文，品牌编码只能为数字";
         }else if("ZDMD".equals(id)){
             name = "重点门店名称";
             value = "门店编码";
