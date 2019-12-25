@@ -297,7 +297,7 @@ public class BiReportFormController extends BaseController {
     //@PostMapping(value = "importData")
     @RequestMapping(value = "inputData", method = RequestMethod.POST)
     @ResponseBody
-    public String importData(MultipartFile file, String tableName) {
+    public String inputData(MultipartFile file, String tableName) {
         ExcelUtil er = new ExcelUtil();
         String mark = null;
         List<Map<Integer, String>> list = null;
