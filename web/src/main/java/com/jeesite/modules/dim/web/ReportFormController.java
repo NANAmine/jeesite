@@ -188,7 +188,7 @@ public class ReportFormController extends BaseController {
     //@PostMapping(value = "importData")
     @RequestMapping(value = "inputData",method = RequestMethod.POST)
     @ResponseBody
-    public String inputData(MultipartFile file, String ddicCode) {
+    public String importData(MultipartFile file, String ddicCode) {
         ExcelUtil er = new ExcelUtil();
         String mark = null;
         List<Map<Integer, String>> list = null;
