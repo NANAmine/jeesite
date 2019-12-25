@@ -70,6 +70,8 @@ public class BiCommonTablesController extends BaseController {
 			biCommonTables.setTableName("dim_texchange_rate");
 		}else if("11".equals(id)){
             biCommonTables.setTableName("dim_gys_ppdz");
+        }else if("12".equals(id)){
+            biCommonTables.setTableName("bi_ds_pvuv");
         }
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";
@@ -101,6 +103,9 @@ public class BiCommonTablesController extends BaseController {
 			ewr = "true";
 		}
 		model.addAttribute("ewr",ewr);*/
+		if(biCommonTables.getTableName().equals("bi_ds_pvuv")){
+		    biCommonTables.setCommonB("6874");
+        }
 		model.addAttribute("status",status);
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesForm";

@@ -126,7 +126,7 @@ public class ExcelUtil {
                         map.put(j, data);
                     }
                 }else {
-                    if (row.getCell(j) != null) {
+                    if (row.getCell(j) != null && !row.getCell(j).getStringCellValue().equals("")) {
                         row.getCell(j).setCellType(HSSFCell.CELL_TYPE_STRING);
                     }
                     if (row.getCell(j) == null || row.getCell(j).getStringCellValue() == null) {
@@ -145,7 +145,10 @@ public class ExcelUtil {
                 }
                 j++;
             }
-            list.add(map);
+            if(map.size() != 0){
+                list.add(map);
+            }
+
         }
         return list;
     }
@@ -197,10 +200,10 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("dim_lxs_yyrs".equals(tableName)){
-                if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "第"+i+"条数据错误,请校验:渠道名称只能为中文，门店编码只能为数字";
+                /*if(true){
+                    mark = "第"+i+"条数据错误,请校验:";
                     return mark;
-                }
+                }*/
             }else if("dim_instructions_detail".equals(tableName)){
                 System.out.println(arr.get(0));
                 if(!isEN(arr.get(0)) || arr.get(0).isEmpty()) {
@@ -224,6 +227,11 @@ public class ExcelUtil {
             }else if("dim_gys_ppdz".equals(tableName)){
                 if(!isNum(arr.get(2))){
                     mark = "第"+i+"条数据错误,请校验:品牌编码为数字，长度为6位";
+                    return mark;
+                }
+            }else if("bi_ds_pvuv".equals(tableName)){
+                if(!isDateym(arr.get(0)) || !arr.get(1).equals("6874") || !isNumVal(arr.get(2)) || !isNumVal(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
+                    mark = "第"+i+"条数据错误,注意：日期格式为：2019-01，门店编码固定为6874，其它均为数值";
                     return mark;
                 }
             }
