@@ -16,6 +16,7 @@ import java.util.Date;
  * @author ljw
  * @version 2019-06-17
  */
+@SuppressWarnings({"ALL", "AlibabaLowerCamelCaseVariableNaming"})
 @Table(name="dim_dictionary", alias="a", columns={
 		@Column(name="ddic_id", attrName="ddicId", label="主键", isPK=true),
 		@Column(name="ddic_code", attrName="ddicCode", label="编码"),
@@ -177,35 +178,43 @@ public class DimDictionary extends DataEntity<DimDictionary> {
 		this.ddicStatus = ddicStatus;
 	}
 	
-	public Date getCreateDate_gte() {
+	@Override
+    public Date getCreateDate_gte() {
 		return sqlMap.getWhere().getValue("create_date", QueryType.GTE);
 	}
 
-	public void setCreateDate_gte(Date createDate) {
+	@Override
+    public void setCreateDate_gte(Date createDate) {
 		sqlMap.getWhere().and("create_date", QueryType.GTE, createDate);
 	}
 	
-	public Date getCreateDate_lte() {
+	@Override
+    public Date getCreateDate_lte() {
 		return sqlMap.getWhere().getValue("create_date", QueryType.LTE);
 	}
 
-	public void setCreateDate_lte(Date createDate) {
+	@Override
+    public void setCreateDate_lte(Date createDate) {
 		sqlMap.getWhere().and("create_date", QueryType.LTE, createDate);
 	}
 	
-	public Date getUpdateDate_gte() {
+	@Override
+    public Date getUpdateDate_gte() {
 		return sqlMap.getWhere().getValue("update_date", QueryType.GTE);
 	}
 
-	public void setUpdateDate_gte(Date updateDate) {
+	@Override
+    public void setUpdateDate_gte(Date updateDate) {
 		sqlMap.getWhere().and("update_date", QueryType.GTE, updateDate);
 	}
 	
-	public Date getUpdateDate_lte() {
+	@Override
+    public Date getUpdateDate_lte() {
 		return sqlMap.getWhere().getValue("update_date", QueryType.LTE);
 	}
 
-	public void setUpdateDate_lte(Date updateDate) {
+	@Override
+    public void setUpdateDate_lte(Date updateDate) {
 		sqlMap.getWhere().and("update_date", QueryType.LTE, updateDate);
 	}
 	

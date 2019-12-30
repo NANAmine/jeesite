@@ -44,7 +44,8 @@ public class BiCommonTablesController extends BaseController {
 	/**
 	 * 查询列表
 	 */
-	@RequiresPermissions("bi:biCommonTables:view")
+	@SuppressWarnings("AlibabaUndefineMagicConstant")
+    @RequiresPermissions("bi:biCommonTables:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(BiCommonTables biCommonTables, Model model, String id) {
 		if("1".equals(id)){
@@ -92,7 +93,8 @@ public class BiCommonTablesController extends BaseController {
 	/**
 	 * 查看编辑表单
 	 */
-	@RequiresPermissions("bi:biCommonTables:view")
+	@SuppressWarnings("AlibabaUndefineMagicConstant")
+    @RequiresPermissions("bi:biCommonTables:view")
 	@RequestMapping(value = "form")
 	public String form(BiCommonTables biCommonTables, Model model, String status) {
 		if("1".equals(status)){
@@ -103,7 +105,7 @@ public class BiCommonTablesController extends BaseController {
 			ewr = "true";
 		}
 		model.addAttribute("ewr",ewr);*/
-		if(biCommonTables.getTableName().equals("bi_ds_pvuv")){
+		if("bi_ds_pvuv".equals(biCommonTables.getTableName())){
 		    biCommonTables.setCommonB("6874");
         }
 		model.addAttribute("status",status);

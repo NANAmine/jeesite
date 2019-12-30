@@ -16,6 +16,7 @@ import java.util.Date;
  * @author ljw
  * @version 2019-10-09
  */
+@SuppressWarnings("ALL")
 @Table(name="bi_common_tables", alias="a", columns={
 		@Column(name="id", attrName="id", label="主键", isPK=true),
 		@Column(name="table_name", attrName="tableName", label="表名称", queryType=QueryType.LIKE),
@@ -486,19 +487,24 @@ public class BiCommonTables extends DataEntity<BiCommonTables> {
 		this.commonAn = commonAn;
 	}
 	
-	public Date getUpdateDate_gte() {
+	@Override
+    public Date getUpdateDate_gte() {
 		return sqlMap.getWhere().getValue("update_date", QueryType.GTE);
 	}
 
-	public void setUpdateDate_gte(Date updateDate) {
+	@Override
+    public void setUpdateDate_gte(Date updateDate) {
 		sqlMap.getWhere().and("update_date", QueryType.GTE, updateDate);
 	}
 	
-	public Date getUpdateDate_lte() {
+	@Override
+    public Date getUpdateDate_lte() {
 		return sqlMap.getWhere().getValue("update_date", QueryType.LTE);
 	}
 
-	public void setUpdateDate_lte(Date updateDate) {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    @Override
+    public void setUpdateDate_lte(Date updateDate) {
 		sqlMap.getWhere().and("update_date", QueryType.LTE, updateDate);
 	}
 	

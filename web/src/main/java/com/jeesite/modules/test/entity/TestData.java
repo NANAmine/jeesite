@@ -23,6 +23,7 @@ import java.util.List;
  * @author ThinkGem
  * @version 2019-04-29
  */
+@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 @Table(name="test_data", alias="a", columns={
 		@Column(name="id", attrName="id", label="编号", isPK=true),
 		@Column(name="test_input", attrName="testInput", label="单行文本", queryType=QueryType.LIKE),
@@ -182,35 +183,43 @@ public class TestData extends DataEntity<TestData> {
 		this.testAreaName = testAreaName;
 	}
 	
-	public Date getTestDate_gte() {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public Date getTestDate_gte() {
 		return sqlMap.getWhere().getValue("test_date", QueryType.GTE);
 	}
 
-	public void setTestDate_gte(Date testDate) {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public void setTestDate_gte(Date testDate) {
 		sqlMap.getWhere().and("test_date", QueryType.GTE, testDate);
 	}
 	
-	public Date getTestDate_lte() {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public Date getTestDate_lte() {
 		return sqlMap.getWhere().getValue("test_date", QueryType.LTE);
 	}
 
-	public void setTestDate_lte(Date testDate) {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public void setTestDate_lte(Date testDate) {
 		sqlMap.getWhere().and("test_date", QueryType.LTE, testDate);
 	}
 	
-	public Date getTestDatetime_gte() {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public Date getTestDatetime_gte() {
 		return sqlMap.getWhere().getValue("test_datetime", QueryType.GTE);
 	}
 
-	public void setTestDatetime_gte(Date testDatetime) {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public void setTestDatetime_gte(Date testDatetime) {
 		sqlMap.getWhere().and("test_datetime", QueryType.GTE, testDatetime);
 	}
 	
-	public Date getTestDatetime_lte() {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public Date getTestDatetime_lte() {
 		return sqlMap.getWhere().getValue("test_datetime", QueryType.LTE);
 	}
 
-	public void setTestDatetime_lte(Date testDatetime) {
+	@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+    public void setTestDatetime_lte(Date testDatetime) {
 		sqlMap.getWhere().and("test_datetime", QueryType.LTE, testDatetime);
 	}
 	

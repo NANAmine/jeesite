@@ -126,7 +126,7 @@ public class ExcelUtil {
                         map.put(j, data);
                     }
                 }else {
-                    if (row.getCell(j) != null && !row.getCell(j).getStringCellValue().equals("")) {
+                    if (row.getCell(j) != null && !"".equals(row.getCell(j).getStringCellValue())) {
                         row.getCell(j).setCellType(HSSFCell.CELL_TYPE_STRING);
                     }
                     if (row.getCell(j) == null || row.getCell(j).getStringCellValue() == null) {
@@ -230,7 +230,7 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("bi_ds_pvuv".equals(tableName)){
-                if(!isDateym(arr.get(0)) || !arr.get(1).equals("6874") || !isNumVal(arr.get(2)) || !isNumVal(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
+                if(!isDateym(arr.get(0)) || !"6874".equals(arr.get(1)) || !isNumVal(arr.get(2)) || !isNumVal(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
                     mark = "第"+i+"条数据错误,注意：日期格式为：2019-01，门店编码固定为6874，其它均为数值";
                     return mark;
                 }
@@ -242,6 +242,7 @@ public class ExcelUtil {
      * 这是中文验证
      * */
     public static boolean isChinese(String str){
+        //noinspection AlibabaAvoidPatternCompileInMethod
         Pattern pattern = Pattern.compile("[\u4e00-\u9fa5]");
         char c[] = str.toCharArray();
         for(int i=0;i<c.length;i++){
