@@ -40,26 +40,40 @@ public class BiReportFormController extends BaseController {
         String commona = "", commonb = "", commonc = "", commond = "", commone = "", commonf = "", commong = "", commonh = "", commoni = "", commonj = "", commonk = "", commonl = "", commonm = "", commonn = "", etitle = "", mark = "";
         String[] title = null;
         if ("bi_jsc_jdldrs".equals(id)) {
-            commona = "门店名称";
-            commonb = "门店编码";
-            commona = "门店名称";
+            commona = "日期";
+            commonb = "进店人数";
+            commonc = "离岛人数";
             etitle = "三亚客流数据";
-            mark = "注意：门店名称只能为中文，门店编码只能包含数字和英文";
+            mark = "注意：日期格式：年月（201904），进店离岛人数为正整数";
+            //excel标题
+            title = new String[]{commona, commonb, commonc,  mark};
         } else if ("dim_hk_passenger_flow".equals(id)) {
-            commona = "团队名称";
-            commona = "品牌编码";
+            commona = "日期年月";
+            commonb = "机场总人数本月累计";
+            commonc = "机场总人数本月预算";
+            commond = "机场总人数去年同期月累计";
+            commone = "机场总人数去年同期月预算";
             etitle = "香港客流数据";
-            mark = "注意：团队名称只能为英文，门店编码只能为数字";
+            mark = "注意：日期格式：年月（2019-04），人数为正整数";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, commone, mark};
         } else if ("eva_repor".equals(id)) {
             commona = "重点门店名称";
             commona = "门店编码";
             etitle = "EVA数据";
             mark = "注意：重点门店名称只能为中文，门店编码只能为数字";
         } else if ("external_wholesale_report".equals(id)) {
-            commona = "系列名称";
-            commona = "商品编码";
+            commona = "日期";
+            commonb = "渠道名称";
+            commonc = "门店名称";
+            commond = "品类名称";
+            commone = "营业收入本年累计";
+            commonf = "营业收入全年预算";
+            commong = "营业收入上年同期";
             etitle = "对外批发数据";
-            mark = "注意：系列名称只能为中文，门店编码只能包含数字和英文";
+            mark = "注意：日期格式：年月（201904），营业收入本年累计，全年预算，上年同期为数值";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, commone, commonf, commong,  mark};
         } else if ("dim_hotel".equals(id)) {
             commona = "日期";
             commonb = "酒店名称";
@@ -139,6 +153,14 @@ public class BiReportFormController extends BaseController {
             mark = "注意：日期格式为：2019-01，门店编码固定为6874，其它均为数值";
             //excel标题
             title = new String[]{commona, commonb, commonc, commond, commone, commonf, mark};
+        } else if ("dim_area_gz_map".equals(id)) {
+            commona = "区域";
+            commonb = "店面";
+            commonc = "柜组";
+            etitle = "区域店面柜组映射信息";
+            mark = "注意：店面6位数字，柜组位8位数字";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -159,14 +181,18 @@ public class BiReportFormController extends BaseController {
         if ("bi_jsc_jdldrs".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
-                content[i][1] = obj.getCommonA();
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
             }
         } else if ("dim_hk_passenger_flow".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
                 content[i][0] = obj.getCommonA();
-                content[i][1] = obj.getCommonA();
-                content[i][2] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
             }
         } else if ("eva_repor".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
@@ -176,7 +202,13 @@ public class BiReportFormController extends BaseController {
         } else if ("external_wholesale_report".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
-                content[i][1] = obj.getCommonA();
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+                content[i][6] = obj.getCommonG();
             }
         } else if ("dim_hotel".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
@@ -252,6 +284,13 @@ public class BiReportFormController extends BaseController {
                 content[i][3] = obj.getCommonD();
                 content[i][4] = obj.getCommonE();
                 content[i][5] = obj.getCommonF();
+            }
+        }else if ("dim_area_gz_map".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
             }
         }else {
             for (int i = 0; i < list.size(); i++) {

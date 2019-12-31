@@ -165,13 +165,13 @@ public class ExcelUtil {
             biCommonTables.setIsNewRecord(true);
             biCommonTables.setTableName(tableName);
             if("bi_jsc_jdldrs".equals(tableName)){
-                if(!isChinese(arr.get(0))||!isEN(arr.get(1))){
-                    mark = "第"+i+"条数据错误,请校验:门店名称只能为中文，门店编码只能包含数字和英文。";
+                if(!isDateYM(arr.get(0))||!isNum(arr.get(1))||!isNum(arr.get(2))){
+                    mark = "第"+i+"条数据错误,请校验:日期格式：年月（201904），进店离岛人数为正整数";
                     return mark;
                 }
             }else if("dim_hk_passenger_flow".equals(tableName)){
-                if(!isEnglish(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "第"+i+"条数据错误,请校验:团队名称只能为英文，门店编码只能为数字";
+                if(!isDateym(arr.get(0))||!isNum(arr.get(1))||!isNum(arr.get(2))||!isNum(arr.get(3))||!isNum(arr.get(4))){
+                    mark = "第"+i+"条数据错误,请校验：日期格式：年月（2019-04），人数为正整数";
                     return mark;
                 }
             }else if("eva_repor".equals(tableName)){
@@ -180,8 +180,8 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("external_wholesale_report".equals(tableName)){
-                if(!isChinese(arr.get(0))||!isEN(arr.get(1))){
-                    mark = "第"+i+"条数据错误,请校验:系列名称只能为中文，门店编码只能包含数字和英文";
+                if(!isDateYM(arr.get(0))||!isNumVal(arr.get(4))||!isNumVal(arr.get(5))||!isNumVal(arr.get(6))){
+                    mark = "第"+i+"条数据错误,请校验:日期格式：年月（201904），营业收入本年累计，全年预算，上年同期为数值";
                     return mark;
                 }
             }else if("dim_hotel".equals(tableName)){
@@ -232,6 +232,11 @@ public class ExcelUtil {
             }else if("bi_ds_pvuv".equals(tableName)){
                 if(!isDateym(arr.get(0)) || !"6874".equals(arr.get(1)) || !isNumVal(arr.get(2)) || !isNumVal(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
                     mark = "第"+i+"条数据错误,注意：日期格式为：2019-01，门店编码固定为6874，其它均为数值";
+                    return mark;
+                }
+            }else if("dim_area_gz_map".equals(tableName)){
+                if(arr.get(1).length()!= 6 || arr.get(2).length()!= 8 || !isNumVal(arr.get(1)) || !isNumVal(arr.get(2)) ){
+                    mark = "第"+i+"条数据错误,注意：店面6位数字，柜组位8位数字";
                     return mark;
                 }
             }
@@ -304,5 +309,10 @@ public class ExcelUtil {
         return charaString.matches("^\\d{4}[-]((0([1-9]))|(1(0|1|2)))$");
 
     }
+    /*日期年验证 如：201905*/
+    public static boolean isDateYM(String charaString){
 
+        return charaString.matches("^\\d{4}((0([1-9]))|(1(0|1|2)))$");
+
+    }
 }

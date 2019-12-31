@@ -73,6 +73,8 @@ public class BiCommonTablesController extends BaseController {
             biCommonTables.setTableName("dim_gys_ppdz");
         }else if("12".equals(id)){
             biCommonTables.setTableName("bi_ds_pvuv");
+        }else if("13".equals(id)){
+            biCommonTables.setTableName("dim_area_gz_map");
         }
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";
