@@ -198,6 +198,18 @@ public class BiReportFormController extends BaseController {
             mark = "注意：都不可为空，门店编码为整数，类型选填：汇总或明细";
             //excel标题
             title = new String[]{commona, commonb, commonc, commond, mark};
+        } else if ("dim_pp_sell_report_exchangrate".equals(id)) {
+            commona = "品牌编码";
+            commonb = "品牌名称";
+            commonc = "门店编码";
+            commond = "门店英文名称";
+            commone = "汇率";
+            commonf = "开始时间";
+            commong = "结束时间";
+            etitle = "香化品牌汇率映射";
+            mark = "注意：品牌编码（数字，必填），品牌名称（未校验，非必填），门店编码（数字，必填），门店英文名称（英文和空格，必填），汇率（数值，必填），开始时间和结束时间成对填写（格式2020-01-01，未知可填9999-12-31，非必填）";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, commone, commonf, commong, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -361,7 +373,18 @@ public class BiReportFormController extends BaseController {
                 content[i][2] = obj.getCommonC();
                 content[i][3] = obj.getCommonD();
             }
-        }else {
+        } else if ("dim_pp_sell_report_exchangrate".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+                content[i][6] = obj.getCommonG();
+            }
+        } else {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
                 content[i][0] = obj.getCommonA();
@@ -413,7 +436,7 @@ public class BiReportFormController extends BaseController {
         try {
             list = er.readExcelContentByList(file.getInputStream());
             mark = er.list(list, tableName);
-            if (mark != null) {
+            if (mark != null || list.size()==0) {
                 return renderResult(Global.FALSE, "上传失败！" + mark);
             }
             /*BiCommonTables bct = new BiCommonTables();

@@ -130,7 +130,11 @@ public class ExcelUtil {
                         row.getCell(j).setCellType(HSSFCell.CELL_TYPE_STRING);
                     }
                     if (row.getCell(j) == null || row.getCell(j).getStringCellValue() == null) {
-                        break;
+                        if(j==0){
+                            map.put(j, "");
+                        }else {
+                            break;
+                        }
                     } else {
                         if (row.getCell(j).getCellType() == 1) {
                             map.put(j, row.getCell(j).getStringCellValue());
@@ -249,6 +253,11 @@ public class ExcelUtil {
                     mark = "第"+i+"条数据错误,注意：内容均必填，并且门店编码为整数，类型选填：汇总或明细";
                     return mark;
                 }
+            }else if("dim_pp_sell_report_exchangrate".equals(tableName)){
+                if(!isNum(arr.get(0)) || !isNum(arr.get(2)) || !isEnglishKg(arr.get(3)) || !isNumVal(arr.get(4)) || !((isDateymd(arr.get(5))&&isDateymd(arr.get(6)))||(arr.get(5).isEmpty()&&arr.get(6).isEmpty()))){
+                    mark = "第"+i+"条数据错误,注意：品牌编码（数字，必填），品牌名称（未校验，非必填），门店编码（数字，必填），门店英文名称（英文和空格，必填），汇率（数值，必填），开始时间和结束时间成对填写（格式2020-01-01，未知可填9999-12-31，非必填）";
+                    return mark;
+                }
             }
         }
         return mark;
@@ -286,31 +295,37 @@ public class ExcelUtil {
     /*这是英文验证*/
     public static boolean isEahg(String charaString){
 
-        return charaString.matches("^(-|[A-Z]|[0-9])*");
+        return charaString.matches("^(-|[A-Z]|[0-9])+");
 
     }
     /*这是英文验证*/
     public static boolean isEnglish(String charaString){
 
-        return charaString.matches("^[a-zA-Z]*");
+        return charaString.matches("^[a-zA-Z]+");
+
+    }
+    /*这是英文空格验证*/
+    public static boolean isEnglishKg(String charaString){
+
+        return charaString.matches("^(([a-zA-Z]\\s)|[a-zA-Z])+");
 
     }
     /*这是英文和数字验证*/
     public static boolean isEN(String charaString){
 
-        return charaString.matches("^[A-Za-z0-9]*");
+        return charaString.matches("^[A-Za-z0-9]+");
 
     }
     /*这是数字验证*/
     public static boolean isNum(String charaString){
 
-        return charaString.matches("[0-9]*");
+        return charaString.matches("[0-9]+");
 
     }
     /*这是数值验证*/
     public static boolean isNumVal(String charaString){
 
-        return charaString.matches("^([1-9][0-9]*)(\\.[0-9]*)?$|^(0\\.[0-9]*)");
+        return charaString.matches("^([1-9][0-9]*)(\\.[0-9]*)?$|^(0\\.[0-9]*)+");
 
     }
     /*这是日期验证如：20190501*/
@@ -338,6 +353,12 @@ public class ExcelUtil {
     public static boolean isDateym(String charaString){
 
         return charaString.matches("^\\d{4}[-]((0([1-9]))|(1(0|1|2)))$");
+
+    }
+    /*日期年验证 如：2019-01-01*/
+    public static boolean isDateymd(String charaString){
+
+        return charaString.matches("^((((19|20|99)\\d{2})[-](0?[13-9]|1[012])[-](0?[1-9]|[12]\\d|30))|(((19|20|99)\\d{2})[-](0?[13578]|1[02])[-]31)|(((19|20|99)\\d{2})[-]0?2[-](0?[1-9]|1\\d|2[0-8]))|((((19|20|99)([13579][26]|[2468][048]|0[48]))|(2000))[-]0?2[-]29))$");
 
     }
     /*日期年验证 如：201905*/
