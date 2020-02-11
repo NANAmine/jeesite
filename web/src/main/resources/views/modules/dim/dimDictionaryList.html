@@ -45,7 +45,7 @@
 					</div>
 				</div>-->
 				<div class="form-group">
-					<label class="control-label">${text(dimDictionary.ddicCode == 'GDBBMD'? '门店编码': (dimDictionary.ddicCode =='JPPPCODE' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDDP' ? '商品编码' : (dimDictionary.ddicCode =='SPBHPP' ? '品牌编码' : (dimDictionary.ddicCode =='JSCQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBZCGX' ? '门店编码' : (dimDictionary.ddicCode =='XHPPHL' ? '汇率值' : (dimDictionary.ddicCode =='XHMD' ? '门店编码' : (dimDictionary.ddicCode =='HOLIDAY' ? '日期' : (dimDictionary.ddicCode =='QXKZ' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDMD' ? '门店编码' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店编码' : (dimDictionary.ddicCode =='ZDMD' ? '门店编码' : (dimDictionary.ddicCode =='GZMJ' ? '门店面积' : (dimDictionary.ddicCode =='JPQXKZ' ? '权限' : '编码'))))))))))))))))}：</label>
+					<label class="control-label">${text(dimDictionary.ddicCode == 'GDBBMD'? '门店编码': (dimDictionary.ddicCode =='JPPPCODE' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDDP' ? '商品编码' : (dimDictionary.ddicCode =='SPBHPP' ? '品牌编码' : (dimDictionary.ddicCode =='JSCQD' ? '门店编码' : (dimDictionary.ddicCode =='ZLBQD' ? '久其门店名称' : (dimDictionary.ddicCode =='ZLBZCGX' ? '门店编码' : (dimDictionary.ddicCode =='XHPPHL' ? '汇率值' : (dimDictionary.ddicCode =='XHMD' ? '门店编码' : (dimDictionary.ddicCode =='HOLIDAY' ? '日期' : (dimDictionary.ddicCode =='QXKZ' ? '品牌编码' : (dimDictionary.ddicCode =='GCYJZDMD' ? '门店编码' : (dimDictionary.ddicCode =='MDZLBFL' ? '门店编码' : (dimDictionary.ddicCode =='ZDMD' ? '门店编码' : (dimDictionary.ddicCode =='GZMJ' ? '门店面积' : (dimDictionary.ddicCode =='JPQXKZ' ? '权限' : '编码'))))))))))))))))}：</label>
 					<div class="control-inline">
 						<#form:input path="ddicValue" maxlength="200" class="form-control width-120"/>
 					</div>
@@ -57,7 +57,7 @@
 					</div>
 				</div>-->
 				<div class="form-group">
-					<label class="control-label">${text('部门名称')}：</label>
+					<label class="control-label">${text((dimDictionary.ddicCode =='QXKZ' || dimDictionary.ddicCode =='JPQXKZ') ? '部门名称' : (dimDictionary.ddicCode =='ZLBQD' ? '日期' : ''))}：</label>
 					<div class="control-inline">
 						<#form:input path="ddicExpand1" maxlength="200" class="form-control width-120"/>
 					</div>
@@ -127,9 +127,9 @@ $('#dataGrid').dataGrid({
 				return '<a href="${ctx}/dim/dimDictionary/form?ddicId='+row.ddicId+'&&status='+1+'" class="btnList" data-title="${text("查看通用字典表")}">'+(val||row.id)+'</a>';
 			}},
 		/*{header:'${text(dimDictionary.ddicCode == "GDBBMD"? "门店简称": (dimDictionary.ddicCode == "JPPPCODE" ? "团队简称" : (dimDictionary.ddicCode == "GCYJZDDP" ? "系列简称" : (dimDictionary.ddicCode == "SPBHPP" ? "简称" : (dimDictionary.ddicCode == "JSCQD" ? "渠道简称" : (dimDictionary.ddicCode == "ZLBQD" ? "渠道简称" : (dimDictionary.ddicCode == "ZLBZCGX" ? "资产关系简称" : (dimDictionary.ddicCode == "XHPPHL" ? "品牌简称" : (dimDictionary.ddicCode == "XHMD" ? "门店简称" : (dimDictionary.ddicCode == "HOLIDAY" ? "节日简称" : (dimDictionary.ddicCode == "QXKZ" ? "用户简称" : (dimDictionary.ddicCode == "GCYJZDMD" ? "门店简称" : (dimDictionary.ddicCode == "MDZLBFL" ? "门店简称" : "简称")))))))))))))}', name:'ddicEname', index:'a.ddic_ename', width:150, align:"left"},*/
-		{header:'${text(dimDictionary.ddicCode == "GDBBMD"? "门店编码": (dimDictionary.ddicCode =="JPPPCODE" ? "品牌编码" : (dimDictionary.ddicCode =="GCYJZDDP" ? "商品编码" : (dimDictionary.ddicCode == "SPBHPP" ? "品牌编码" : (dimDictionary.ddicCode == "JSCQD" ? "门店编码" : (dimDictionary.ddicCode == "ZLBQD" ? "门店编码" : (dimDictionary.ddicCode == "ZLBZCGX" ? "门店编码" : (dimDictionary.ddicCode == "XHPPHL" ? "汇率值" : (dimDictionary.ddicCode == "XHMD" ? "门店编码" : (dimDictionary.ddicCode == "HOLIDAY" ? "日期" : (dimDictionary.ddicCode == "QXKZ" ? "品牌编码" : (dimDictionary.ddicCode == "GCYJZDMD" ? "门店编码" : (dimDictionary.ddicCode == "MDZLBFL" ? "门店编码" : (dimDictionary.ddicCode =="ZDMD" ? "门店编码" : (dimDictionary.ddicCode =="GZMJ" ? "店铺面积" : (dimDictionary.ddicCode =="JPQXKZ" ? "权限" : "编码"))))))))))))))))}', name:'ddicValue', index:'a.ddic_value', width:150, align:"center"},
+		{header:'${text(dimDictionary.ddicCode == "GDBBMD"? "门店编码": (dimDictionary.ddicCode =="JPPPCODE" ? "品牌编码" : (dimDictionary.ddicCode =="GCYJZDDP" ? "商品编码" : (dimDictionary.ddicCode == "SPBHPP" ? "品牌编码" : (dimDictionary.ddicCode == "JSCQD" ? "门店编码" : (dimDictionary.ddicCode == "ZLBQD" ? "久其门店名称" : (dimDictionary.ddicCode == "ZLBZCGX" ? "门店编码" : (dimDictionary.ddicCode == "XHPPHL" ? "汇率值" : (dimDictionary.ddicCode == "XHMD" ? "门店编码" : (dimDictionary.ddicCode == "HOLIDAY" ? "日期" : (dimDictionary.ddicCode == "QXKZ" ? "品牌编码" : (dimDictionary.ddicCode == "GCYJZDMD" ? "门店编码" : (dimDictionary.ddicCode == "MDZLBFL" ? "门店编码" : (dimDictionary.ddicCode =="ZDMD" ? "门店编码" : (dimDictionary.ddicCode =="GZMJ" ? "店铺面积" : (dimDictionary.ddicCode =="JPQXKZ" ? "权限" : "编码"))))))))))))))))}', name:'ddicValue', index:'a.ddic_value', width:150, align:"center"},
 		/*{header:'${text("描述")}', name:'ddicDesc', index:'a.ddic_desc', width:150, align:"left"},*/
-		{header:'${text("部门名称")}', name:'ddicExpand1', index:'a.ddic_expand1', width:150, align:"center"},
+		{header:'${text((dimDictionary.ddicCode =="QXKZ" || dimDictionary.ddicCode =="JPQXKZ") ? "部门名称" : (dimDictionary.ddicCode =="ZLBQD" ? "日期" : "部门名称"))}', name:'ddicExpand1', index:'a.ddic_expand1', width:150, align:"center"},
 		{header:'${text("状态")}', name:'status', index:'a.status', width:150, align:"center", formatter: function(val, obj, row, act){
 			return js.getDictLabel(${@DictUtils.getDictListJson('sys_search_status')}, val, '${text("未知")}', true);
 		}},
@@ -151,7 +151,7 @@ $('#dataGrid').dataGrid({
 	ajaxSuccess: function(data){
 		(function start(){
 			var ddicCode =  "${dimDictionary.ddicCode}"
-			if(ddicCode != "QXKZ" ){
+			if(ddicCode != "QXKZ" && ddicCode!= "JPQXKZ" && ddicCode != "ZLBQD"){
 				document.getElementById("dataGrid_ddicExpand1").style.display="none";
 				$( "#dataGrid tr" ).each( function() {
 					$( this ).find( "td" ).eq( 3 ).hide();

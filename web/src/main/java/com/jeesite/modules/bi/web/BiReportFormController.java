@@ -87,22 +87,39 @@ public class BiReportFormController extends BaseController {
             //excel标题
             title = new String[]{commona, commonb, commonc, commond, commone, commonf, commong,  mark};
         } else if ("dim_map_brand_locate".equals(id)) {
-            commona = "品牌编码";
+            commona = "分类";
+            commonb = "店铺号";
+            commonc = "落位ID";
+            commond = "店铺面积";
+            commone = "柜组编码";
+            commonf = "柜组名称";
+            commong = "品牌编码";
+            commonh = "品牌名称";
             etitle = "店铺号品牌映射";
-            mark = "注意：品牌编码只能为数字";
+            mark = "注意：分类为中文或/，店铺号为数字、大写英文和-，落位ID为数字，店铺面积为数值，柜组编码和品牌编码为六位数字，柜组名称和品牌名称非必填";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, commone, commonf, commong, commonh, mark};
         } else if ("dim_sale_target_yyy".equals(id)) {
-            commona = "门店分类名称";
-            commona = "门店编码";
-            etitle = "三亚销售目标";
-            mark = "注意：门店分类名称只能为中文，门店编码只能为数字";
+            commona = "日期";
+            commonb = "门店编码";
+            commond = "店面编码";
+            commone = "柜组编码";
+            commonf = "营业员号";
+            commong = "营业员名称";
+            commonh = "营业员销售目标";
+            etitle = "三亚营业员销售目标";
+            mark = "注意：日期为年月：2019-01，销售目标为数值，营业员号为数字，门店编码为4位数字，店面为6位数字，柜组为8位数字";
+            //excel标题
+            title = new String[]{commona, commonb, commond, commone, commonf, commong, commonh, mark};
         } else if ("dim_lxs_yyrs".equals(id)) {
             commona = "日期";
             commonb = "旅行社或会展编码";
             commonc = "旅行社或会展名称";
             commond = "预约人数";
             commone = "服务费";
+            commonf = "旅行社或会展";
             etitle = "旅行社会展预约人数";
-            mark = "";
+            mark = "注意：日期为年月：201901，旅行社或会展编码不为空，名称不为空，预约人数为数字，服务费为数值，类型为旅行社或会展";
             title = new String[]{commona, commonb, commonc, commond, commone, mark};
         } else if ("dim_instructions_detail".equals(id)) {
             commona = "商品编码";
@@ -158,9 +175,29 @@ public class BiReportFormController extends BaseController {
             commonb = "店面";
             commonc = "柜组";
             etitle = "区域店面柜组映射信息";
-            mark = "注意：店面6位数字，柜组位8位数字";
+            mark = "注意：店面、柜组正确格式，例：686804 A区一层香化；68680401 A区一层香化 雅诗兰黛团队(MS)";
             //excel标题
             title = new String[]{commona, commonb, commonc, mark};
+        } else if ("dim_unit_channel_gcp".equals(id)) {
+            commona = "日期";
+            commonb = "渠道名称";
+            commonc = "门店名称";
+            commond = "九其门店名称";
+            commone = "描述";
+            commonf = "模块（月报、预算）";
+            etitle = "战略部门店渠道映射";
+            mark = "注意：日期、渠道名称、门店名称、九其门店名称、模块（月报、预算），并且日期格式为：201901";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, commone, commonf, mark};
+        } else if ("dim_xhgysbg_md".equals(id)) {
+            commona = "门店名称";
+            commonb = "门店简称";
+            commonc = "门店编码";
+            commond = "类型";
+            etitle = "香化门店导出映射";
+            mark = "注意：都不可为空，门店编码为整数，类型选填：汇总或明细";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -224,12 +261,25 @@ public class BiReportFormController extends BaseController {
         } else if ("dim_map_brand_locate".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
-                content[i][1] = obj.getCommonA();
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+                content[i][6] = obj.getCommonG();
+                content[i][7] = obj.getCommonH();
             }
         } else if ("dim_sale_target_yyy".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
-                content[i][1] = obj.getCommonA();
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+                content[i][6] = obj.getCommonG();
             }
         } else if ("dim_lxs_yyrs".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
@@ -239,6 +289,7 @@ public class BiReportFormController extends BaseController {
                 content[i][2] = obj.getCommonC();
                 content[i][3] = obj.getCommonD();
                 content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
             }
         } else if ("dim_instructions_detail".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
@@ -291,6 +342,24 @@ public class BiReportFormController extends BaseController {
                 content[i][0] = obj.getCommonA();
                 content[i][1] = obj.getCommonB();
                 content[i][2] = obj.getCommonC();
+            }
+        }else if ("dim_unit_channel_gcp".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+            }
+        }else if ("dim_xhgysbg_md".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
             }
         }else {
             for (int i = 0; i < list.size(); i++) {

@@ -14,7 +14,7 @@ import com.jeesite.modules.dim.entity.DimSaleTargetYyy;
 import com.jeesite.modules.dim.dao.DimSaleTargetYyyDao;
 
 /**
- * 三亚销售目标Service
+ * 三亚营业员销售目标Service
  * @author ljw
  * @version 2019-09-20
  */

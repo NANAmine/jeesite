@@ -8,7 +8,7 @@ import com.jeesite.common.mybatis.annotation.MyBatisDao;
 import com.jeesite.modules.dim.entity.DimSaleTargetYyy;
 
 /**
- * 三亚销售目标DAO接口
+ * 三亚营业员销售目标DAO接口
  * @author ljw
  * @version 2019-09-20
  */

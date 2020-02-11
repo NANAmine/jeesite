@@ -185,25 +185,25 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("dim_hotel".equals(tableName)){
-                if(arr.get(0).isEmpty()||!isDateym(arr.get(0))||arr.get(1).isEmpty()||arr.get(2).isEmpty()||arr.get(3).isEmpty()||arr.get(4).isEmpty()||!isNumVal(arr.get(5))||!isNumVal(arr.get(6))){
-                    mark = "第"+i+"条数据错误,请校验:是否存在空值,客房数数字,入住率为百分制（例：81）,日期格式（年-月）";
+                if(arr.get(0).isEmpty()||!isDateym(arr.get(0))||arr.get(1).isEmpty()||arr.get(2).isEmpty()||arr.get(3).isEmpty()||arr.get(4).isEmpty()||!isNumVal(arr.get(5))||!isNumVal(arr.get(6))||!isCas(arr.get(1))||!isCas(arr.get(2))){
+                    mark = "第"+i+"条数据错误,请校验:是否存在空值,客房数数字,入住率为百分制（例：81）,日期格式（年-月），酒店名称和位置为中文和数字";
                     return mark;
                 }
             }else if("dim_map_brand_locate".equals(tableName)){
-                if(!isNum(arr.get(0))){
-                    mark = "第"+i+"条数据错误,请校验:品牌编码只能为数字";
+                if(!isCaxg(arr.get(0))||!isEahg(arr.get(1))||!isNum(arr.get(2))||!isNumVal(arr.get(3))||!isNum(arr.get(4))||!isNum(arr.get(6))||arr.get(4).length()!=6||arr.get(6).length()!=6){
+                    mark = "第"+i+"条数据错误,请校验:分类为中文或/，店铺号为数字、大写英文和-，落位ID为数字，店铺面积为数值，柜组编码和品牌编码为六位数字";
                     return mark;
                 }
             }else if("dim_sale_target_yyy".equals(tableName)){
-                if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
-                    mark = "第"+i+"条数据错误,请校验:门店分类名称只能为中文，门店编码只能为数字";
+                if(!isDateym(arr.get(0))||!isNum(arr.get(4))||!isNum(arr.get(1))||!isNum(arr.get(4))||!isNum(arr.get(2))||!isNum(arr.get(3))||!isNumVal(arr.get(6))||arr.get(3).length()!=8||arr.get(2).length()!=6||arr.get(1).length()!=4){
+                    mark = "第"+i+"条数据错误,请校验:日期为年月：2019-01，销售目标为数值，营业员号为数字，门店编码为4位数字，店面为6位数字，柜组为8位数字";
                     return mark;
                 }
             }else if("dim_lxs_yyrs".equals(tableName)){
-                /*if(true){
-                    mark = "第"+i+"条数据错误,请校验:";
+                if(!isDateYM(arr.get(0))||!isNumVal(arr.get(4))||!isNum(arr.get(3))||!isLah(arr.get(5))||arr.get(1).isEmpty()||arr.get(2).isEmpty()){
+                    mark = "第"+i+"条数据错误,请校验:日期为年月：201901，旅行社或会展编码不为空，名称不为空，预约人数为数字，服务费为数值，类型为旅行社或会展";
                     return mark;
-                }*/
+                }
             }else if("dim_instructions_detail".equals(tableName)){
                 System.out.println(arr.get(0));
                 if(!isEN(arr.get(0)) || arr.get(0).isEmpty()) {
@@ -235,8 +235,18 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("dim_area_gz_map".equals(tableName)){
-                if(arr.get(1).length()!= 6 || arr.get(2).length()!= 8 || !isNumVal(arr.get(1)) || !isNumVal(arr.get(2)) ){
+                /*if(arr.get(1).length()!= 6 || arr.get(2).length()!= 8 || !isNumVal(arr.get(1)) || !isNumVal(arr.get(2)) ){
                     mark = "第"+i+"条数据错误,注意：店面6位数字，柜组位8位数字";
+                    return mark;
+                }*/
+            }else if("dim_unit_channel_gcp".equals(tableName)){
+                if(arr.get(0).isEmpty() || arr.get(1).isEmpty() || arr.get(2).isEmpty() || arr.get(3).isEmpty() || arr.get(5).isEmpty() || !isDateym(arr.get(0)) || !isChinese(arr.get(1)) || !isChinese(arr.get(3)) || !isCak(arr.get(2)) || !isYay(arr.get(5)) ){
+                    mark = "第"+i+"条数据错误,注意：日期、渠道名称、门店名称、九其门店名称、模块（月报、预算）必填，并且日期格式为：201901";
+                    return mark;
+                }
+            }else if("dim_xhgysbg_md".equals(tableName)){
+                if(arr.get(0).isEmpty() || arr.get(1).isEmpty() || !isNum(arr.get(2)) || !isMah(arr.get(3))){
+                    mark = "第"+i+"条数据错误,注意：内容均必填，并且门店编码为整数，类型选填：汇总或明细";
                     return mark;
                 }
             }
@@ -257,6 +267,27 @@ public class ExcelUtil {
             }
         }
         return true;
+    }
+    /*
+     * 这是中文验证
+     * */
+    public static boolean isCaxg(String str){
+        //noinspection AlibabaAvoidPatternCompileInMethod
+        Pattern pattern = Pattern.compile("/|[\u4e00-\u9fa5]");
+        char c[] = str.toCharArray();
+        for(int i=0;i<c.length;i++){
+            Matcher matcher = pattern.matcher(String.valueOf(c[i]));
+            if(!matcher.matches()){
+                return false;
+            }
+        }
+        return true;
+    }
+    /*这是英文验证*/
+    public static boolean isEahg(String charaString){
+
+        return charaString.matches("^(-|[A-Z]|[0-9])*");
+
     }
     /*这是英文验证*/
     public static boolean isEnglish(String charaString){
@@ -315,4 +346,35 @@ public class ExcelUtil {
         return charaString.matches("^\\d{4}((0([1-9]))|(1(0|1|2)))$");
 
     }
+    /*中文和括号验证 如：广州（机场）*/
+    public static boolean isCak(String charaString){
+
+        return charaString.matches("^([\\u4e00-\\u9fa5]|\\（|\\）)+$");
+
+    }
+    /*月报或者预算 如：月报*/
+    public static boolean isYay(String charaString){
+
+        return charaString.matches("^(月报|预算)$");
+
+    }
+    /*月报或者预算 如：月报*/
+    public static boolean isLah(String charaString){
+
+        return charaString.matches("^(旅行社|会展)$");
+
+    }
+    /*中文或数字 如：海棠湾3号*/
+    public static boolean isCas(String charaString){
+
+        return charaString.matches("^(([0-9]*[\\u4e00-\\u9fa5][0-9]*)|[\\u4e00-\\u9fa5])+$");
+
+    }
+    /*明细或者汇总 如：明细*/
+    public static boolean isMah(String charaString){
+
+        return charaString.matches("^(明细|汇总)$");
+
+    }
+
 }

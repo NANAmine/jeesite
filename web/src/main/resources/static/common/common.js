@@ -1140,6 +1140,10 @@ jQuery.validator.addMethod("Chinese", function (c, b) {
     var a = /^[\u4e00-\u9fa5]{1,20}$/;
     return this.optional(b) || (a.test(c))
 }, "请输入有效中文!");
+jQuery.validator.addMethod("zaxg", function (c, b) {
+    var a = /^(\/|[\u4e00-\u9fa5]){1,20}$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入有效中文或/");
 jQuery.validator.addMethod("nae", function (c, b) {
     var a = /^[A-Za-z0-9]+$/;
     return this.optional(b) || (a.test(c))
@@ -1148,10 +1152,18 @@ jQuery.validator.addMethod("English", function (c, b) {
     var a = /^[A-Za-z]+$/;
     return this.optional(b) || (a.test(c))
 }, "请输入有效英文!");
+jQuery.validator.addMethod("Eahg", function (c, b) {
+    var a = /^(-|[A-Z]|[0-9])+$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入有效数字、大写英文或-");
 jQuery.validator.addMethod("English-", function (c, b) {
     var a = /^(-|[A-Za-z]| )+$/;
     return this.optional(b) || (a.test(c))
 }, "请输入有效格式!");
+jQuery.validator.addMethod("Eakg", function (c, b) {
+    var a = /^([A-Za-z]| )+$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入英文或空格!");
 jQuery.validator.addMethod("date", function (c, b) {
     var a=  /^((((19|20)\d{2})(0?[13-9]|1[012])(0?[1-9]|[12]\d|30))|(((19|20)\d{2})(0?[13578]|1[02])31)|(((19|20)\d{2})0?2(0?[1-9]|1\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))0?229))$/;
     //var a = /^((?!0000)[0-9]{4}((0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])|(0[13-9]|1[0-2])-(29|30)|(0[13578]|1[02])-31)|([0-9]{2}(0[48]|[2468][048]|[13579][26])|(0[48]|[2468][048]|[13579][26])00)0229)$/;
@@ -1170,13 +1182,17 @@ jQuery.validator.addMethod("datey/m/d", function (c, b) {
     var a = /^((((19|20)\d{2})[/](0?[13-9]|1[012])[/](0?[1-9]|[12]\d|30))|(((19|20)\d{2})[/](0?[13578]|1[02])[/]31)|(((19|20)\d{2})[/]0?2[/](0?[1-9]|1\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))[/]0?2[/]29))$/;
     return this.optional(b) || (a.test(c))
 }, "请输入正确日期!格式:年/月/日");
-
+jQuery.validator.addMethod("datey-m-d", function (c, b) {
+    //var a = /^((?!0000)[0-9]{4}[/]((0[1-9]|1[0-2])[/](0[1-9]|1[0-9]|2[0-8])|(0[13-9]|1[0-2])-(29|30)|(0[13578]|1[02])-31)|([0-9]{2}(0[48]|[2468][048]|[13579][26])|(0[48]|[2468][048]|[13579][26])00)0229)$/;
+    var a = /^((((19|20)\d{2})[-](0?[13-9]|1[012])[-](0?[1-9]|[12]\d|30))|(((19|20)\d{2})[-](0?[13578]|1[02])[-]31)|(((19|20)\d{2})[-]0?2[-](0?[1-9]|1\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))[-]0?2[-]29))$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入正确日期!格式:年-月-日");
 jQuery.validator.addMethod("datey", function (c, b) {
     var a = /^\d{4}$/;
     return this.optional(b) || (a.test(c))
 }, "请输入正确日期!格式:年");
 jQuery.validator.addMethod("number", function (c, b) {
-    var a = /^([1-9][0-9]*)(\.[0-9]*)?$|^(0\.[0-9]*)$/;
+    var a = /^(0|[1-9][0-9]*)(\.[0-9]*)?$|^(0\.[0-9]*)$/;
     return this.optional(b) || (a.test(c))
 }, "请输入有效数值!");
 jQuery.validator.addMethod("digits", function (c, b) {
@@ -1191,6 +1207,28 @@ jQuery.validator.addMethod("ss", function (c, b) {
     var a = /^([0-9])+(\.[0-9]+)?$/;
     return this.optional(b) || (a.test(c))
 }, "请输入有效非负数!");
+jQuery.validator.addMethod("cak", function (c, b) {
+    var a = /^([\u4e00-\u9fa5]|\（|\）)+$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入中文和括号!");
+jQuery.validator.addMethod("ybays", function (c, b) {
+    var a = /^(月报|预算)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入月报或者预算!");
+jQuery.validator.addMethod("lxsahz", function (c, b) {
+    var a = /^(旅行社|会展)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入旅行社或会展!");
+jQuery.validator.addMethod("cas", function (c, b) {
+    var a = /^(([0-9]*[\u4e00-\u9fa5][0-9]*)|[\u4e00-\u9fa5])+$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入中文或数字，必须包含中文!");
+jQuery.validator.addMethod("mxahz", function (c, b) {
+    var a = /^(明细|汇总)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入明细或汇总!");
+
+
 jQuery.validator.addMethod("idcard", function (c, a) {
     var b = {
         provinceAndCitys: {

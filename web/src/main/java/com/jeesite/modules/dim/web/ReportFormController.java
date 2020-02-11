@@ -77,9 +77,10 @@ public class ReportFormController extends BaseController {
             mark = "注意：渠道名称只能为中文，门店编码只能为数字";
         }else if("ZLBQD".equals(id)){
             name = "渠道名称";
-            value = "门店编码";
+            value = "久其门店名称";
+            expend1 = "日期";
             etitle = "战略部门店渠道映射信息";
-            mark = "注意：渠道名称只能为中文，门店编码只能为数字";
+            mark = "注意：渠道名称只能为中文，日期格式年月（201901）";
         }else if("ZLBZCGX".equals(id)){
             name = "资产关系名称";
             value = "门店编码";
@@ -137,7 +138,7 @@ public class ReportFormController extends BaseController {
                 DimDictionary obj = list.get(i);
                 content[i][1] = obj.getDdicValue();
             }
-        }else if("QXKZ".equals(id)||"JPQXKZ".equals(id)) {
+        }else if("QXKZ".equals(id)||"JPQXKZ".equals(id)||"ZLBQD".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 DimDictionary obj = list.get(i);
                 content[i][0] = obj.getDdicName();

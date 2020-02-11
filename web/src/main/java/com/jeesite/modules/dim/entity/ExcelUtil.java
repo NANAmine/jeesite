@@ -174,8 +174,8 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("ZLBQD".equals(ddicCode)){
-                if(!isChinese(arr.get(0))||!isChinese(arr.get(2))){
-                    mark = "第"+i+"条数据错误,渠道名称只能为中文，门店编码只能为数字";
+                if(!isChinese(arr.get(0))||!isDateYM(arr.get(2))){
+                    mark = "第"+i+"条数据错误,渠道名称只能为中文，日期格式年月（201901）";
                     return mark;
                 }
             }else if("ZLBZCGX".equals(ddicCode)){
@@ -262,5 +262,10 @@ public class ExcelUtil {
         return charaString.matches("^((((19|20)\\d{2})(0?[13-9]|1[012])(0?[1-9]|[12]\\d|30))|(((19|20)\\d{2})(0?[13578]|1[02])31)|(((19|20)\\d{2})0?2(0?[1-9]|1\\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))0?229))");
 
     }
+    /*日期年验证 如：201905*/
+    public static boolean isDateYM(String charaString){
 
+        return charaString.matches("^\\d{4}((0([1-9]))|(1(0|1|2)))$");
+
+    }
 }

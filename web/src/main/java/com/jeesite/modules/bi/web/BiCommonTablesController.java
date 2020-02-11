@@ -75,6 +75,12 @@ public class BiCommonTablesController extends BaseController {
             biCommonTables.setTableName("bi_ds_pvuv");
         }else if("13".equals(id)){
             biCommonTables.setTableName("dim_area_gz_map");
+        }else if("14".equals(id)){
+            biCommonTables.setTableName("dim_unit_channel_gcp");
+        }else if("15".equals(id)){
+            biCommonTables.setTableName("dim_xhgysbg_md");
+        }else if("16".equals(id)){
+            biCommonTables.setTableName("dim_pp_sell_report_exchangrate");
         }
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";

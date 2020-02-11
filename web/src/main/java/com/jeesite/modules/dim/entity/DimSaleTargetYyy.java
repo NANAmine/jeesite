@@ -12,7 +12,7 @@ import com.jeesite.common.mybatis.annotation.Table;
 import com.jeesite.common.mybatis.mapper.query.QueryType;
 
 /**
- * 三亚销售目标Entity
+ * 三亚营业员销售目标Entity
  * @author ljw
  * @version 2019-09-20
  */

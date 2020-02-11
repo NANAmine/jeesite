@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 三亚销售目标Controller
+ * 三亚营业员销售目标Controller
  * @author ljw
  * @version 2019-09-20
  */
@@ -78,25 +78,25 @@ public class DimSaleTargetYyyController extends BaseController {
 	}
 
 	/**
-	 * 保存三亚销售目标
+	 * 保存三亚营业员销售目标
 	 */
 	@RequiresPermissions("dim:dimSaleTargetYyy:edit")
 	@PostMapping(value = "save")
 	@ResponseBody
 	public String save(@Validated DimSaleTargetYyy dimSaleTargetYyy) {
 		dimSaleTargetYyyService.save(dimSaleTargetYyy);
-		return renderResult(Global.TRUE, text("保存三亚销售目标成功！"));
+		return renderResult(Global.TRUE, text("保存三亚营业员销售目标成功！"));
 	}
 	
 	/**
-	 * 删除三亚销售目标
+	 * 删除三亚营业员销售目标
 	 */
 	@RequiresPermissions("dim:dimSaleTargetYyy:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(DimSaleTargetYyy dimSaleTargetYyy) {
 		dimSaleTargetYyyService.delete(dimSaleTargetYyy);
-		return renderResult(Global.TRUE, text("删除三亚销售目标成功！"));
+		return renderResult(Global.TRUE, text("删除三亚营业员销售目标成功！"));
 	}
 	
 }
