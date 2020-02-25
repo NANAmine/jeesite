@@ -1094,6 +1094,31 @@
         }
     })
 }(jQuery));
+
+function doHandleDate() {
+    var myDate = new Date();
+    var tYear = myDate.getFullYear();
+    var tMonth = myDate.getMonth();
+
+    var m = tMonth + 1;
+    if (m.toString().length == 1) {
+        m = "0" + m;
+    }
+    return tYear + '-' + m;
+};
+
+function doHandleDateym() {
+    var myDate = new Date();
+    var tYear = myDate.getFullYear();
+    var tMonth = myDate.getMonth();
+
+    var m = tMonth + 1;
+    if (m.toString().length == 1) {
+        m = "0" + m;
+    }
+    return tYear + m;
+};
+
 jQuery.validator.addMethod("userName", function (b, a) {
     return this.optional(a) || /^[\u0391-\uFFE5\w]+$/.test(b)
 //}, $.validator.messages.userName);
@@ -1171,12 +1196,22 @@ jQuery.validator.addMethod("date", function (c, b) {
 }, "请输入正确日期!格式:20190501");
 jQuery.validator.addMethod("dateym", function (c, b) {
     var a = /^\d{4}((0([1-9]))|(1(0|1|2)))$/;
-    return this.optional(b) || (a.test(c))
-}, "请输入正确日期!格式:年月");
+    var date = doHandleDateym();
+    var flag = true;
+    if (date<c){
+        flag = false;
+    }
+    return this.optional(b) || ((a.test(c)) && flag)
+}, "请输入正确日期!格式:年月。日期不大于当前年月");
 jQuery.validator.addMethod("datey-m", function (c, b) {
     var a = /^\d{4}[-]((0([1-9]))|(1(0|1|2)))$/;
-    return this.optional(b) || (a.test(c))
-}, "请输入正确日期!格式:年-月");
+    var date = doHandleDate();
+    var flag = true;
+    if (date<c){
+      flag = false;
+    }
+    return this.optional(b) || ((a.test(c)) && flag)
+}, "请输入正确日期!格式:年-月。日期不大于当前年月");
 jQuery.validator.addMethod("datey/m/d", function (c, b) {
     //var a = /^((?!0000)[0-9]{4}[/]((0[1-9]|1[0-2])[/](0[1-9]|1[0-9]|2[0-8])|(0[13-9]|1[0-2])-(29|30)|(0[13578]|1[02])-31)|([0-9]{2}(0[48]|[2468][048]|[13579][26])|(0[48]|[2468][048]|[13579][26])00)0229)$/;
     var a = /^((((19|20)\d{2})[/](0?[13-9]|1[012])[/](0?[1-9]|[12]\d|30))|(((19|20)\d{2})[/](0?[13578]|1[02])[/]31)|(((19|20)\d{2})[/]0?2[/](0?[1-9]|1\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))[/]0?2[/]29))$/;

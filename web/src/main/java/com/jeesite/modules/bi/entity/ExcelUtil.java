@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -169,8 +170,8 @@ public class ExcelUtil {
             biCommonTables.setIsNewRecord(true);
             biCommonTables.setTableName(tableName);
             if("bi_jsc_jdldrs".equals(tableName)){
-                if(!isDateYM(arr.get(0))||!isNum(arr.get(1))||!isNum(arr.get(2))){
-                    mark = "第"+i+"条数据错误,请校验:日期格式：年月（201904），进店离岛人数为正整数";
+                if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0))||!isNum(arr.get(1))||!isNum(arr.get(2))){
+                    mark = "第"+i+"条数据错误,请校验:日期格式：年月（201904），日期不大于当前年月，进店离岛人数为正整数";
                     return mark;
                 }
             }else if("dim_hk_passenger_flow".equals(tableName)){
@@ -254,8 +255,13 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("dim_pp_sell_report_exchangrate".equals(tableName)){
-                if(!isNum(arr.get(0)) || !isNum(arr.get(2)) || !isEnglishKg(arr.get(3)) || !isNumVal(arr.get(4)) || !((isDateymd(arr.get(5))&&isDateymd(arr.get(6)))||(arr.get(5).isEmpty()&&arr.get(6).isEmpty()))){
-                    mark = "第"+i+"条数据错误,注意：品牌编码（数字，必填），品牌名称（未校验，非必填），门店编码（数字，必填），门店英文名称（英文和空格，必填），汇率（数值，必填），开始时间和结束时间成对填写（格式2020-01-01，未知可填9999-12-31，非必填）";
+                if(!isNum(arr.get(0)) || arr.get(0).length()!=6 || !isNum(arr.get(2)) || arr.get(2).length()!=4 || !isEnglishKg(arr.get(3)) || !isNumVal(arr.get(4)) || !((isDateymd(arr.get(5))&&isDateymd(arr.get(6)))||(arr.get(5).isEmpty()&&arr.get(6).isEmpty()))){
+                    mark = "第"+i+"条数据错误,注意：品牌编码（数字6位，必填），品牌名称（未校验，非必填），门店编码（数字4位，必填），门店英文名称（英文和空格，必填），汇率（数值，必填），开始时间和结束时间成对填写（格式2020-01-01，未知可填9999-12-31，非必填）";
+                    return mark;
+                }
+            }else if("bi_sy_ldtype_ldrs".equals(tableName)){
+                if(!isDateym(arr.get(0)) || !ltedate(arr.get(0))|| !isNum(arr.get(1)) || arr.get(1).length()!=4 || !isLdlx(arr.get(2)) || !isNum(arr.get(3))){
+                    mark = "第"+i+"条数据错误,注意：日期格式年-月，日期不大于当前年月，门店默认6868(4位数字)，离岛类型选一种（01博鳌离岛 02火车离岛 03三亚离境 04三亚离岛 05海口离岛 06轮渡离岛 07海口离境），离岛人数有效数字";
                     return mark;
                 }
             }
@@ -396,6 +402,38 @@ public class ExcelUtil {
 
         return charaString.matches("^(明细|汇总)$");
 
+    }
+    /*离岛类型 如：02火车离岛*/
+    public static boolean isLdlx(String charaString){
+
+        return charaString.matches("^(01博鳌离岛|02火车离岛|03三亚离境|04三亚离岛|05海口离岛|06轮渡离岛|07海口离境)$");
+
+    }
+    /*判断日期是否大于当前时间*/
+    public static boolean ltedate(String charaString){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");//注意月份是MM
+        Date date = null;
+        Date now = null;
+        try {
+            date = simpleDateFormat.parse(charaString);
+            now = new Date();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date.before(now);
+    }
+    /*判断日期是否大于当前时间*/
+    public static boolean ltedateym(String charaString){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");//注意月份是MM
+        Date date = null;
+        Date now = null;
+        try {
+            date = simpleDateFormat.parse(charaString);
+            now = new Date();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date.before(now);
     }
 
 }

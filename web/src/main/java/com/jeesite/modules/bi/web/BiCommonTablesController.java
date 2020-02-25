@@ -81,6 +81,8 @@ public class BiCommonTablesController extends BaseController {
             biCommonTables.setTableName("dim_xhgysbg_md");
         }else if("16".equals(id)){
             biCommonTables.setTableName("dim_pp_sell_report_exchangrate");
+        }else if("17".equals(id)){
+            biCommonTables.setTableName("bi_sy_ldtype_ldrs");
         }
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";
@@ -115,6 +117,8 @@ public class BiCommonTablesController extends BaseController {
 		model.addAttribute("ewr",ewr);*/
 		if("bi_ds_pvuv".equals(biCommonTables.getTableName())){
 		    biCommonTables.setCommonB("6874");
+        }else if("bi_sy_ldtype_ldrs".equals(biCommonTables.getTableName()) && biCommonTables.getCommonB()==null){
+            biCommonTables.setCommonB("6868");
         }
 		model.addAttribute("status",status);
 		model.addAttribute("biCommonTables", biCommonTables);
@@ -128,6 +132,15 @@ public class BiCommonTablesController extends BaseController {
 	@PostMapping(value = "save")
 	@ResponseBody
 	public String save(@Validated BiCommonTables biCommonTables) {
+	    if("bi_sy_ldtype_ldrs".equals(biCommonTables.getTableName())){
+	        String commonC=biCommonTables.getCommonC();
+            String[] words2 = commonC.split("\\,");
+            biCommonTables.setCommonC(words2[words2.length-1]);
+        }else {
+            String commonC=biCommonTables.getCommonC();
+            String[] words2 = commonC.split("\\,");
+            biCommonTables.setCommonC(words2[0]);
+        }
 		biCommonTablesService.save(biCommonTables);
 		return renderResult(Global.TRUE, text("保存通用字典表成功！"));
 	}

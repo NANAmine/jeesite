@@ -44,7 +44,7 @@ public class BiReportFormController extends BaseController {
             commonb = "进店人数";
             commonc = "离岛人数";
             etitle = "三亚客流数据";
-            mark = "注意：日期格式：年月（201904），进店离岛人数为正整数";
+            mark = "注意：日期格式：年月（201904），日期不大于当前年月，进店离岛人数为正整数";
             //excel标题
             title = new String[]{commona, commonb, commonc,  mark};
         } else if ("dim_hk_passenger_flow".equals(id)) {
@@ -207,9 +207,19 @@ public class BiReportFormController extends BaseController {
             commonf = "开始时间";
             commong = "结束时间";
             etitle = "香化品牌汇率映射";
-            mark = "注意：品牌编码（数字，必填），品牌名称（未校验，非必填），门店编码（数字，必填），门店英文名称（英文和空格，必填），汇率（数值，必填），开始时间和结束时间成对填写（格式2020-01-01，未知可填9999-12-31，非必填）";
+            mark = "注意：品牌编码（数字6位，必填），品牌名称（未校验，非必填），门店编码（数字4位，必填），门店英文名称（英文和空格，必填），汇率（数值，必填），开始时间和结束时间成对填写（格式2020-01-01，未知可填9999-12-31，非必填）";
             //excel标题
             title = new String[]{commona, commonb, commonc, commond, commone, commonf, commong, mark};
+        } else if ("bi_sy_ldtype_ldrs".equals(id)) {
+            commona = "日期";
+            commonb = "门店";
+            commonc = "离岛类型";
+            commond = "离岛人数";
+            etitle = "三亚国际免税城离岛人数";
+            mark = "注意：日期格式年-月，日期不大于当前年月，门店默认6868（4位数字），离岛类型选一种（01博鳌离岛 02火车离岛 03三亚离境 04三亚离岛 05海口离岛 06轮渡离岛 " +
+                    "07海口离境），离岛人数有效数字";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -383,6 +393,14 @@ public class BiReportFormController extends BaseController {
                 content[i][4] = obj.getCommonE();
                 content[i][5] = obj.getCommonF();
                 content[i][6] = obj.getCommonG();
+            }
+        }else if ("bi_sy_ldtype_ldrs".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
             }
         } else {
             for (int i = 0; i < list.size(); i++) {
