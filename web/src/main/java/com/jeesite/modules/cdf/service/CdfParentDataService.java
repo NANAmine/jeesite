@@ -3,18 +3,15 @@
  */
 package com.jeesite.modules.cdf.service;
 
-import java.util.List;
-
+import com.jeesite.common.entity.Page;
+import com.jeesite.common.service.CrudService;
+import com.jeesite.modules.cdf.dao.CdfChildDataDao;
+import com.jeesite.modules.cdf.dao.CdfParentDataDao;
+import com.jeesite.modules.cdf.entity.CdfChildData;
+import com.jeesite.modules.cdf.entity.CdfParentData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.jeesite.common.entity.Page;
-import com.jeesite.common.service.CrudService;
-import com.jeesite.modules.cdf.entity.CdfParentData;
-import com.jeesite.modules.cdf.dao.CdfParentDataDao;
-import com.jeesite.modules.cdf.entity.CdfChildData;
-import com.jeesite.modules.cdf.dao.CdfChildDataDao;
 
 /**
  * 新零售Service
