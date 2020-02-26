@@ -25,7 +25,7 @@ import com.jeesite.modules.test.service.YpService;
 /**
  * 药品管理Controller
  * @author ljw
- * @version 2019-05-09
+ * @version 2020-02-26
  */
 @Controller
 @RequestMapping(value = "${adminPath}/test/yp")
@@ -75,49 +75,25 @@ public class YpController extends BaseController {
 	}
 
 	/**
-	 * 保存药品
+	 * 保存药品管理
 	 */
 	@RequiresPermissions("test:yp:edit")
 	@PostMapping(value = "save")
 	@ResponseBody
 	public String save(@Validated Yp yp) {
 		ypService.save(yp);
-		return renderResult(Global.TRUE, text("保存药品成功！"));
+		return renderResult(Global.TRUE, text("保存药品管理成功！"));
 	}
 	
 	/**
-	 * 停用药品
-	 */
-	@RequiresPermissions("test:yp:edit")
-	@RequestMapping(value = "disable")
-	@ResponseBody
-	public String disable(Yp yp) {
-		yp.setStatus(Yp.STATUS_DISABLE);
-		ypService.updateStatus(yp);
-		return renderResult(Global.TRUE, text("停用药品成功"));
-	}
-	
-	/**
-	 * 启用药品
-	 */
-	@RequiresPermissions("test:yp:edit")
-	@RequestMapping(value = "enable")
-	@ResponseBody
-	public String enable(Yp yp) {
-		yp.setStatus(Yp.STATUS_NORMAL);
-		ypService.updateStatus(yp);
-		return renderResult(Global.TRUE, text("启用药品成功"));
-	}
-	
-	/**
-	 * 删除药品
+	 * 删除药品管理
 	 */
 	@RequiresPermissions("test:yp:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(Yp yp) {
 		ypService.delete(yp);
-		return renderResult(Global.TRUE, text("删除药品成功！"));
+		return renderResult(Global.TRUE, text("删除药品管理成功！"));
 	}
 	
 }

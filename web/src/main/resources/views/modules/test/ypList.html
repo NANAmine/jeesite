@@ -1,14 +1,14 @@
-<% layout('/layouts/default.html', {title: '药品管理', libs: ['dataGrid']}){ %>
+<% layout('/layouts/default.html', {title: '药品管理管理', libs: ['dataGrid']}){ %>
 <div class="main-content">
 	<div class="box box-main">
 		<div class="box-header">
 			<div class="box-title">
-				<i class="fa fa-list-alt"></i> ${text('药品管理')}
+				<i class="fa fa-list-alt"></i> ${text('药品管理管理')}
 			</div>
 			<div class="box-tools pull-right">
 				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
 				<% if(hasPermi('test:yp:edit')){ %>
-					<a href="${ctx}/test/yp/form" class="btn btn-default btnTool" title="${text('新增药品')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+					<a href="${ctx}/test/yp/form" class="btn btn-default btnTool" title="${text('新增药品管理')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
 				<% } %>
 			</div>
 		</div>
@@ -42,13 +42,20 @@
 				<div class="form-group">
 					<label class="control-label">${text('医保')}：</label>
 					<div class="control-inline">
-						<#form:radio path="yb" dictType="sys_yes_no" blankOption="true" class="form-control"/>
+						<#form:input path="yb" maxlength="20" class="form-control width-120"/>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label">${text('状态')}：</label>
+					<div class="control-inline width-120">
+						<#form:select path="status" dictType="sys_search_status" blankOption="true" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('time')}：</label>
 					<div class="control-inline">
-						<#form:radio path="status" dictType="sys_user_status" blankOption="true" class="form-control"/>
+						<#form:input path="time" readonly="true" maxlength="20" class="form-control Wdate-date"
+							dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
 					</div>
 				</div>
 				<div class="form-group">
@@ -68,28 +75,21 @@ $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),
 	columnModel: [
 		{header:'${text("药品名称")}', name:'ypmc', index:'a.ypmc', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
-			return '<a href="${ctx}/test/yp/form?id='+row.id+'" class="btnList" data-title="${text("编辑药品")}">'+(val||row.id)+'</a>';
+			return '<a href="${ctx}/test/yp/form?id='+row.id+'" class="btnList" data-title="${text("编辑药品管理")}">'+(val||row.id)+'</a>';
 		}},
 		{header:'${text("药品售价")}', name:'ypsj', index:'a.ypsj', width:150, align:"left"},
 		{header:'${text("药品库存")}', name:'ypkc', index:'a.ypkc', width:150, align:"left"},
 		{header:'${text("药品生产厂家")}', name:'ypsccj', index:'a.ypsccj', width:150, align:"left"},
-		{header:'${text("医保")}', name:'yb', index:'a.yb', width:150, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('sys_yes_no')}, val, '${text("未知")}', true);
-		}},
+		{header:'${text("医保")}', name:'yb', index:'a.yb', width:150, align:"left"},
 		{header:'${text("状态")}', name:'status', index:'a.status', width:150, align:"center", formatter: function(val, obj, row, act){
-			return js.getDictLabel(${@DictUtils.getDictListJson('sys_user_status')}, val, '${text("未知")}', true);
+			return js.getDictLabel(${@DictUtils.getDictListJson('sys_search_status')}, val, '${text("未知")}', true);
 		}},
+		{header:'${text("time")}', name:'time', index:'a.time', width:150, align:"center"},
 		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
 			var actions = [];
 			<% if(hasPermi('test:yp:edit')){ %>
-				actions.push('<a href="${ctx}/test/yp/form?id='+row.id+'" class="btnList" title="${text("编辑药品")}"><i class="fa fa-pencil"></i></a>&nbsp;');
-				if (row.status == Global.STATUS_NORMAL){
-					actions.push('<a href="${ctx}/test/yp/disable?id='+row.id+'" class="btnList" title="${text("停用药品")}" data-confirm="${text("确认要停用该药品吗？")}"><i class="glyphicon glyphicon-ban-circle"></i></a>&nbsp;');
-				}
-				if (row.status == Global.STATUS_DISABLE){
-					actions.push('<a href="${ctx}/test/yp/enable?id='+row.id+'" class="btnList" title="${text("启用药品")}" data-confirm="${text("确认要启用该药品吗？")}"><i class="glyphicon glyphicon-ok-circle"></i></a>&nbsp;');
-				}
-				actions.push('<a href="${ctx}/test/yp/delete?id='+row.id+'" class="btnList" title="${text("删除药品")}" data-confirm="${text("确认要删除该药品吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/test/yp/form?id='+row.id+'" class="btnList" title="${text("编辑药品管理")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/test/yp/delete?id='+row.id+'" class="btnList" title="${text("删除药品管理")}" data-confirm="${text("确认要删除该药品管理吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
 			<% } %>
 			return actions.join('');
 		}}

@@ -10,7 +10,7 @@ import com.jeesite.modules.test.entity.Yp;
 /**
  * 药品管理DAO接口
  * @author ljw
- * @version 2019-05-09
+ * @version 2020-02-26
  */
 @MyBatisDao
 public interface YpDao extends CrudDao<Yp> {

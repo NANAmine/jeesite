@@ -5,6 +5,10 @@ package com.jeesite.modules.test.entity;
 
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
+import java.util.Date;
+import com.jeesite.common.mybatis.annotation.JoinTable;
+import com.jeesite.common.mybatis.annotation.JoinTable.Type;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import com.jeesite.common.entity.DataEntity;
 import com.jeesite.common.mybatis.annotation.Column;
@@ -14,16 +18,17 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 /**
  * 药品管理Entity
  * @author ljw
- * @version 2019-05-09
+ * @version 2020-02-26
  */
 @Table(name="yp", alias="a", columns={
 		@Column(name="id", attrName="id", label="编号", isPK=true),
-		@Column(name="ypmc", attrName="ypmc", label="药品名称", queryType=QueryType.LIKE),
-		@Column(name="ypsj", attrName="ypsj", label="药品售价", queryType=QueryType.LIKE),
-		@Column(name="ypkc", attrName="ypkc", label="药品库存", queryType=QueryType.LIKE),
-		@Column(name="ypsccj", attrName="ypsccj", label="药品生产厂家", queryType=QueryType.LIKE),
-		@Column(name="yb", attrName="yb", label="医保", comment="医保（是、否）", queryType=QueryType.LIKE),
-		@Column(name="status", attrName="status", label="状态", queryType=QueryType.LIKE),
+		@Column(name="ypmc", attrName="ypmc", label="药品名称"),
+		@Column(name="ypsj", attrName="ypsj", label="药品售价"),
+		@Column(name="ypkc", attrName="ypkc", label="药品库存"),
+		@Column(name="ypsccj", attrName="ypsccj", label="药品生产厂家"),
+		@Column(name="yb", attrName="yb", label="医保", comment="医保（是、否）"),
+		@Column(name="status", attrName="status", label="状态", isUpdate=false),
+		@Column(name="time", attrName="time", label="time"),
 	}, orderBy="a.id DESC"
 )
 public class Yp extends DataEntity<Yp> {
@@ -34,6 +39,7 @@ public class Yp extends DataEntity<Yp> {
 	private String ypkc;		// 药品库存
 	private String ypsccj;		// 药品生产厂家
 	private String yb;		// 医保（是、否）
+	private Date time;		// time
 	
 	public Yp() {
 		this(null);
@@ -53,7 +59,6 @@ public class Yp extends DataEntity<Yp> {
 		this.ypmc = ypmc;
 	}
 	
-	@NotBlank(message="药品售价不能为空")
 	@Length(min=0, max=10, message="药品售价长度不能超过 10 个字符")
 	public String getYpsj() {
 		return ypsj;
@@ -63,7 +68,6 @@ public class Yp extends DataEntity<Yp> {
 		this.ypsj = ypsj;
 	}
 	
-	@NotBlank(message="药品库存不能为空")
 	@Length(min=0, max=10, message="药品库存长度不能超过 10 个字符")
 	public String getYpkc() {
 		return ypkc;
@@ -89,6 +93,15 @@ public class Yp extends DataEntity<Yp> {
 
 	public void setYb(String yb) {
 		this.yb = yb;
+	}
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
 	}
 	
 }

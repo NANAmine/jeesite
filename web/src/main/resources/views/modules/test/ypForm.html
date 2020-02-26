@@ -1,9 +1,9 @@
-<% layout('/layouts/default.html', {title: '药品管理', libs: ['validate']}){ %>
+<% layout('/layouts/default.html', {title: '药品管理管理', libs: ['validate']}){ %>
 <div class="main-content">
 	<div class="box box-main">
 		<div class="box-header with-border">
 			<div class="box-title">
-				<i class="fa fa-list-alt"></i> ${text(yp.isNewRecord ? '新增药品' : '编辑药品')}
+				<i class="fa fa-list-alt"></i> ${text(yp.isNewRecord ? '新增药品管理' : '编辑药品管理')}
 			</div>
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -14,57 +14,21 @@
 				<div class="form-unit">${text('基本信息')}</div>
 				<#form:hidden path="id"/>
 				<div class="row">
-				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-xs-6">
 						<div class="form-group">
-							<label class="control-label col-sm-2" title="">
+							<label class="control-label col-sm-4" title="">
 								<span class="required ">*</span> ${text('药品名称')}：<i class="fa icon-question hide"></i></label>
-							<div class="col-sm-5">
+							<div class="col-sm-8">
 								<#form:input path="ypmc" maxlength="20" class="form-control required"/>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
+					<div class="col-xs-6">
 						<div class="form-group">
-							<label class="control-label col-sm-2" title="">
-								<span class="required ">*</span> ${text('药品售价')}：<i class="fa icon-question hide"></i></label>
-							<div class="col-sm-5">
-								<#form:input path="ypsj" maxlength="10" class="form-control required number"/>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="form-group">
-							<label class="control-label col-sm-2" title="">
-								<span class="required ">*</span> ${text('药品库存')}：<i class="fa icon-question hide"></i></label>
-							<div class="col-sm-5">
-								<#form:input path="ypkc" maxlength="10" class="form-control required digits"/>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="form-group">
-							<label class="control-label col-sm-2" title="">
-								<span class="required hide">*</span> ${text('药品生产厂家')}：<i class="fa icon-question hide"></i></label>
-							<div class="col-sm-5">
-								<#form:input path="ypsccj" maxlength="20" class="form-control abc"/>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-12">
-						<div class="form-group">
-							<label class="control-label col-sm-2" title="">
-								<span class="required hide">*</span> ${text('医保')}：<i class="fa icon-question hide"></i></label>
-							<div class="col-sm-5">
-								<#form:radio path="yb" dictType="sys_yes_no" class="form-control" />
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('药品售价')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ypsj" maxlength="10" class="form-control"/>
 							</div>
 						</div>
 					</div>
@@ -73,9 +37,39 @@
 					<div class="col-xs-6">
 						<div class="form-group">
 							<label class="control-label col-sm-4" title="">
-								<span class="required hide">*</span> ${text('状态')}：<i class="fa icon-question hide"></i></label>
+								<span class="required hide">*</span> ${text('药品库存')}：<i class="fa icon-question hide"></i></label>
 							<div class="col-sm-8">
-								<#form:radio path="status" dictType="sys_user_status" class="form-control" />
+								<#form:input path="ypkc" maxlength="10" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('药品生产厂家')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="ypsccj" maxlength="20" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('医保')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="yb" maxlength="20" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('time')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="time" readonly="true" maxlength="20" class="form-control Wdate"
+									dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true});"/>
 							</div>
 						</div>
 					</div>
