@@ -20,7 +20,7 @@ import java.util.List;
  * @author liangjiawei
  * @version 2020-02-26
  */
-@Table(name="cdf_parent_data", alias="a", columns={
+@Table(extWhereKeys="dsfOffice",name="cdf_parent_data", alias="a", columns={
 		@Column(name="id", attrName="id", label="编号", isPK=true),
 		@Column(name="store", attrName="store", label="门店"),
 		@Column(name="time", attrName="time", label="时间"),
@@ -49,7 +49,7 @@ public class CdfParentData extends DataEntity<CdfParentData> {
 	private String xxxsShoppers;		// 线下销售购物人数
 	private String xxxsQntqShoppers;		// 线下销售去年同期购物人数
 	private List<CdfChildData> cdfChildDataList = ListUtils.newArrayList();		// 子表列表
-	
+
 	public CdfParentData() {
 		this(null);
 	}

@@ -3,6 +3,7 @@
  */
 package com.jeesite.modules.cdf.service;
 
+import com.jeesite.common.entity.DataScope;
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.service.CrudService;
 import com.jeesite.modules.cdf.dao.CdfChildDataDao;
@@ -99,5 +100,32 @@ public class CdfParentDataService extends CrudService<CdfParentDataDao, CdfParen
 		cdfChildData.setParentDataId(cdfParentData);
 		cdfChildDataDao.deleteByEntity(cdfChildData);
 	}
+    /**
+     * 添加数据权限过滤条件
+     */
+    @Override
+    @Transactional(readOnly=false)
+    public void addDataScopeFilter(CdfParentData cdfParentData){
+
+        // 举例1：公司数据权限过滤，实体类@Table注解extWhereKeys="dsf"
+        cdfParentData.getSqlMap().getDataScope().addFilter("dsf", "Company",
+                "a.company_code", DataScope.CTRL_PERMI_HAVE);
+
+        // 举例2：部门数据权限过滤，实体类@Table注解extWhereKeys="dsf"
+        cdfParentData.getSqlMap().getDataScope().addFilter("dsf", "Office",
+                "a.office_code", DataScope.CTRL_PERMI_HAVE);
+
+        // 举例3：角色数据权限过滤，实体类@Table注解extWhereKeys="dsf"
+        cdfParentData.getSqlMap().getDataScope().addFilter("dsf", "Role",
+                "a.role_code", DataScope.CTRL_PERMI_HAVE);
+
+        // 举例4：用户、员工（自己创建的）数据权限根据部门过滤，实体类@Table注解extWhereKeys="dsfOffice"
+        cdfParentData.getSqlMap().getDataScope().addFilter("dsfOffice", "Office",
+                "a.office_code", "a.create_by", DataScope.CTRL_PERMI_HAVE);
+
+        // 举例5：用户、员工（自己创建的）数据权限根据公司过滤，实体类@Table注解extWhereKeys="dsfCompany"
+        /*cdfParentData.getSqlMap().getDataScope().addFilter("dsfCompany", "Company",
+                "a.company_code", "a.create_by", DataScope.CTRL_PERMI_HAVE);*/
+    }
 	
 }

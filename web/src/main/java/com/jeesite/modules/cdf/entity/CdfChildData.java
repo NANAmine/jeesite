@@ -3,13 +3,12 @@
  */
 package com.jeesite.modules.cdf.entity;
 
-import javax.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.Length;
-
 import com.jeesite.common.entity.DataEntity;
 import com.jeesite.common.mybatis.annotation.Column;
 import com.jeesite.common.mybatis.annotation.Table;
-import com.jeesite.common.mybatis.mapper.query.QueryType;
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * 新零售Entity
@@ -19,7 +18,7 @@ import com.jeesite.common.mybatis.mapper.query.QueryType;
 @Table(name="cdf_child_data", alias="a", columns={
 		@Column(name="id", attrName="id", label="编号", isPK=true),
 		@Column(name="sort", attrName="sort", label="排序号", isQuery=false),
-		@Column(name="parent_data_id", attrName="parentDataId.id", label="父表主键", isQuery=false),
+		@Column(name="parent_data_id", attrName="parentDataId.id", label="父表主键"),
 		@Column(name="channel", attrName="channel", label="渠道"),
 		@Column(name="xs_scmsyd_sales", attrName="xsScmsydSales", label="线上商城免税预定销售额", isQuery=false),
 		@Column(name="xs_scmsyd_qntq_sales", attrName="xsScmsydQntqSales", label="线上商城免税预订去年同期销售额", isQuery=false),

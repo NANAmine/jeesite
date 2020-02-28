@@ -59,7 +59,8 @@ public class CdfParentDataController extends BaseController {
 	@ResponseBody
 	public Page<CdfParentData> listData(CdfParentData cdfParentData, HttpServletRequest request, HttpServletResponse response) {
 		cdfParentData.setPage(new Page<>(request, response));
-		Page<CdfParentData> page = cdfParentDataService.findPage(cdfParentData);
+        cdfParentDataService.addDataScopeFilter(cdfParentData);
+        Page<CdfParentData> page = cdfParentDataService.findPage(cdfParentData);
 		return page;
 	}
 
@@ -98,5 +99,5 @@ public class CdfParentDataController extends BaseController {
 		cdfParentDataService.delete(cdfParentData);
 		return renderResult(Global.TRUE, text("删除新零售成功！"));
 	}
-	
+
 }

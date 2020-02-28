@@ -12,7 +12,8 @@ import com.jeesite.modules.cdf.entity.CdfChildData;
  * @author liangjiawei
  * @version 2020-02-26
  */
-@MyBatisDao
+@MyBatisDao //开发
+//@MyBatisDao(dataSourceName="ds2") //生产
 public interface CdfChildDataDao extends CrudDao<CdfChildData> {
 	
 }
