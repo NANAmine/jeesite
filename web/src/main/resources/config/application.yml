@@ -36,10 +36,15 @@ jdbc:
   # Mysql 数据库配置
   type: mysql
   driver: com.mysql.jdbc.Driver
-  url: jdbc:mysql://10.152.0.4:3306/jeesite_a?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+  #pro
+  url: jdbc:mysql://10.153.252.118:3306/jeesite_pro?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+  #dev
+  #url: jdbc:mysql://10.152.0.4:3306/jeesite_dev?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
   username: root
-  password: root
+  password: 1qaz2wsx
   testSql: SELECT 1
+
+
 
 #jdbc2:
 #    # Mysql 数据库配置

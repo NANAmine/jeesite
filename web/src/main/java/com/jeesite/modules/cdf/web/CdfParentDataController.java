@@ -6,6 +6,7 @@ package com.jeesite.modules.cdf.web;
 import com.jeesite.common.config.Global;
 import com.jeesite.common.entity.Page;
 import com.jeesite.common.web.BaseController;
+import com.jeesite.modules.cdf.entity.CdfChildData;
 import com.jeesite.modules.cdf.entity.CdfParentData;
 import com.jeesite.modules.cdf.service.CdfParentDataService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Calendar;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * 新零售Controller
@@ -69,9 +73,47 @@ public class CdfParentDataController extends BaseController {
 	 */
 	@RequiresPermissions("cdf:cdfParentData:view")
 	@RequestMapping(value = "form")
-	public String form(CdfParentData cdfParentData, Model model, String status) {
+	public String form(CdfParentData cdfParentData, Model model, String status, HttpServletRequest request, HttpServletResponse response) {
         if("1".equals(status)){
             status = "true";
+        }
+        /*新增获取默认值，取最近一条记录的门店 时间(始终默认昨天) 渠道 */
+        if(cdfParentData.getId()==null){
+            String createduser =  request.getRemoteUser();
+            CdfParentData cdf = new CdfParentData();
+            cdf.setCreateBy(createduser);
+            List<CdfParentData> list = null;
+            list =cdfParentDataService.findList(cdf);
+            Calendar calendar= Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY,-24);
+            cdfParentData.setTime(calendar.getTime());
+            if(list!=null && list.size()!=0){
+                cdf = list.get(list.size() - 1);
+                cdf = cdfParentDataService.get(cdf.getId(), false);
+                cdfParentData.setStore(cdf.getStore());
+                List<CdfChildData> childs= cdf.getCdfChildDataList();
+                List<CdfChildData> childDatalist = new LinkedList<>();
+                for(CdfChildData childData : childs){
+                    CdfChildData cdfChildData = new CdfChildData();
+                    if(childData!=null){
+                        cdfChildData.setChannel(childData.getChannel());
+                        childDatalist.add(cdfChildData);
+                    }else {
+                        childDatalist.add(cdfChildData);
+                    }
+                }
+                cdfParentData.setCdfChildDataList(childDatalist);
+            }else{
+                List<CdfChildData> childDatalist = new LinkedList<>();
+                CdfChildData cdfChildData1 = new CdfChildData();
+                CdfChildData cdfChildData2 = new CdfChildData();
+                CdfChildData cdfChildData3 = new CdfChildData();
+                cdfChildData1.setChannel("自建");
+                childDatalist.add(cdfChildData1);
+                childDatalist.add(cdfChildData2);
+                childDatalist.add(cdfChildData3);
+                cdfParentData.setCdfChildDataList(childDatalist);
+            }
         }
         model.addAttribute("status",status);
 		model.addAttribute("cdfParentData", cdfParentData);

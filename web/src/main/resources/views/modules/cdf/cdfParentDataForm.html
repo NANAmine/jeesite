@@ -172,7 +172,7 @@
             {header:'主键', name:'id', editable:true, hidden:true},
             {header:'${text("父表主键")}', name:'parentDataId.id', editable:true, hidden:true},
             {header:'${text("渠道")}', name:'channel', width:100,
-                editable:true, edittype:'select', editoptions:{'class':'form-control ',
+                editable:true, edittype:'select', editoptions:{'class':'form-control choose',
                     items: $.merge([{dictLabel:'&nbsp;',dictValue:''}], ${@DictUtils.getDictListJson('online_channels')}),
                     itemLabel: 'dictLabel', itemValue: 'dictValue', dataInit: function(element){
                         $(element).select2().on("change",function(){$(this).valid()});
@@ -180,10 +180,10 @@
                 }
             },
             //{header:'${text("渠道")}',name:'channel', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control required', 'readonly':true}},
-            {header:'${text("销售额")}',name:'xsScmsydSales', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control  number'}},
-            {header:'${text("去年同期销售额")}', name:'xsScmsydQntqSales', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control  number'}},
-            {header:'${text("购物人数")}', name:'xsScmsydShoppers', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control  number'}},
-            {header:'${text("去年同期购物人数")}', name:'xsScmsydQntqShoppers', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control  number'}},
+            {header:'${text("销售额")}',name:'xsScmsydSales', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control choose  number'}},
+            {header:'${text("去年同期销售额")}', name:'xsScmsydQntqSales', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control choose number'}},
+            {header:'${text("购物人数")}', name:'xsScmsydShoppers', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control choose number'}},
+            {header:'${text("去年同期购物人数")}', name:'xsScmsydQntqShoppers', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control choose number'}},
             {header:'${text("操作")}', name:'actions', width:80, sortable:false, fixed:true, formatter: function(val, obj, row, act){
                     var actions = [];
                     if (val == 'new'){
@@ -212,19 +212,24 @@
         ajaxSuccess: function(data){
         }
     });
+
+    /**
+     * 保存提交前校验渠道是否重复
+     * @returns {boolean}
+     */
     function checkchannel(){
-        $('#btnSubmit').click();
-        /*var y = 0;
+        var y = 0;
         $(".select2-selection__rendered").each(function(i){
             var a = $(this).html();
             var z = 0;
+            setTdRequests(a,i-1);
             $(".select2-selection__rendered").each(function(j){
                 var b = $(this).html();
-                if(a==b) {
+                if(a==b && a!="&nbsp;") {
                     z++;
                 }
-                console.log(z)
-                console.log($(this).html());
+                //console.log(z)
+                //console.log($(this).html());
             });
             if(z>=2){
                 y=z;
@@ -238,9 +243,30 @@
             return false;
         }else {
             $('#btnSubmit').click();
-        }*/
+        }
     }
-
+    function setTdRequests(view,i) {
+        if(view != "&nbsp;"){
+            $(".choose").each(function(j,item){
+                console.log(j)
+                if(j>i*5 && j<(i+1)*5){
+                    //console.log(item.value);  //输出input 中的 value 值到控制台
+                    $("#"+item.id).addClass("required");
+                    //console.log($("#"+item.id).attr("class"));
+                }
+            });
+        }else if(view == "&nbsp;"){
+            $(".choose").each(function(j,item){
+                //debugger;
+                console.log(j)
+                if(j>i*5 && j<(i+1)*5){
+                    console.log(item.value);  //输出input 中的 value 值到控制台
+                    $("#"+item.id).removeClass("required");
+                    console.log($("#"+item.id).attr("class"));
+                }
+            });
+        }
+    }
 </script>
 <script>
     $("#inputForm").validate({
@@ -260,7 +286,10 @@
     function myfun()
     {
         /*$("#jqg1_channel").attr({"value": "自建"});
-        $("#jqg2_channel").attr({"value": "飞猪"});
+        $("#jqg1_channel").attr({"title": "自建"});
+        $("#select2-1_channel-container").attr({"value": "自建"});
+        $("#select2-1_channel-container").attr({"title": "自建"});*/
+        /*$("#jqg2_channel").attr({"value": "飞猪"});
         $("#jqg3_channel").attr({"value": "旅购"});*/
         $("#jqgh_cdfChildDataDataGrid_channel").addClass("xrequired");
         $("#jqgh_cdfChildDataDataGrid_xsScmsydSales").addClass("xrequired");
