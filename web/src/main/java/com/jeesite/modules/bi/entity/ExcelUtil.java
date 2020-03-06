@@ -264,6 +264,16 @@ public class ExcelUtil {
                     mark = "第"+i+"条数据错误,注意：日期格式年-月，日期不大于当前年月，门店默认6868(4位数字)，离岛类型选一种（01博鳌离岛 02火车离岛 03三亚离境 04三亚离岛 05海口离岛 06轮渡离岛 07海口离境），离岛人数有效数字";
                     return mark;
                 }
+            }else if("bi_gyl_gslx".equals(tableName)){
+                if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0))|| !isEN(arr.get(1)) || !isJaj(arr.get(3))){
+                    mark = "第"+i+"条数据错误,注意：日期格式年月，日期不大于当前年月，公司编码（数字和英文），公司类型（境内、境外）";
+                    return mark;
+                }
+            }else if("bi_gyl_kczz".equals(tableName)){
+                if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0)) || !isNum(arr.get(1))){
+                    mark = "第"+i+"条数据错误,注意：日期格式年月，日期不大于当前年月,库存组织编码为数字";
+                    return mark;
+                }
             }
         }
         return mark;
@@ -401,6 +411,12 @@ public class ExcelUtil {
     public static boolean isMah(String charaString){
 
         return charaString.matches("^(明细|汇总)$");
+
+    }
+    /*境内或者境外 如：境内*/
+    public static boolean isJaj(String charaString){
+
+        return charaString.matches("^(境内|境外)$");
 
     }
     /*离岛类型 如：02火车离岛*/

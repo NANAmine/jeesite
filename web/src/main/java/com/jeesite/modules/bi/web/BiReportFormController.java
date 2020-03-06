@@ -220,6 +220,24 @@ public class BiReportFormController extends BaseController {
                     "07海口离境），离岛人数有效数字";
             //excel标题
             title = new String[]{commona, commonb, commonc, commond, mark};
+        } else if ("bi_gyl_gslx".equals(id)) {
+            commona = "日期";
+            commonb = "公司编码";
+            commonc = "公司名称";
+            commond = "公司类型";
+            etitle = "供应链公司类型";
+            mark = "注意：日期格式年月，日期不大于当前年月，公司编码（数字和英文），公司类型（境内、境外）";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, commond, mark};
+        } else if ("bi_gyl_kczz".equals(id)) {
+            commona = "日期";
+            commonb = "库存组织编码";
+            commonc = "库存组织名称";
+            commond = "所属库存组织";
+            etitle = "供应链库存组织";
+            mark = "注意：日期格式年月，日期不大于当前年月,库存组织编码为数字";
+            //excel标题
+            title = new String[]{commona, commonb, commonc,commond, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -395,6 +413,22 @@ public class BiReportFormController extends BaseController {
                 content[i][6] = obj.getCommonG();
             }
         }else if ("bi_sy_ldtype_ldrs".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+            }
+        } else if ("bi_gyl_gslx".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+            }
+        } else if ("bi_gyl_kczz".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
                 content[i][0] = obj.getCommonA();

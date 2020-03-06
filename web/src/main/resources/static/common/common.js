@@ -1262,6 +1262,10 @@ jQuery.validator.addMethod("mxahz", function (c, b) {
     var a = /^(明细|汇总)$/;
     return this.optional(b) || (a.test(c))
 }, "请输入明细或汇总!");
+jQuery.validator.addMethod("jnajw", function (c, b) {
+    var a = /^(境内|境外)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入境内或境外!");
 
 function checkchannel(){
     $(".select2-selection__rendered").each(function(i){

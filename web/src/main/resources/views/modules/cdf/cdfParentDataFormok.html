@@ -1,0 +1,262 @@
+<% layout('/layouts/default.html', {title: '新零售管理', libs: ['validate','dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa fa-list-alt"></i> ${text(cdfParentData.isNewRecord ? '新增新零售' : (status == "true"? "查看新零售":"编辑新零售"))}<span style="color: red;">(销售额单位：万元)</span>
+			</div>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${cdfParentData}" action="${ctx}/cdf/cdfParentData/save" method="post" class='form-horizontal ${text(status == "true"? "form-readonly":"")}'>
+			<div class="box-body">
+				<div class="form-unit">${text('基本信息')}</div>
+				<#form:hidden path="id"/>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('门店')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:select path="store" dictType="new_sale_stores"  blankOption="true" class="form-control required" />
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('时间')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="time" readonly="true" maxlength="20" class="form-control Wdate required"
+									dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+							</div>
+						</div>
+					</div>
+				</div>
+                <h4 class="form-unit4">${text('线上销售')}</h4>
+                <h4 class="form-unit">${text('商城免税预定')}</h4>
+                <div class="ml10 mr10">
+                    <table id="cdfChildDataDataGrid"></table>
+                    <!--<% if (hasPermi('cdf:cdfParentData:edit')){ %>
+                    <a href="#" id="cdfChildDataDataGridAddRowBtn" class="btn btn-primary btn-sm mt10 mb10"><i class="fa fa-plus"></i> ${text('增行')}</a>
+                    <% } %>-->
+                </div>
+                <h4 class="form-unit">${text('完税销售')}</h4>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('销售额')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="xsWsxsSales" maxlength="200" class="form-control required number outline"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('去年同期销售额')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="xsWsxsQntqSales" maxlength="200" class="form-control required number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('购物人数')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="xsWsxsShoppers" maxlength="200" class="form-control required integer"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('去年同期购物人数')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="xsWsxsQntqShoppers" maxlength="200" class="form-control required integer"/>
+							</div>
+						</div>
+					</div>
+				</div>
+                <h4 class="form-unit5">${text('线下销售')}</h4>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('销售额')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="xxxsSales" maxlength="200" class="form-control required number"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('去年同期销售额')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="xxxsQntqSales" maxlength="200" class="form-control required number"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('购物人数')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="xxxsShoppers" maxlength="200" class="form-control required integer"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required ">*</span> ${text('去年同期购物人数')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="xxxsQntqShoppers" maxlength="200" class="form-control required integer"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row" style="display:none" >
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label class="control-label col-sm-2" title="">
+								<span class="required hide">*</span> ${text('备注信息')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-10">
+								<#form:textarea path="remarks" rows="4" maxlength="500" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-5 col-sm-10">
+						<% if (hasPermi('cdf:cdfParentData:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> ${text('保 存')}</button>&nbsp;
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+<script>
+    (function start(status){
+        console.log(status)
+        if(status==null){ }else if(status.toString() == "true"){
+            document.getElementById("btnSubmit").style.display="none";
+        }
+
+    })(${status})
+//初始化子表DataGrid对象
+$("#cdfChildDataDataGrid").dataGrid({
+
+	data: ${toJson(cdfParentData.cdfChildDataList)},
+	datatype: "local", // 设置本地数据
+	autoGridHeight: function(){return 'auto'}, // 设置自动高度
+
+	// 设置数据表格列
+	columnModel: [
+		{header:'状态', name:'status', editable:true, hidden:true},
+		{header:'主键', name:'id', editable:true, hidden:true},
+		{header:'${text("父表主键")}', name:'parentDataId.id', editable:true, hidden:true},
+		/*{header:'${text("渠道")}', name:'channel', width:100,
+			editable:true, edittype:'select', editoptions:{'class':'form-control required',
+				items: ${@DictUtils.getDictListJson('online_channels')},
+				itemLabel: 'dictLabel', itemValue: 'dictValue', dataInit: function(element){
+					$(element).select2().on("change",function(){$(this).valid()});
+				}
+			}
+		},*/
+        {header:'${text("渠道")}',name:'channel', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control required', 'readonly':true}},
+		{header:'${text("销售额")}',name:'xsScmsydSales', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control  number'}},
+		{header:'${text("去年同期销售额")}', name:'xsScmsydQntqSales', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control  number'}},
+		{header:'${text("购物人数")}', name:'xsScmsydShoppers', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control  number'}},
+		{header:'${text("去年同期购物人数")}', name:'xsScmsydQntqShoppers', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control  number'}},
+		/*{header:'${text("操作")}', name:'actions', width:80, sortable:false, fixed:true, formatter: function(val, obj, row, act){
+			var actions = [];
+			if (val == 'new'){
+				actions.push('<a href="#" onclick="js.confirm(\'${text("你确认要删除这条数据吗？")}\', function(){$(\'#cdfChildDataDataGrid\').dataGrid(\'delRowData\',\''+obj.rowId+'\')});return false;"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			}else{
+				actions.push('<a href="#" onclick="js.confirm(\'${text("你确认要删除这条数据吗？")}\', function(){$(\'#cdfChildDataDataGrid\').dataGrid(\'setRowData\',\''+obj.rowId+'\',null,{display:\'none\'});$(\'#'+obj.rowId+'_status\').val(\''+Global.STATUS_DELETE+'\');});return false;"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			}
+			/!*if($(status == "true"? true:"")){
+                return [].join('');
+            }*!/
+			return actions.join('');
+		}, editoptions: {defaultValue: 'new'}}*/
+	],
+
+	// 编辑表格参数
+	editGrid: true,				// 是否是编辑表格
+	editGridInitRowNum: 3,		// 编辑表格的初始化新增行数
+	editGridAddRowBtn: $('#cdfChildDataDataGridAddRowBtn'),	// 子表增行按钮
+	editGridAddRowInitData: {id: '',status: Global.STATUS_NORMAL},	// 新增行的时候初始化的数据
+
+	// 编辑表格的提交数据参数
+	editGridInputFormListName: 'cdfChildDataList', // 提交的数据列表名
+	editGridInputFormListAttrs: 'status,id,sort,parentDataId.id,channel,xsScmsydSales,xsScmsydQntqSales,xsScmsydShoppers,xsScmsydQntqShoppers,', // 提交数据列表的属性字段
+
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+	}
+});
+/*$("#cdfChildDataDataGridAddRowBtn").bind("click",function(){
+    var sel1 = $("#select2-jqg1_channel-container").text();
+    var sel2 = $("#select2-jqg2_channel-container").text();
+    var sel3 = $("#select2-jqg3_channel-container").text();
+    if(sel1!=sel2!=sel3){
+        alert("true")
+    }
+    //cdfChildDataList[1].channel
+});*/
+    /*var accumulate = 1;
+    var prime=[2,3,5,7,11,17,19];
+    $(".dimension").each(function() {
+        var index = $(this).val();//新维度
+        if (accumulate % prime[index] == 0) {//整除
+            alert("重复！");
+        } else {
+            accumulate = accumulate * prime[index];
+        }
+    }*/
+</script>
+<script>
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			if(data.result == Global.TRUE){
+				js.closeCurrentTabPage(function(contentWindow){
+					contentWindow.page();
+				});
+			}
+		}, "json");
+    }
+});
+</script>
+<script>
+    function myfun()
+    {
+        $("#jqg1_channel").attr({"value": "自建"});
+        $("#jqg2_channel").attr({"value": "飞猪"});
+        $("#jqg3_channel").attr({"value": "旅购"});
+        $("#jqgh_cdfChildDataDataGrid_channel").addClass("xrequired");
+        $("#jqgh_cdfChildDataDataGrid_xsScmsydSales").addClass("xrequired");
+        $("#jqgh_cdfChildDataDataGrid_xsScmsydQntqSales").addClass("xrequired");
+        $("#jqgh_cdfChildDataDataGrid_xsScmsydShoppers").addClass("xrequired");
+        $("#jqgh_cdfChildDataDataGrid_xsScmsydQntqShoppers").addClass("xrequired");
+    }
+    window.onload=myfun;
+
+</script>

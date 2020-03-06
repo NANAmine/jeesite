@@ -186,7 +186,7 @@ spring:
   # 打印横幅
   main:
     bannerMode: "off"
-    
+
 #  # Redis 连接参数 （RedisProperties）
 #  redis:
 #    host: 127.0.0.1
