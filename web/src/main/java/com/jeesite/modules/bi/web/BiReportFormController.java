@@ -225,10 +225,11 @@ public class BiReportFormController extends BaseController {
             commonb = "公司编码";
             commonc = "公司名称";
             commond = "公司类型";
+            commone = "是否控股";
             etitle = "供应链公司类型";
-            mark = "注意：日期格式年月，日期不大于当前年月，公司编码（数字和英文），公司类型（境内、境外）";
+            mark = "注意：日期格式年月，日期不大于当前年月，公司编码（数字和英文），公司类型（境内、境外），是否控股（是、否）";
             //excel标题
-            title = new String[]{commona, commonb, commonc, commond, mark};
+            title = new String[]{commona, commonb, commonc, commond, commone, mark};
         } else if ("bi_gyl_kczz".equals(id)) {
             commona = "日期";
             commonb = "库存组织编码";
@@ -427,6 +428,7 @@ public class BiReportFormController extends BaseController {
                 content[i][1] = obj.getCommonB();
                 content[i][2] = obj.getCommonC();
                 content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
             }
         } else if ("bi_gyl_kczz".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
@@ -484,6 +486,7 @@ public class BiReportFormController extends BaseController {
         ExcelUtil er = new ExcelUtil();
         String mark = null;
         List<Map<Integer, String>> list = null;
+        List<BiCommonTables> listcommons = null;
         int i = 0;
         try {
             list = er.readExcelContentByList(file.getInputStream());
@@ -491,9 +494,11 @@ public class BiReportFormController extends BaseController {
             if (mark != null || list.size()==0) {
                 return renderResult(Global.FALSE, "上传失败！" + mark);
             }
-            /*BiCommonTables bct = new BiCommonTables();
-            bct.setTableName(tableName);
-            biCommonTablesService.deleteAll(bct);*/
+            if("bi_gyl_gslx".equals(tableName) || "bi_gyl_kczz".equals(tableName)){
+                BiCommonTables bct = new BiCommonTables();
+                bct.setTableName(tableName);
+                listcommons  = biCommonTablesService.findList(bct);
+            }
             for (Map<Integer, String> arr : list
             ) {
                 BiCommonTables biCommonTables = new BiCommonTables();
@@ -517,6 +522,9 @@ public class BiReportFormController extends BaseController {
                 biCommonTables.setCommonP(arr.get(15));
                 biCommonTablesService.save(biCommonTables);
                 i++;
+            }
+            for (BiCommonTables arr : listcommons) {
+                biCommonTablesService.delete(arr);
             }
             return renderResult(Global.TRUE, "上传成功！");
         } catch (Exception ex) {

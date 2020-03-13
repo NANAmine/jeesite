@@ -50,6 +50,12 @@
                     <#form:input path='${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "commonC": (biCommonTables.tableName == "dim_hk_passenger_flow"? "commonC": (biCommonTables.tableName == "eva_repor"? "commonC": (biCommonTables.tableName == "external_wholesale_report"? "commonE": (biCommonTables.tableName == "dim_hotel"? "commonC": (biCommonTables.tableName == "dim_map_brand_locate"? "commonH": (biCommonTables.tableName == "dim_sale_target_yyy"? "commonG": (biCommonTables.tableName == "dim_lxs_yyrs"? "commonD": (biCommonTables.tableName == "dim_texchange_rate"? "commonC": (biCommonTables.tableName == "dim_instructions_detail"? "commonD": (biCommonTables.tableName == "dim_gys_ppdz"? "commonD": (biCommonTables.tableName == "bi_ds_pvuv"? "CommonD": (biCommonTables.tableName == "dim_area_gz_map"? "CommonC": (biCommonTables.tableName == "dim_unit_channel_gcp"? "CommonC": (biCommonTables.tableName =="dim_pp_sell_report_exchangrate" ? "CommonC" : (biCommonTables.tableName =="bi_sy_ldtype_ldrs" ? "CommonD" : (biCommonTables.tableName == "bi_gyl_gslx"? "CommonD": (biCommonTables.tableName == "bi_gyl_kczz"? "CommonD": ))))))))))))))))))}' maxlength="255" class="form-control width-120"/>
                 </div>
             </div>
+            <div class="form-group" id="searche">
+                <label class="control-label">${text(biCommonTables.tableName == "bi_gyl_gslx"? "是否控股": )}：</label>
+                <div class="control-inline">
+                    <#form:input path='${text(biCommonTables.tableName == "bi_gyl_gslx"? "CommonE": )}' maxlength="255" class="form-control width-120"/>
+                </div>
+            </div>
             <!--<div class="form-group">
                 <label class="control-label">${text('通用字段')}：</label>
                 <div class="control-inline">
@@ -339,6 +345,13 @@
                 width: 150,
                 align: "center"
             },
+            {
+                header: '${text(biCommonTables.tableName == "bi_gyl_gslx"? "是否控股": "是否控股")}',
+                name:'commonE',
+                index:'a.common_e',
+                width: 150,
+                align: "center"
+            },
             //{header:'${text(biCommonTables.tableName == "bi_jsc_jdldrs"? "日期": (biCommonTables.tableName == "dim_hk_passenger_flow"? "日期年月": (biCommonTables.tableName == "eva_repor"? "日期": (biCommonTables.tableName == "external_wholesale_report"? "日期": (biCommonTables.tableName == "dim_hotel"? "酒店编码": (biCommonTables.tableName == "dim_map_brand_locate"? "分类": (biCommonTables.tableName == "dim_sale_target_yyy"? "日期": (biCommonTables.tableName == "dim_lxs_yyrs"? "日期": ))))))))}', name:'commonD', index:'a.common_d', width:150, align:"center"},
             /*{header:'${text("通用字段")}', name:'commonE', index:'a.common_e', width:150, align:"left"},
             {header:'${text("通用字段")}', name:'commonF', index:'a.common_f', width:150, align:"left"},
@@ -399,7 +412,16 @@
         ],
         // 加载成功后执行事件
         ajaxSuccess: function (data) {
-
+            (function start(){
+                var tableName =  "${biCommonTables.tableName}"
+                if(tableName != "bi_gyl_gslx"){
+                    document.getElementById("dataGrid_commonE").style.display="none";
+                    $( "#dataGrid tr" ).each( function() {
+                        $( this ).find( "td" ).eq( 4 ).hide();
+                    } );
+                    document.getElementById("searche").style.display="none";
+                }
+            })()
         }
     });
 

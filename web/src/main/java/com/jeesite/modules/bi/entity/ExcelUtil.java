@@ -265,8 +265,8 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("bi_gyl_gslx".equals(tableName)){
-                if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0))|| !isEN(arr.get(1)) || !isJaj(arr.get(3))){
-                    mark = "第"+i+"条数据错误,注意：日期格式年月，日期不大于当前年月，公司编码（数字和英文），公司类型（境内、境外）";
+                if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0))|| !isEN(arr.get(1)) || !isJaj(arr.get(3)) || !iskg(arr.get(4))){
+                    mark = "第"+i+"条数据错误,注意：日期格式年月，日期不大于当前年月，公司编码（数字和英文），公司类型（境内、境外），是否控股（是、否）";
                     return mark;
                 }
             }else if("bi_gyl_kczz".equals(tableName)){
@@ -417,6 +417,13 @@ public class ExcelUtil {
     public static boolean isJaj(String charaString){
 
         return charaString.matches("^(境内|境外)$");
+
+    }
+
+    /*是或者否 如：是*/
+    public static boolean iskg(String charaString){
+
+        return charaString.matches("^(是|否)$");
 
     }
     /*离岛类型 如：02火车离岛*/

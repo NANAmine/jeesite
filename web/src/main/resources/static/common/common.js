@@ -1266,6 +1266,11 @@ jQuery.validator.addMethod("jnajw", function (c, b) {
     var a = /^(境内|境外)$/;
     return this.optional(b) || (a.test(c))
 }, "请输入境内或境外!");
+jQuery.validator.addMethod("sfkg", function (c, b) {
+    var a = /^(是|否)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入是或否!");
+
 
 function checkchannel(){
     $(".select2-selection__rendered").each(function(i){
