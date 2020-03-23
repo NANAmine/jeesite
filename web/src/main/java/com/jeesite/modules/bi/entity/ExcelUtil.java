@@ -131,10 +131,10 @@ public class ExcelUtil {
                         row.getCell(j).setCellType(HSSFCell.CELL_TYPE_STRING);
                     }
                     if (row.getCell(j) == null || row.getCell(j).getStringCellValue() == null) {
-                        if(j==0){
-                            map.put(j, "");
-                        }else {
+                        if(j==(colNum-1)){
                             break;
+                        }else {
+                            map.put(j, "");
                         }
                     } else {
                         if (row.getCell(j).getCellType() == 1) {
@@ -272,6 +272,16 @@ public class ExcelUtil {
             }else if("bi_gyl_kczz".equals(tableName)){
                 if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0)) || !isNum(arr.get(1))){
                     mark = "第"+i+"条数据错误,注意：日期格式年月，日期不大于当前年月,库存组织编码为数字";
+                    return mark;
+                }
+            }else if("dim_rssh_ppmap_xh".equals(tableName)){
+                /*if(!isNum(arr.get(1)) || !isEN(arr.get(3))){
+                    mark = "第"+i+"条数据错误,注意：中免品牌编码为数字，中免供应商编码为英文和数字";
+                    return mark;
+                }*/
+            }else if("bi_gyl_WMS_dlmrkc".equals(tableName)){
+                if(!isDateymd(arr.get(0)) || !gylck(arr.get(1)) || arr.get(2).isEmpty() || !isEnglish(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
+                    mark = "第"+i+"条数据错误,注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字，所有字段均为必填";
                     return mark;
                 }
             }
@@ -430,6 +440,13 @@ public class ExcelUtil {
     public static boolean isLdlx(String charaString){
 
         return charaString.matches("^(01博鳌离岛|02火车离岛|03三亚离境|04三亚离岛|05海口离岛|06轮渡离岛|07海口离境)$");
+
+    }
+
+    /*是或者否 如：是*/
+    public static boolean gylck(String charaString){
+
+        return charaString.matches("^(上海库|大连库|深圳库|青岛库)$");
 
     }
     /*判断日期是否大于当前时间*/

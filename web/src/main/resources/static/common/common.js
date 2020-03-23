@@ -1270,6 +1270,10 @@ jQuery.validator.addMethod("sfkg", function (c, b) {
     var a = /^(是|否)$/;
     return this.optional(b) || (a.test(c))
 }, "请输入是或否!");
+jQuery.validator.addMethod("gylck", function (c, b) {
+    var a = /^(上海库|大连库|深圳库|青岛库)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入上海库、大连库、大连库或青岛库!");
 
 
 function checkchannel(){

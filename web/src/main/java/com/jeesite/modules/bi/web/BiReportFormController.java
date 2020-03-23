@@ -239,6 +239,27 @@ public class BiReportFormController extends BaseController {
             mark = "注意：日期格式年月，日期不大于当前年月,库存组织编码为数字";
             //excel标题
             title = new String[]{commona, commonb, commonc,commond, mark};
+        } else if ("dim_rssh_ppmap_xh".equals(id)) {
+            commona = "BI日上上海品牌名称";
+            commonb = "中免品牌编码";
+            commonc = "中免品牌名称";
+            commond = "中免供应商编码";
+            commone = "中免供应商名称";
+            etitle = "日上中免品牌映射";
+            mark = "注意：中免品牌编码为数字，中免供应商编码为英文和数字";
+            //excel标题
+            title = new String[]{commona, commonb, commonc,commond,commone, mark};
+        } else if ("bi_gyl_WMS_dlmrkc".equals(id)) {
+            commona = "日期";
+            commonb = "仓库";
+            commonc = "类型";
+            commond = "部门";
+            commone = "件数";
+            commonf = "箱数";
+            etitle = "WMS大类每日库存填报";
+            mark = "注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字，所有字段均为必填";
+            //excel标题
+            title = new String[]{commona, commonb, commonc,commond,commone,commonf, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -438,6 +459,25 @@ public class BiReportFormController extends BaseController {
                 content[i][2] = obj.getCommonC();
                 content[i][3] = obj.getCommonD();
             }
+        }  else if ("dim_rssh_ppmap_xh".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+            }
+        }  else if ("bi_gyl_WMS_dlmrkc".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+            }
         } else {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
@@ -523,8 +563,10 @@ public class BiReportFormController extends BaseController {
                 biCommonTablesService.save(biCommonTables);
                 i++;
             }
-            for (BiCommonTables arr : listcommons) {
-                biCommonTablesService.delete(arr);
+            if("bi_gyl_gslx".equals(tableName) || "bi_gyl_kczz".equals(tableName)){
+                for (BiCommonTables arr : listcommons) {
+                    biCommonTablesService.delete(arr);
+                }
             }
             return renderResult(Global.TRUE, "上传成功！");
         } catch (Exception ex) {

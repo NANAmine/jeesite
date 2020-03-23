@@ -87,6 +87,10 @@ public class BiCommonTablesController extends BaseController {
             biCommonTables.setTableName("bi_gyl_gslx");
         }else if("19".equals(id)){
             biCommonTables.setTableName("bi_gyl_kczz");
+        }else if("20".equals(id)){
+            biCommonTables.setTableName("dim_rssh_ppmap_xh");
+        }else if("21".equals(id)){
+            biCommonTables.setTableName("bi_gyl_WMS_dlmrkc");
         }
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";
@@ -140,10 +144,15 @@ public class BiCommonTablesController extends BaseController {
 	        String commonC=biCommonTables.getCommonC();
             String[] words2 = commonC.split("\\,");
             biCommonTables.setCommonC(words2[words2.length-1]);
-        }else {
+        }else{
             String commonC=biCommonTables.getCommonC();
             String[] words2 = commonC.split("\\,");
-            biCommonTables.setCommonC(words2[0]);
+            if(words2.length>=1){
+                biCommonTables.setCommonC(words2[0]);
+            }else {
+                biCommonTables.setCommonC("");
+            }
+
         }
 		biCommonTablesService.save(biCommonTables);
 		return renderResult(Global.TRUE, text("保存通用字典表成功！"));
