@@ -257,7 +257,7 @@ public class BiReportFormController extends BaseController {
             commone = "件数";
             commonf = "箱数";
             etitle = "WMS大类每日库存填报";
-            mark = "注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字，所有字段均为必填";
+            mark = "注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字";
             //excel标题
             title = new String[]{commona, commonb, commonc,commond,commone,commonf, mark};
         }
@@ -571,32 +571,34 @@ public class BiReportFormController extends BaseController {
             return renderResult(Global.TRUE, "上传成功！");
         } catch (Exception ex) {
             int y = 0;
-            for (Map<Integer, String> arr : list
-            ) {
-                if(y<i) {
-                    BiCommonTables biCommonTables = new BiCommonTables();
-                    biCommonTables.setTableName(tableName);
-                    biCommonTables.setCommonA(arr.get(0));
-                    biCommonTables.setCommonB(arr.get(1));
-                    biCommonTables.setCommonC(arr.get(2));
-                    biCommonTables.setCommonD(arr.get(3));
-                    biCommonTables.setCommonE(arr.get(4));
-                    biCommonTables.setCommonF(arr.get(5));
-                    biCommonTables.setCommonG(arr.get(6));
-                    biCommonTables.setCommonH(arr.get(7));
-                    biCommonTables.setCommonI(arr.get(8));
-                    biCommonTables.setCommonJ(arr.get(9));
-                    biCommonTables.setCommonK(arr.get(10));
-                    biCommonTables.setCommonL(arr.get(11));
-                    biCommonTables.setCommonM(arr.get(12));
-                    biCommonTables.setCommonN(arr.get(13));
-                    biCommonTables.setCommonO(arr.get(14));
-                    biCommonTables.setCommonP(arr.get(15));
-                    List<BiCommonTables> list1 = biCommonTablesService.findList(biCommonTables);
-                    if(list1.size()>0){
-                        biCommonTablesService.delete(list1.get(0));
+            if(list!=null && list.size()!=0){
+                for (Map<Integer, String> arr : list
+                ) {
+                    if(y<i) {
+                        BiCommonTables biCommonTables = new BiCommonTables();
+                        biCommonTables.setTableName(tableName);
+                        biCommonTables.setCommonA(arr.get(0));
+                        biCommonTables.setCommonB(arr.get(1));
+                        biCommonTables.setCommonC(arr.get(2));
+                        biCommonTables.setCommonD(arr.get(3));
+                        biCommonTables.setCommonE(arr.get(4));
+                        biCommonTables.setCommonF(arr.get(5));
+                        biCommonTables.setCommonG(arr.get(6));
+                        biCommonTables.setCommonH(arr.get(7));
+                        biCommonTables.setCommonI(arr.get(8));
+                        biCommonTables.setCommonJ(arr.get(9));
+                        biCommonTables.setCommonK(arr.get(10));
+                        biCommonTables.setCommonL(arr.get(11));
+                        biCommonTables.setCommonM(arr.get(12));
+                        biCommonTables.setCommonN(arr.get(13));
+                        biCommonTables.setCommonO(arr.get(14));
+                        biCommonTables.setCommonP(arr.get(15));
+                        List<BiCommonTables> list1 = biCommonTablesService.findList(biCommonTables);
+                        if(list1.size()>0){
+                            biCommonTablesService.delete(list1.get(0));
+                        }
+                        y++;
                     }
-                    y++;
                 }
             }
             return renderResult(Global.FALSE, "上传失败！" + mark + ex.getMessage());

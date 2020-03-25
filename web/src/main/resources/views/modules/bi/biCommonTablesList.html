@@ -460,8 +460,8 @@
                     js.showMessage("${text('文件不正确，请选择后缀为 “xls”的文件。')}", null, 'warning');
                     return false;
                 }
-                if (layero.find('#file')[0].files[0].size > 5 * 1048576) {
-                    js.showMessage("${text('文件太大，上传文件大小不得超过5兆！')}", null, 'warning');
+                if (layero.find('#file')[0].files[0].size > 10 * 1048576) {
+                    js.showMessage("${text('文件太大，上传文件大小不得超过10兆！')}", null, 'warning');
                     return false;
                 }
                 /*$.ajax({
@@ -519,7 +519,7 @@
         var size = $("#file")[0].files[0].size * 1024;
         console.log(size)
         console.log($('#file').value)
-        if (size > 5242) {
+        if (size > 10240) {
             alert("文件太大了！")
             $("#file").value = "";
         }

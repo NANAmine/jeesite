@@ -150,7 +150,7 @@ public class ExcelUtil {
                 }
                 j++;
             }
-            if(map.size() != 0){
+            if(map.size() == (colNum-1) ){
                 list.add(map);
             }
 
@@ -280,8 +280,8 @@ public class ExcelUtil {
                     return mark;
                 }*/
             }else if("bi_gyl_WMS_dlmrkc".equals(tableName)){
-                if(!isDateymd(arr.get(0)) || !gylck(arr.get(1)) || arr.get(2).isEmpty() || !isEnglish(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
-                    mark = "第"+i+"条数据错误,注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字，所有字段均为必填";
+                if(!isDateymd(arr.get(0)) || !gylck(arr.get(1)) || !isEnglish(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
+                    mark = "第"+i+"条数据错误,注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字";
                     return mark;
                 }
             }
