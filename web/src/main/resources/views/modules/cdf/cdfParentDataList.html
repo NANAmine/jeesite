@@ -44,6 +44,7 @@
 					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
 					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
 				</div>
+                <button title="历史填报数据" href="javascript:" data-href="http://10.153.252.138/bi/viewer/cdf/out?proc=1&amp;action=viewer&amp;hback=true&amp;db=!4e2d!!514d!!9879!!76ee!_!6c47!!62a5!!7528!V3_8!7248!!672c!!95e8!!6237!!2f!!4e2d!!514d!!9879!!76ee!!4e09!!671f!!2f!!65b0!!96f6!!552e!!2f!!7ebf!!4e0a!!9500!!552e!!7edf!!8ba1!.db&amp;isAir=false&amp;browserType=chrome&amp;au_act=login&amp;adminv=qy&amp;passv=cdf12345&amp;shopname=超级管理员" class="addTabPage btn btn-default btn-sm" data-code="1244810923513057280" data-tab-id="tabpanel-dc0f3b68e1" style="align:right">历史填报数据</button>
 			</#form:form>
 			<table id="dataGrid"></table>
 			<div id="dataGridPage"></div>
@@ -62,7 +63,7 @@ $('#dataGrid').dataGrid({
 		{header:'${text("时间")}', name:'time', index:'a.time', width:150, align:"center"},
 		{header:'${text("更新者")}', name:'updateBy', index:'a.update_by', width:150, align:"center"},
 		{header:'${text("更新时间")}', name:'updateDate', index:'a.update_date', width:150, align:"center"},
-		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+		{header:'${text("操作")}', name:'actions', width:120, align:"center", sortable:false, title:false, formatter: function(val, obj, row, act){
 			var actions = [];
 			<% if(hasPermi('cdf:cdfParentData:edit')){ %>
 				actions.push('<a href="${ctx}/cdf/cdfParentData/form?id='+row.id+'" class="btnList" title="${text("编辑新零售")}"><i class="fa fa-pencil"></i></a>&nbsp;');

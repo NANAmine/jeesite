@@ -1274,6 +1274,10 @@ jQuery.validator.addMethod("gylck", function (c, b) {
     var a = /^(上海库|大连库|深圳库|青岛库)$/;
     return this.optional(b) || (a.test(c))
 }, "请输入上海库、大连库、大连库或青岛库!");
+jQuery.validator.addMethod("zsl", function (c, b) {
+    var a = /^(香港机场|广州机场|柬中免|邮轮)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入香港机场、广州机场、柬中免或邮轮!");
 
 
 function checkchannel(){

@@ -225,8 +225,8 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("dim_texchange_rate".equals(tableName)){
-                if(!dateYear(arr.get(0)) || !isNum(arr.get(1)) || !isNum(arr.get(2)) || !isNumVal(arr.get(3)) || !isNumVal(arr.get(4))){
-                    mark = "第"+i+"条数据错误,请校验:日期格式为年，门店编码为数字，大类编码为数字，折算率和毛利额折算率为有效数值";
+                if(!dateYear(arr.get(0)) || !zsl(arr.get(1)) || !isNum(arr.get(2)) || !isNumVal(arr.get(3)) || !isNumVal(arr.get(4))){
+                    mark = "第"+i+"条数据错误,请校验:日期格式为年，门店名称（香港机场、广州机场、柬中免或邮轮）大类编码为数字，折算率和毛利额折算率为有效数值";
                     return mark;
                 }
             }else if("dim_gys_ppdz".equals(tableName)){
@@ -447,6 +447,13 @@ public class ExcelUtil {
     public static boolean gylck(String charaString){
 
         return charaString.matches("^(上海库|大连库|深圳库|青岛库)$");
+
+    }
+
+    /*是或者否 如：是*/
+    public static boolean zsl(String charaString){
+
+        return charaString.matches("^(香港机场|广州机场|柬中免|邮轮)$");
 
     }
     /*判断日期是否大于当前时间*/

@@ -142,12 +142,12 @@ public class BiReportFormController extends BaseController {
             title = new String[]{commona, commonb, commonc, commond, commone, commonf, commong, commonh, commoni, commonj, commonk, commonl, commonm, commonn, mark};
         } else if ("dim_texchange_rate".equals(id)) {
             commona = "日期";
-            commonb = "门店编码";
+            commonb = "门店名称";
             commonc = "大类编码";
             commond = "折算率";
             commone = "毛利额折算率";
             etitle = "汇率折算信息";
-            mark = "注意：日期格式为年，门店编码为数字，大类编码为数字，折算率和毛利额折算率为有效数值";
+            mark = "注意：日期格式为年，门店名称（香港机场|广州机场|柬中免|邮轮）大类编码为数字，折算率和毛利额折算率为有效数值";
             //excel标题
             title = new String[]{commona, commonb, commonc, commond, commone, mark};
         } else if ("dim_gys_ppdz".equals(id)) {

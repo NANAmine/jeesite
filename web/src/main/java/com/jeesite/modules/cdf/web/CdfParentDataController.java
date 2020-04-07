@@ -8,6 +8,7 @@ import com.jeesite.common.entity.Page;
 import com.jeesite.common.web.BaseController;
 import com.jeesite.modules.cdf.entity.CdfChildData;
 import com.jeesite.modules.cdf.entity.CdfParentData;
+import com.jeesite.modules.cdf.entity.GetStory;
 import com.jeesite.modules.cdf.service.CdfParentDataService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,10 +77,16 @@ public class CdfParentDataController extends BaseController {
 	public String form(CdfParentData cdfParentData, Model model, String status, HttpServletRequest request, HttpServletResponse response) {
         if("1".equals(status)){
             status = "true";
+        }else {
+            status = "false";
+        }
+        String flag = "true";
+        String createduser =  request.getRemoteUser();
+        if("".equals(GetStory.getstory(createduser))){
+            flag = "false";
         }
         /*新增获取默认值，取最近一条记录的门店 时间(始终默认昨天) 渠道 */
         if(cdfParentData.getId()==null){
-            String createduser =  request.getRemoteUser();
             CdfParentData cdf = new CdfParentData();
             cdf.setCreateBy(createduser);
             List<CdfParentData> list = null;
@@ -87,6 +94,7 @@ public class CdfParentDataController extends BaseController {
             Calendar calendar= Calendar.getInstance();
             calendar.set(Calendar.HOUR_OF_DAY,-24);
             cdfParentData.setTime(calendar.getTime());
+            cdfParentData.setStore(GetStory.getstory(createduser));
             if(list!=null && list.size()!=0){
                 cdf = list.get(list.size() - 1);
                 cdf = cdfParentDataService.get(cdf.getId(), false);
@@ -115,6 +123,7 @@ public class CdfParentDataController extends BaseController {
                 cdfParentData.setCdfChildDataList(childDatalist);
             }
         }
+        model.addAttribute("flag",flag);
         model.addAttribute("status",status);
 		model.addAttribute("cdfParentData", cdfParentData);
 		return "modules/cdf/cdfParentDataForm";
