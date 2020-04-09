@@ -8,12 +8,12 @@ import com.jeesite.common.mybatis.annotation.MyBatisDao;
 import com.jeesite.modules.cdf.entity.CdfChildData;
 
 /**
- * 新零售DAO接口
+ * 门店预定业务销售DAO接口
  * @author liangjiawei
  * @version 2020-02-26
  */
-@MyBatisDao //开发
-//@MyBatisDao(dataSourceName="ds2") //生产
+//@MyBatisDao //开发
+@MyBatisDao(dataSourceName="ds2")
 public interface CdfChildDataDao extends CrudDao<CdfChildData> {
 	
 }

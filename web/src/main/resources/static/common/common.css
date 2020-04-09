@@ -16,7 +16,7 @@
     opacity: 0.2;
     top: 0;
     right: 0;
-    bottom: 8%;
+    bottom: 13%;
     left: 0;
 }
 .form-unit4{
@@ -26,6 +26,8 @@
     #margin:8px 10px 25px 10px;
     #padding-bottom:5px;
     text-align: center;
+    font-weight: bold;
+    font-family: "Microsoft Yahei";
 }
 .form-unit5{
     font-size:20px;
@@ -35,6 +37,15 @@
     padding-bottom:5px;
     text-align: center;
 }
+
+.form-unit11 {
+    font-size: 20px;
+    color: #6379bb;
+    border-bottom: 1px solid #ddd;
+    margin: 30px 0% 10px 0%;
+    padding-bottom: 5px;
+    text-align: center;
+}
 div.xrequired:before {
     content: '* ';
     color: red;
@@ -42,6 +53,17 @@ div.xrequired:before {
 .outline{
     outline: none;
 }
+
+.form-horizontal .ml10{
+    margin:0 auto;
+    width:85%;
+}
+
+.ui-jqgrid .ui-jqgrid-labels th {
+    border-right: 0px solid #e1e1e1!important;
+}
+
+
 
 
 /**
@@ -427,3 +449,11 @@ i.required {
     background-color: #cc3333; }
 
 /*# sourceMappingURL=dialog.css.map */
+.all-font {font-family:Microsoft YaHei;}
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding-left: 0;
+    padding-right: 0;
+    height: auto;
+    margin-top: -4px;
+    text-align: center;
+}

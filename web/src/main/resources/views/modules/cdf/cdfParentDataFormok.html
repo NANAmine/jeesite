@@ -1,9 +1,9 @@
-<% layout('/layouts/default.html', {title: '新零售管理', libs: ['validate','dataGrid']}){ %>
+<% layout('/layouts/default.html', {title: '门店预定业务销售管理', libs: ['validate','dataGrid']}){ %>
 <div class="main-content">
 	<div class="box box-main">
 		<div class="box-header with-border">
 			<div class="box-title">
-				<i class="fa fa-list-alt"></i> ${text(cdfParentData.isNewRecord ? '新增新零售' : (status == "true"? "查看新零售":"编辑新零售"))}<span style="color: red;">(销售额单位：万元)</span>
+				<i class="fa fa-list-alt"></i> ${text(cdfParentData.isNewRecord ? '新增门店预定业务销售' : (status == "true"? "查看门店预定业务销售":"编辑门店预定业务销售"))}<span style="color: red;">(销售额单位：万元)</span>
 			</div>
 			<div class="box-tools pull-right">
 				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>

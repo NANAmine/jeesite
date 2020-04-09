@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotBlank;
 
 /**
- * 新零售Entity
+ * 门店预定业务销售Entity
  * @author liangjiawei
  * @version 2020-02-26
  */

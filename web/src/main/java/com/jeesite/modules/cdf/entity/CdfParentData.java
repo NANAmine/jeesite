@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 新零售Entity
+ * 门店预定业务销售Entity
  * @author liangjiawei
  * @version 2020-02-26
  */

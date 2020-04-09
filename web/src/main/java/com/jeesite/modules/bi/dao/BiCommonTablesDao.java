@@ -12,8 +12,8 @@ import com.jeesite.modules.bi.entity.BiCommonTables;
  * @author ljw
  * @version 2019-10-09
  */
-@MyBatisDao //开发
-//@MyBatisDao(dataSourceName="ds2") //生产
+//@MyBatisDao //开发
+@MyBatisDao(dataSourceName="ds2")
 public interface BiCommonTablesDao extends CrudDao<BiCommonTables> {
     int deleteAll(BiCommonTables biCommonTables);
     int upDelete(BiCommonTables biCommonTables);

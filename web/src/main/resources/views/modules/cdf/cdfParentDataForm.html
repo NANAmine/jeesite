@@ -1,263 +1,49 @@
-<% layout('/layouts/default.html', {title: '新零售管理', libs: ['validate','dataGrid']}){ %>
-<div class="main-content">
+<% layout('/layouts/default.html', {title: '门店预定业务销售管理', libs: ['validate','dataGrid']}){ %>
+<div class="main-content all-font" style="background-color: #FFFFFF">
     <from class="box box-main">
         <div class="box-header with-border">
             <div class="box-title">
-                <i class="fa fa-list-alt"></i> ${text(cdfParentData.isNewRecord ? '新增新零售' : (status == "true"? "查看新零售":"编辑新零售"))}<span style="color: red;">(销售额单位：万元)</span>
+                <i class="fa fa-list-alt"></i> ${text(cdfParentData.isNewRecord ? '新增门店预定业务销售' : (status == "true"?
+                "查看门店预定业务销售":"编辑门店预定业务销售"))}<span style="color: red;">(销售额单位：万元)</span>
             </div>
             <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
             </div>
         </div>
-        <#form:form id="inputForm" model="${cdfParentData}" action="${ctx}/cdf/cdfParentData/save" method="post" class='form-horizontal ${text(status == "true"? "form-readonly":"")}'>
+        <#form:form id="inputForm" model="${cdfParentData}" action="${ctx}/cdf/cdfParentData/save" method="post"
+        class='form-horizontal ${text(status == "true"? "form-readonly":"")}'>
         <div class="box-body">
             <#form:hidden path="id"/>
-            <div class="row">
-                <div class="col-xs-3" >
+            <h4 class="form-unit4">${text('门店预定业务销售填报')}</h4>
+            <div class="row ml10">
+                <div class="col-xs-7">
                     <div class="form-group">
-                        <label class="control-label col-sm-3" title="">
-                            <span class="required ">*</span> ${text('门店')}：<i class="fa icon-question hide"></i></label>
-                        <div class="col-sm-8">
-                            <#form:select path="store" disabled = "disabled" dictType="new_sale_stores"  blankOption="true" class="form-control required" />
-                        </div>
+                        <label class="control-label col-sm-4" style="text-align: left;margin-top: 5px;" title="">
+                            ${text('门店')}：${text(cdfParentData.store)}<i class="fa icon-question hide"></i></label>
+                        <label class="control-label col-sm-4" style="text-align: left;margin-top: 5px;" title="">
+                            ${text('填报人')}：${text(user)}<i class="fa icon-question hide"></i></label>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-5">
                     <div class="form-group">
-                        <label class="control-label col-sm-3" title="">
+                        <!--<label class="control-label col-sm-7" title="">
                             <span class="required ">*</span> ${text('时间')}：<i class="fa icon-question hide"></i></label>
-                        <div class="col-sm-6">
+                        --><div class="col-sm-5" style="margin-left:62%">
                             <#form:input path="time" readonly="true" maxlength="20" class="form-control Wdate required"
                             dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
                         </div>
                     </div>
                 </div>
+                <div class="form-unit11"></div>
             </div>
-            <h4 class="form-unit4">${text('线上销售')}</h4>
-            <h4 class="form-unit">${text('商城免税预定')}</h4>
+
             <div class="ml10 mr10">
                 <table id="cdfChildDataDataGrid"></table>
                 <% if (hasPermi('cdf:cdfParentData:edit')){ %>
-                <a href="#" id="cdfChildDataDataGridAddRowBtn" class="btn btn-primary btn-sm mt10 mb10"><i class="fa fa-plus"></i> ${text('增行')}</a>
+                <a href="#" id="cdfChildDataDataGridAddRowBtn" class="btn btn-primary btn-sm mt10 mb10" style="margin-left: 94%;"><i
+                        class="fa fa-plus"></i> ${text('增行')}</a>
                 <% } %>
-            </div>
-            <h4 class="form-unit">${text('完税销售')}</h4>
-            <div class="ml10 mr10">
-                <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all" id="gbox_cdfChildDataDataGrid"
-                     dir="ltr" style="width: 1105px;">
-                    <div class="ui-widget-overlay jqgrid-overlay" id="lui_cdfChildDataDataGrid"></div>
-                    <div class="ui-jqgrid-view" role="grid" id="gview_cdfChildDataDataGrid" style="width: 1103px;">
-                        <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
-                             style="display: none;"><a role="link"
-                                                       class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton"
-                                                       title="Toggle Expand Collapse Grid" style="right: 0px;"><span
-                                class="ui-icon ui-icon-circle-triangle-n"></span></a><span
-                                class="ui-jqgrid-title"></span></div>
-                        <div class="ui-state-default ui-jqgrid-hdiv ui-corner-top" style="width: 1103px;">
-                            <div class="ui-jqgrid-hbox">
-                                <table class="ui-jqgrid-htable" style="width: 1103px;" role="presentation"
-                                       aria-labelledby="gbox_cdfChildDataDataGrid" cellspacing="0" cellpadding="0"
-                                       border="0">
-                                    <thead>
-                                    <tr class="ui-jqgrid-labels" role="row">
-                                        <th id="cdfChildDataDataGrid_xsScmsydSales" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 213px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="Sales"
-                                                 class="ui-jqgrid-sortable xrequired">销售额<span class="s-ico"
-                                                                                               style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="cdfChildDataDataGrid_xsScmsydQntqSales" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 213px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="xsScmsydQntqSales"
-                                                 class="ui-jqgrid-sortable xrequired">去年同期销售额<span class="s-ico"
-                                                                                                   style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="cdfChildDataDataGrid_xsScmsydShoppers" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 213px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="xsScmsydShoppers"
-                                                 class="ui-jqgrid-sortable xrequired">购物人数<span class="s-ico"
-                                                                                                style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th id="cdfChildDataDataGrid_xsScmsydQntqShoppers" role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr " style="width: 212px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div id="xsScmsydQntqShoppers"
-                                                 class="ui-jqgrid-sortable xrequired">去年同期购物人数<span class="s-ico"
-                                                                                                    style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                        <div style="height: auto; width: 1103px;">
-                            <table id="cdfChildDataDataGrid2" tabindex="0" cellspacing="0" cellpadding="0" border="0"
-                                   role="presentation" aria-multiselectable="false"
-                                   aria-labelledby="gbox_cdfChildDataDataGrid" class="ui-jqgrid-btable"
-                                   style="width: 1103px;">
-                                <tbody>
-                                <tr class="jqgfirstrow" role="row" style="height:auto">
-                                    <td role="gridcell" style="height: 0px; width: 213px;"></td>
-                                    <td role="gridcell" style="height: 0px; width: 213px;"></td>
-                                    <td role="gridcell" style="height: 0px; width: 213px;"></td>
-                                    <td role="gridcell" style="height: 0px; width: 213px;"></td>
-                                </tr>
-                                <tr role="row" id="2" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"
-                                    editable="1">
-                                    <td role="gridcell" style="overflow: visible;" title="&nbsp;"
-                                        aria-describedby="cdfChildDataDataGrid_xsWsxsSales"> <#form:input path="xsWsxsSales" maxlength="200" class="form-control required number outline" style="width: 99.9%;"/>
-                                    </td>
-                                    <td role="gridcell" style="overflow: visible;" title="&nbsp;"
-                                        aria-describedby="cdfChildDataDataGrid_xsScmsydQntqSales"><#form:input path="xsWsxsQntqSales" maxlength="200" class="form-control required number outline" style="width: 99.9%;"/>
-                                    </td>
-                                    <td role="gridcell" style="overflow: visible;" title="&nbsp;"
-                                        aria-describedby="cdfChildDataDataGrid_xsScmsydShoppers"><#form:input path="xsWsxsShoppers" maxlength="200" class="form-control required integer" style="width: 99.9%;"/>
-                                    </td>
-                                    <td role="gridcell" style="overflow: visible;" title="&nbsp;"
-                                        aria-describedby="cdfChildDataDataGrid_xsScmsydQntqShoppers"><#form:input path="xsWsxsQntqShoppers" maxlength="200" class="form-control required integer" style="width: 99.9%;"/>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 class="form-unit5">${text('线下销售')}</h4>
-            <div class="ml10 mr10">
-                <div class="ui-jqgrid ui-widget ui-widget-content ui-corner-all"
-                     dir="ltr" style="width: 1105px;">
-                    <div class="ui-widget-overlay jqgrid-overlay"></div>
-                    <div class="ui-jqgrid-view" role="grid" style="width: 1103px;">
-                        <div class="ui-jqgrid-titlebar ui-jqgrid-caption ui-widget-header ui-corner-top ui-helper-clearfix"
-                             style="display: none;"><a role="link"
-                                                       class="ui-jqgrid-titlebar-close ui-corner-all HeaderButton"
-                                                       title="Toggle Expand Collapse Grid" style="right: 0px;"><span
-                                class="ui-icon ui-icon-circle-triangle-n"></span></a><span
-                                class="ui-jqgrid-title"></span></div>
-                        <div class="ui-state-default ui-jqgrid-hdiv ui-corner-top" style="width: 1103px;">
-                            <div class="ui-jqgrid-hbox">
-                                <table class="ui-jqgrid-htable" style="width: 1103px;" role="presentation"
-                                       aria-labelledby="gbox_cdfChildDataDataGrid" cellspacing="0" cellpadding="0"
-                                       border="0">
-                                    <thead>
-                                    <tr class="ui-jqgrid-labels" role="row">
-                                        <th role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 213px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div
-                                                 class="ui-jqgrid-sortable xrequired">销售额<span class="s-ico"
-                                                                                               style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 213px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div
-                                                 class="ui-jqgrid-sortable xrequired">去年同期销售额<span class="s-ico"
-                                                                                                   style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr" style="width: 213px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div
-                                                 class="ui-jqgrid-sortable xrequired">购物人数<span class="s-ico"
-                                                                                                style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                        <th role="columnheader"
-                                            class="ui-state-default ui-th-column ui-th-ltr " style="width: 212px;"><span
-                                                class="ui-jqgrid-resize ui-jqgrid-resize-ltr"
-                                                style="cursor: col-resize;">&nbsp;</span>
-                                            <div
-                                                 class="ui-jqgrid-sortable xrequired">去年同期购物人数<span class="s-ico"
-                                                                                                    style="display:none"><span
-                                                    sort="asc"
-                                                    class="ui-grid-ico-sort ui-icon-asc ui-state-disabled ui-icon ui-icon-triangle-1-n ui-sort-ltr"></span><span
-                                                    sort="desc"
-                                                    class="ui-grid-ico-sort ui-icon-desc ui-state-disabled ui-icon ui-icon-triangle-1-s ui-sort-ltr"></span></span>
-                                            </div>
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
-                        <div style="height: auto; width: 1103px;">
-                            <table tabindex="0" cellspacing="0" cellpadding="0" border="0"
-                                   role="presentation" aria-multiselectable="false"
-                                   aria-labelledby="gbox_cdfChildDataDataGrid" class="ui-jqgrid-btable"
-                                   style="width: 1103px;">
-                                <tbody>
-                                <tr class="jqgfirstrow" role="row" style="height:auto">
-                                    <td role="gridcell" style="height: 0px; width: 213px;"></td>
-                                    <td role="gridcell" style="height: 0px; width: 213px;"></td>
-                                    <td role="gridcell" style="height: 0px; width: 213px;"></td>
-                                    <td role="gridcell" style="height: 0px; width: 213px;"></td>
-                                </tr>
-                                <tr role="row" id="1" tabindex="-1" class="ui-widget-content jqgrow ui-row-ltr"
-                                    editable="1">
-                                    <td role="gridcell" style="overflow: visible;" title="&nbsp;"
-                                        aria-describedby="cdfChildDataDataGrid_xsWsxsSales"> <#form:input path="xxxsSales" maxlength="200" class="form-control required number" style="width: 99.9%;"/>
-                                    </td>
-                                    <td role="gridcell" style="overflow: visible;" title="&nbsp;"
-                                        aria-describedby="cdfChildDataDataGrid_xsScmsydQntqSales"><#form:input path="xxxsQntqSales" maxlength="200" class="form-control required number" style="width: 99.9%;"/>
-                                    </td>
-                                    <td role="gridcell" style="overflow: visible;" title="&nbsp;"
-                                        aria-describedby="cdfChildDataDataGrid_xsScmsydShoppers"><#form:input path="xxxsShoppers" maxlength="200" class="form-control required integer" style="width: 99.9%;"/>
-                                    </td>
-                                    <td role="gridcell" style="overflow: visible;" title="&nbsp;"
-                                        aria-describedby="cdfChildDataDataGrid_xsScmsydQntqShoppers"><#form:input path="xxxsQntqShoppers" maxlength="200" class="form-control required integer" style="width: 99.9%;"/>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="box-footer">
@@ -265,9 +51,13 @@
                 <div class="col-sm-offset-5 col-sm-10">
                     <% if (hasPermi('cdf:cdfParentData:edit')){ %>
                     <input type="button" id="sub" class="btn btn-sm btn-primary" value="✔保存" onclick="checkchannel()"/>
-                    <button type="submit" style="display: none" class="btn btn-sm btn-primary" id="btnSubmit"><i class="fa fa-check"></i> ${text('保 存')}</button>&nbsp;
+                    <button type="submit" style="display: none" class="btn btn-sm btn-primary" id="btnSubmit"><i
+                            class="fa fa-check"></i> ${text('保 存')}
+                    </button>&nbsp;
                     <% } %>
-                    <button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}</button>
+                    <button type="button" class="btn btn-sm btn-default" id="btnCancel"
+                            onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}
+                    </button>
                 </div>
             </div>
         </div>
@@ -276,78 +66,129 @@
 </div>
 <% } %>
 <script>
-    (function start(status,flag){
-        console.log(status)
-        console.log(flag)
-        document.getElementById("xxxsSales").focus();
-        if(status==null){ }else if(status.toString() == "true"){
-            document.getElementById("sub").style.display="none";
-        }
-        if(flag.toString() != "true"){
-            $("#store").removeAttr("disabled");
-        }
-    })(${status},${flag})
     //初始化子表DataGrid对象
     $("#cdfChildDataDataGrid").dataGrid({
-
         data: ${toJson(cdfParentData.cdfChildDataList)},
         datatype: "local", // 设置本地数据
-        autoGridHeight: function(){return 'auto'}, // 设置自动高度
+        autoGridHeight: function () {
+            return 'auto'
+        }, // 设置自动高度
 
         // 设置数据表格列
         columnModel: [
-            {header:'状态', name:'status', editable:true, hidden:true},
-            {header:'主键', name:'id', editable:true, hidden:true},
-            {header:'${text("父表主键")}', name:'parentDataId.id', editable:true, hidden:true},
-            {header:'${text("渠道")}', name:'channel', width:100,
-                editable:true, edittype:'select', editoptions:{'class':'form-control choose',
-                    items: $.merge([{dictLabel:'&nbsp;',dictValue:''}], ${@DictUtils.getDictListJson('online_channels')}),
-                    itemLabel: 'dictLabel', itemValue: 'dictValue', dataInit: function(element){
-                        $(element).select2().on("change",function(){$(this).valid()});
+            {header: '状态', name: 'status', editable: true, hidden: true},
+            {header: '主键', name: 'id', editable: true, hidden: true},
+            {header: '${text("父表主键")}', name: 'parentDataId.id', editable: true, hidden: true},
+            {
+                header: '${text("渠道")}', name: 'channel', width: 50,
+                editable: true, edittype: 'select', editoptions: {
+                    'class': 'form-control choose ',
+                    items: $.merge([{
+                        dictLabel: '&nbsp;',
+                        dictValue: ''
+                    }], ${@DictUtils.getDictListJson('online_channels')}),
+                    itemLabel: 'dictLabel', itemValue: 'dictValue', 'style': 'text-align: center',dataInit: function (element) {
+                        $(element).select2().on("change", function () {
+                            $(this).valid()
+                        });
                     }
                 }
             },
             //{header:'${text("渠道")}',name:'channel', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control required', 'readonly':true}},
-            {header:'${text("销售额")}',name:'xsScmsydSales', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control choose  number'}},
-            {header:'${text("去年同期销售额")}', name:'xsScmsydQntqSales', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control choose number'}},
-            {header:'${text("购物人数")}', name:'xsScmsydShoppers', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control choose number'}},
-            {header:'${text("去年同期购物人数")}', name:'xsScmsydQntqShoppers', width:150, editable:true, edittype:'text', editoptions:{'maxlength':'200', 'class':'form-control choose number'}},
-            {header:'${text("操作")}', name:'actions', width:80, sortable:false, fixed:true, formatter: function(val, obj, row, act){
+            {
+                header: '${text("销售额")}',
+                name: 'xsScmsydSales',
+                width: 50,
+                editable: true,
+                edittype: 'text',
+                editoptions: {'maxlength': '200', 'class': 'form-control choose  number'}
+            },
+            {
+                header: '${text("去年同期销售额")}',
+                name: 'xsScmsydQntqSales',
+                width: 50,
+                editable: true,
+                edittype: 'text',
+                editoptions: {'maxlength': '200', 'class': 'form-control choose number'}
+            },
+            {
+                header: '${text("购物人数")}',
+                name: 'xsScmsydShoppers',
+                width: 50,
+                editable: true,
+                edittype: 'text',
+                editoptions: {'maxlength': '200', 'class': 'form-control choose number'}
+            },
+            {
+                header: '${text("去年同期购物人数")}',
+                name: 'xsScmsydQntqShoppers',
+                width: 50,
+                editable: true,
+                edittype: 'text',
+                editoptions: {'maxlength': '200', 'class': 'form-control choose number'}
+            },
+            {
+                header: '${text("操作")}',
+                name: 'actions',
+                width: 50,
+                sortable: false,
+                fixed: true,
+                formatter: function (val, obj, row, act) {
                     var actions = [];
-                    if (val == 'new'){
-                        actions.push('<a href="#" onclick="js.confirm(\'${text("你确认要删除这条数据吗？")}\', function(){$(\'#cdfChildDataDataGrid\').dataGrid(\'delRowData\',\''+obj.rowId+'\');movetop();});return false;"><i class="fa fa-trash-o"></i></a>&nbsp;');
-                    }else{
-                        actions.push('<a href="#" onclick="js.confirm(\'${text("你确认要删除这条数据吗？")}\', function(){$(\'#cdfChildDataDataGrid\').dataGrid(\'setRowData\',\''+obj.rowId+'\',null,{display:\'none\'});$(\'#'+obj.rowId+'_status\').val(\''+Global.STATUS_DELETE+'\');movetop();});return false;"><i class="fa fa-trash-o"></i></a>&nbsp;');
+                    var rowId = obj.rowId
+                    if (val == 'new') {
+                        actions.push('<a href="#" onclick="js.confirm(\'${text("你确认要删除这条数据吗？")}\', function(){$(\'#cdfChildDataDataGrid\').dataGrid(\'delRowData\',\'' + obj.rowId + '\');movetop(\'' + obj.rowId + '\');});return false;">删除</a>&nbsp;');
+                    } else {
+                        actions.push('<a href="#" onclick="js.confirm(\'${text("你确认要删除这条数据吗？")}\', function(){$(\'#cdfChildDataDataGrid\').dataGrid(\'setRowData\',\'' + obj.rowId + '\',null,{display:\'none\'});$(\'#' + obj.rowId + '_status\').val(\'' + Global.STATUS_DELETE + '\');movetop(\'' + obj.rowId + '\');});return false;">删除</a>&nbsp;');
                     }
                     /*if($(status == "true"? true:"")){
                         return [].join('');
                     }*/
                     return actions.join('');
-                }, editoptions: {defaultValue: 'new'}}
+                },
+                editoptions: {defaultValue: 'new'}
+            }
         ],
 
         // 编辑表格参数
         editGrid: true,				// 是否是编辑表格
         editGridInitRowNum: 3,		// 编辑表格的初始化新增行数
         editGridAddRowBtn: $('#cdfChildDataDataGridAddRowBtn'),	// 子表增行按钮
-        editGridAddRowInitData: {id: '',status: Global.STATUS_NORMAL},	// 新增行的时候初始化的数据
+        editGridAddRowInitData: {id: '', status: Global.STATUS_NORMAL},	// 新增行的时候初始化的数据
 
         // 编辑表格的提交数据参数
         editGridInputFormListName: 'cdfChildDataList', // 提交的数据列表名
         editGridInputFormListAttrs: 'status,id,sort,parentDataId.id,channel,xsScmsydSales,xsScmsydQntqSales,xsScmsydShoppers,xsScmsydQntqShoppers,', // 提交数据列表的属性字段
 
         // 加载成功后执行事件
-        ajaxSuccess: function(data){
+        ajaxSuccess: function (data) {
+
         }
     });
-
+    $("#cdfChildDataDataGridAddRowBtn").bind("click",function(){
+        $(".ui-state-default.jqgrid-rownum").each(function () {
+            $(this).hide();
+        })
+    });
+    /*(function start(status, flag) {
+        console.log(status)
+        console.log(flag)
+        document.getElementById("xxxsSales").focus();
+        if (status == null) {
+        } else if (status.toString() == "true") {
+            document.getElementById("sub").style.display = "none";
+        }
+        if (flag.toString() != "true") {
+            $("#store").removeAttr("disabled");
+        }
+    })(${status}, ${flag})*/
     /**
      * 保存提交前校验渠道是否重复
      * @returns {boolean}
      */
-    function checkchannel(){
+    function checkchannel() {
         var y = 0;
-        var arr=[]
+        var arr = []
         $("#cdfChildDataDataGrid .select2-selection__rendered").each(function (i) {
             var a = $(this).html()
             //console.log(a)
@@ -355,88 +196,84 @@
             $("#cdfChildDataDataGrid tr").each(function (j) {
                 //console.log(j)
                 //console.log($(this).attr("style"))
-                if (i==(j-1) && !$(this).attr("style")) {
-                        arr.push(a)
-                        //console.log($(this).find("td")[4].title)
-                }else if(i==(j-1)){
+                if (i == (j - 1) && !$(this).attr("style")) {
+                    arr.push(a)
+                    //console.log($(this).find("td")[4].title)
+                } else if (i == (j - 1)) {
                     arr.push("&nbsp;")
                 }
+            })
         })
-        })
-        console.log("arr",arr)
-        $.each(arr,function(i,valuea){
+        console.log("arr", arr)
+        $.each(arr, function (i, valuea) {
             var a = valuea
             var z = 0;
             console.log(a)
             //给渠道添加是否必填属性
-            setTdRequests(a,i);
+            setTdRequests(a, i);
             //判断渠道重复
-            $.each(arr,function(j,valueb){
+            $.each(arr, function (j, valueb) {
                 //var b = $(this).find("td")[4].title
                 var b = valueb
-                if(a==b && a!="&nbsp;") {
+                if (a == b && a != "&nbsp;") {
                     z++;
                 }
             });
-            if(z>=2){
-                y=z;
+            if (z >= 2) {
+                y = z;
                 console.log("false")
                 return false;
             }
         });
-        if(y>=2){
-            $.sendWarningToTop('线上销售-商城免税预定 渠道重复，请修改！', 3000, function() {
+        if (y >= 2) {
+            $.sendWarningToTop('线上销售-商城免税预定 渠道重复，请修改！', 3000, function () {
                 console.log('sendWarningToTop closed');
             });
             return false;
-        }else {
-            $("#store").attr("disabled",false);
+        } else {
+            $("#store").attr("disabled", false);
             $('#btnSubmit').click();
-            $("#store").attr("disabled",true);
+            $("#store").attr("disabled", true);
         }
     }
-    function setTdRequests(view,i) {
-        if(view != "&nbsp;"){
-            $(".choose").each(function(j,item){
+
+    function setTdRequests(view, i) {
+        if (view != "&nbsp;") {
+            $(".choose").each(function (j, item) {
                 //console.log(j)
-                if(j>=i*5 && j<=(i+1)*5){
-                    $("#"+item.id).addClass("required");
+                if (j >= i * 5 && j <= (i + 1) * 5) {
+                    $("#" + item.id).addClass("required");
                     //console.log($("#"+item.id).attr("class"));
                 }
             });
-        }else if(view == "&nbsp;"){
-            $(".choose").each(function(j,item){
+        } else if (view == "&nbsp;") {
+            $(".choose").each(function (j, item) {
                 //debugger;
                 //console.log(j)
-                if(j>=i*5 && j<=(i+1)*5){
+                if (j >= i * 5 && j <= (i + 1) * 5) {
                     //console.log(item.value);  //输出input 中的 value 值到控制台
-                    $("#"+item.id).removeClass("required");
-                    console.log($("#"+item.id).attr("class"));
+                    $("#" + item.id).removeClass("required");
+                    console.log($("#" + item.id).attr("class"));
                 }
             });
         }
     }
+//删除行HTML和error提示框
     function movetop(id) {
-        $("#cdfChildDataDataGrid .has-error").each(function (j) {
-            //console.log(j)
-            //console.log($(this).attr("style"))
-            //console.log(id,$(this).attr("style").top)
-            /*var c = "stop";
-            if(c == "start" || $(this).attr("style").length>26){
-                c=start;
-                $(this).attr("style","top:")
-            }
-*/
+        $("#"+id).remove();
+        $(".has-error").each(function () {
+            $(this).remove();
         })
+
     }
 </script>
 <script>
     $("#inputForm").validate({
-        submitHandler: function(form){
-            js.ajaxSubmitForm($(form), function(data){
+        submitHandler: function (form) {
+            js.ajaxSubmitForm($(form), function (data) {
                 js.showMessage(data.message);
-                if(data.result == Global.TRUE){
-                    js.closeCurrentTabPage(function(contentWindow){
+                if (data.result == Global.TRUE) {
+                    js.closeCurrentTabPage(function (contentWindow) {
                         contentWindow.page();
                     });
                 }
@@ -445,21 +282,111 @@
     });
 </script>
 <script>
-    function myfun()
-    {
-        /*$("#jqg1_channel").attr({"value": "自建"});
-        $("#jqg1_channel").attr({"title": "自建"});
-        $("#select2-1_channel-container").attr({"value": "自建"});
-        $("#select2-1_channel-container").attr({"title": "自建"});*/
-        /*$("#jqg2_channel").attr({"value": "飞猪"});
-        $("#jqg3_channel").attr({"value": "旅购"});*/
-        $("#jqgh_cdfChildDataDataGrid_channel").addClass("xrequired");
+    function myfun() {
+        //隐藏每行前的数字标签
+        $("#cdfChildDataDataGrid_rn").hide();
+        $(".ui-state-default.jqgrid-rownum").each(function () {
+            $(this).hide();
+        })
+        $(".jqgfirstrow td").each(function (i) {
+            if(i==0){
+                $(this).hide();
+            }
+        })
+        $(".jqgfirstrow").each(function (i) {
+            if(i==0){
+            $(this).after("<tr role='row' id='-1' tabindex='-1' class='ui-widget-content jqgrow ui-row-ltr'" +
+            "                                    >" +
+            "                                    <td role='gridcell' style='overflow: visible;' title='完税销售'" +
+            "                                        aria-describedby='cdfChildDataDataGrid_channel'><div style='text-align: center'>完税销售</div>" +
+            "                                    </td>" +
+            "                                    <td role='gridcell' style='overflow: visible;' title='&nbsp;'" +
+            "                                        aria-describedby='cdfChildDataDataGrid_xsScmsydSales'><input" +
+            "                                        name = 'xsWsxsSales'  id='xsWsxsSales' maxlength='200' class='form-control required number outline'" +
+            "                                        style='width: 99.9%;' value='${cdfParentData.xsWsxsSales}'/>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='overflow: visible;' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_xsScmsydQntqSales'><input" +
+        "                                        name = 'xsWsxsQntqSales'  id='xsWsxsQntqSales' maxlength='200' class='form-control required number'" +
+        "                                        style='width: 99.9%;' value='${cdfParentData.xsWsxsQntqSales}'/>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='overflow: visible;' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_xsScmsydShoppers'><input" +
+        "                                        name = 'xsWsxsShoppers'  id='xsWsxsShoppers' maxlength='200' class='form-control required integer'" +
+        "                                        style='width: 99.9%;' value='${cdfParentData.xsWsxsShoppers}'/>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='overflow: visible;' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_xsScmsydQntqShoppers'><input" +
+        "                                        name = 'xsWsxsQntqShoppers'  id='xsWsxsQntqShoppers' maxlength='200' class='form-control required integer'" +
+        "                                        style='width: 99.9%;' value='${cdfParentData.xsWsxsQntqShoppers}'/>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='' class='actions ' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_actions'>&nbsp;" +
+        "                                    </td>" +
+        "                                </tr>" +
+        "                                <tr role='row' id='-2' tabindex='-1' class='ui-widget-content jqgrow ui-row-ltr'" +
+        "                                >" +
+        "                                    <td role='gridcell' style='overflow: visible;' title='线下销售'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_channel'><div style='text-align: center'>线下销售</div>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='overflow: visible;' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_xsScmsydSales'><input" +
+        "                                        name = 'xxxsSales'  id='xxxsSales' maxlength='200' class='form-control required number'" +
+        "                                        style='width: 99.9%;' value='${cdfParentData.xxxsSales}'/>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='overflow: visible;' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_xsScmsydQntqSales'><input" +
+        "                                        name = 'xxxsQntqSales'  id='xxxsQntqSales' maxlength='200' class='form-control required number'" +
+        "                                        style='width: 99.9%;' value='${cdfParentData.xxxsQntqSales}'/>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='overflow: visible;' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_xsScmsydShoppers'><input" +
+        "                                        name = 'xxxsShoppers'  id='xxxsShoppers' maxlength='200' class='form-control required integer'" +
+        "                                        style='width: 99.9%;' value='${cdfParentData.xxxsShoppers}'/>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='overflow: visible;' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_xsScmsydQntqShoppers'><input" +
+        "                                        name = 'xxxsQntqShoppers'  id='xxxsQntqShoppers' maxlength='200' class='form-control required integer'" +
+        "                                        style='width: 99.9%;' value='${cdfParentData.xxxsQntqShoppers}'/>" +
+        "                                    </td>" +
+        "                                    <td role='gridcell' style='' class='actions ' title='&nbsp;'" +
+        "                                        aria-describedby='cdfChildDataDataGrid_actions'>&nbsp;" +
+        "                                    </td>" +
+        "                                </tr>")
+            }
+            })
+        /*$("#jqgh_cdfChildDataDataGrid_channel").addClass("xrequired");
         $("#jqgh_cdfChildDataDataGrid_xsScmsydSales").addClass("xrequired");
         $("#jqgh_cdfChildDataDataGrid_xsScmsydQntqSales").addClass("xrequired");
         $("#jqgh_cdfChildDataDataGrid_xsScmsydShoppers").addClass("xrequired");
-        $("#jqgh_cdfChildDataDataGrid_xsScmsydQntqShoppers").addClass("xrequired");
+        $("#jqgh_cdfChildDataDataGrid_xsScmsydQntqShoppers").addClass("xrequired");*/
+        $("tr td").each(function () {
+            $(this).css("border-right","0");
+        })
+        $("input").each(function (i) {
+            if($("input").length-1!=i && i!=1){
+                $(this).css("width","80%");
+                $(this).css("margin","auto");
+            }
+        })
+        $(".ui-jqgrid-sortable").each(function (i) {
+                $(this).css("font-weight","bold");
+        })
+
         document.getElementById("time").focus();
     }
-    window.onload=myfun;
 
+    window.onload = myfun;
+    (function start(status, flag) {
+        console.log(status)
+        console.log(flag)
+        /*//document.getElementById("xxxsSales").focus();*/
+        if (status == null) {
+        } else if (status.toString() == "true") {
+            document.getElementById("sub").style.display = "none";
+        }
+        if (flag.toString() != "true") {
+            $("#store").removeAttr("disabled");
+        }
+    })(${status}, ${flag})
 </script>

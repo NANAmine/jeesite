@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 新零售Service
+ * 门店预定业务销售Service
  * @author liangjiawei
  * @version 2020-02-26
  */

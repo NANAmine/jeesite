@@ -130,7 +130,8 @@ jdbc:
   dataSourceNames: ds2
 
   # 多数据源配置：ds2
-  ds2:
+  #生产mysql
+  ds3:
     type: mysql
     driver: com.mysql.jdbc.Driver
     url: jdbc:mysql://10.153.252.118:3306/cdf_bi?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
@@ -144,13 +145,13 @@ jdbc:
       init: 1
       minIdle: 3
       maxActive: 20
-
-  ds3:
+  #测试MySQL
+  ds2:
     type: mysql
     driver: com.mysql.jdbc.Driver
-    url: jdbc:mysql://10.152.0.4:3306/cdf_bi_test?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://10.153.252.118:3306/jeesite_pro?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
     username: root
-    password: root
+    password: 1qaz2wsx
     testSql: SELECT 1
     encrypt:
       username: false

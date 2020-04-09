@@ -10,6 +10,8 @@ import com.jeesite.modules.cdf.entity.CdfChildData;
 import com.jeesite.modules.cdf.entity.CdfParentData;
 import com.jeesite.modules.cdf.entity.GetStory;
 import com.jeesite.modules.cdf.service.CdfParentDataService;
+import com.jeesite.modules.sys.entity.User;
+import com.jeesite.modules.sys.service.UserService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 新零售Controller
+ * 门店预定业务销售Controller
  * @author liangjiawei
  * @version 2020-02-26
  */
@@ -37,6 +39,9 @@ public class CdfParentDataController extends BaseController {
 
 	@Autowired
 	private CdfParentDataService cdfParentDataService;
+
+    @Autowired
+    private UserService userService;
 	
 	/**
 	 * 获取数据
@@ -82,6 +87,9 @@ public class CdfParentDataController extends BaseController {
         }
         String flag = "true";
         String createduser =  request.getRemoteUser();
+        User user = new User();
+        user.setUserCode(createduser);
+        user = userService.get(user);
         if("".equals(GetStory.getstory(createduser))){
             flag = "false";
         }
@@ -125,30 +133,31 @@ public class CdfParentDataController extends BaseController {
         }
         model.addAttribute("flag",flag);
         model.addAttribute("status",status);
+        model.addAttribute("user",user.getRefName()!=null?user.getRefName():user.getUserName());
 		model.addAttribute("cdfParentData", cdfParentData);
 		return "modules/cdf/cdfParentDataForm";
 	}
 
 	/**
-	 * 保存新零售
+	 * 保存门店预定业务销售
 	 */
 	@RequiresPermissions("cdf:cdfParentData:edit")
 	@PostMapping(value = "save")
 	@ResponseBody
 	public String save(@Validated CdfParentData cdfParentData) {
 		cdfParentDataService.save(cdfParentData);
-		return renderResult(Global.TRUE, text("保存新零售成功！"));
+		return renderResult(Global.TRUE, text("保存门店预定业务销售成功！"));
 	}
 	
 	/**
-	 * 删除新零售
+	 * 删除门店预定业务销售
 	 */
 	@RequiresPermissions("cdf:cdfParentData:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
 	public String delete(CdfParentData cdfParentData) {
 		cdfParentDataService.delete(cdfParentData);
-		return renderResult(Global.TRUE, text("删除新零售成功！"));
+		return renderResult(Global.TRUE, text("删除门店预定业务销售成功！"));
 	}
 
 }
