@@ -22,7 +22,7 @@ server:
 
   port: 8980
   servlet:
-    context-path: /index
+    context-path: /web
   tomcat:
     uri-encoding: UTF-8
     
@@ -131,7 +131,7 @@ jdbc:
 
   # 多数据源配置：ds2
   #生产mysql
-  ds3:
+  ds2:
     type: mysql
     driver: com.mysql.jdbc.Driver
     url: jdbc:mysql://10.153.252.118:3306/cdf_bi?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull
@@ -146,7 +146,7 @@ jdbc:
       minIdle: 3
       maxActive: 20
   #测试MySQL
-  ds2:
+  ds3:
     type: mysql
     driver: com.mysql.jdbc.Driver
     url: jdbc:mysql://10.153.252.118:3306/jeesite_pro?useSSL=false&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull

@@ -13,7 +13,7 @@
 			</div>
 		</div>
 		<div class="box-body">
-			<#form:form id="searchForm" model="${cdfParentData}" action="${ctx}/cdf/cdfParentData/listData" method="post" class="form-inline hide"
+			<#form:form id="searchForm" model="${cdfParentData}" action="${ctx}/cdf/cdfParentData/listData" method="post" class="form-inline"
 					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
 				<div class="form-group">
 					<label class="control-label">${text('门店')}：</label>
@@ -45,16 +45,28 @@
 					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
 				</div>
                 <div class="form-group" style="margin-left:34%">
-                    <button title="历史填报数据" href="javascript:" data-href="http://10.153.252.138/bi/viewer/cdf/out?proc=1&amp;action=viewer&amp;hback=true&amp;db=!4e2d!!514d!!9879!!76ee!_!6c47!!62a5!!7528!V3_8!7248!!672c!!95e8!!6237!!2f!!4e2d!!514d!!9879!!76ee!!4e09!!671f!!2f!!65b0!!96f6!!552e!!2f!!7ebf!!4e0a!!9500!!552e!!7edf!!8ba1!.db&amp;isAir=false&amp;browserType=chrome&amp;au_act=login&amp;adminv=qy&amp;passv=cdf12345&amp;shopname=超级管理员" class="addTabPage btn btn-default btn-sm" data-code="1244810923513057280" data-tab-id="tabpanel-dc0f3b68e1">历史填报数据</button>
+                    <button title="历史填报数据" href="javascript:" data-href="/web/a/cdf/cdfParentData/history?shopname=${text(shopname)}" class="addTabPage btn btn-default btn-sm">历史填报数据</button>
                 </div>
 			</#form:form>
-			<table id="dataGrid"></table>
+            <form id="form1" name="form1" class="addTabPage hide" action="http://10.153.252.118:20080/smartbi/vision/openresource.jsp?resid=I8a197cf6017138e738e72247017158a438f662c9&user=zqz&password=ZQZ0520zqz" method="post">
+                <input type="text" name="param.shop" value="${text(shopname)}"/>
+                <input type="text" name="paramDisplay.shop" value="${text(shopname)}"/>
+            </form>
+            <table id="dataGrid"></table>
 			<div id="dataGridPage"></div>
 		</div>
 	</div>
 </div>
 <% } %>
 <script>
+    function fsubmit(obj){
+        obj.submit();
+        // js.addTabPage($this, title, url, closeable, refresh);
+        //js.closeCurrentTabPage(preTabCallback);
+        js.addTabPage("", title, url, closeable, refresh);
+
+    };
+
 // 初始化DataGrid对象
 $('#dataGrid').dataGrid({
 	searchForm: $("#searchForm"),

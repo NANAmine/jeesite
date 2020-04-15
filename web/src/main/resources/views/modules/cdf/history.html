@@ -1,0 +1,24 @@
+<% layout('/layouts/default.html', {title: '历史数据', libs: ['dataGrid']}){ %>
+<div class="main-content">
+    <div class="box box-main hide" style="display: none">
+        <form id="form1" name="form1" target="" class="addTabPage" action="http://10.153.252.118:20080/smartbi/vision/openresource.jsp?resid=I8a197cf6017138e738e72247017158a438f662c9&user=zqz&password=ZQZ0520zqz" method="post">
+            <input type="text" name="param.shop" value="${text(shopname)}"/>
+            <input type="text" name="paramDisplay.shop" value="${text(shopname)}"/>
+        </form>
+        <button id="sub" title="历史填报数据2" onclick="javascript:fsubmit(document.form1)" class="addTabPage">历史填报数据2</button>
+    </div>
+</div>
+</div>
+<% } %>
+<script>
+    function fsubmit(obj){
+        obj.submit();
+
+    };
+    function myfun() {
+        $('#sub').click();
+    }
+    window.onload = myfun;
+
+
+</script>

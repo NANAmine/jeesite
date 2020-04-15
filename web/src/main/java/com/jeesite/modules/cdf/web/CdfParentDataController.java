@@ -56,8 +56,9 @@ public class CdfParentDataController extends BaseController {
 	 */
 	@RequiresPermissions("cdf:cdfParentData:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(CdfParentData cdfParentData, Model model) {
+	public String list(CdfParentData cdfParentData, Model model,  HttpServletRequest request) {
 		model.addAttribute("cdfParentData", cdfParentData);
+        model.addAttribute("shopname", GetStory.getstory(request.getRemoteUser()));
 		return "modules/cdf/cdfParentDataList";
 	}
 	
@@ -67,10 +68,11 @@ public class CdfParentDataController extends BaseController {
 	@RequiresPermissions("cdf:cdfParentData:view")
 	@RequestMapping(value = "listData")
 	@ResponseBody
-	public Page<CdfParentData> listData(CdfParentData cdfParentData, HttpServletRequest request, HttpServletResponse response) {
+	public Page<CdfParentData> listData(CdfParentData cdfParentData, HttpServletRequest request, HttpServletResponse response, Model model) {
 		cdfParentData.setPage(new Page<>(request, response));
         cdfParentDataService.addDataScopeFilter(cdfParentData);
         Page<CdfParentData> page = cdfParentDataService.findPage(cdfParentData);
+//        model.addAttribute("shopname", GetStory.getstory(request.getRemoteUser()));
 		return page;
 	}
 
@@ -159,5 +161,13 @@ public class CdfParentDataController extends BaseController {
 		cdfParentDataService.delete(cdfParentData);
 		return renderResult(Global.TRUE, text("删除门店预定业务销售成功！"));
 	}
-
+    /**
+     * 查询列表
+     */
+    @RequiresPermissions("cdf:cdfParentData:view")
+    @RequestMapping(value = {"history", ""})
+    public String  history(HttpServletRequest request, String shopname, HttpServletResponse response, Model model) {
+        model.addAttribute("shopname",shopname);
+        return "modules/cdf/history";
+    }
 }
