@@ -486,7 +486,7 @@ public class BiReportFormController extends BaseController {
             }
         }
         //创建HSSFWorkbook
-        HSSFWorkbook wb = ExcelUtil.getHSSFWorkbook(sheetName, title, content, null);
+        HSSFWorkbook wb = ExcelUtil.getHssFWorkBook(sheetName, title, content, null);
 
         //响应到客户端
         try {

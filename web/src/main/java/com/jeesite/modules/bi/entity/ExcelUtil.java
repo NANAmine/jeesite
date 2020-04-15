@@ -16,6 +16,10 @@ public class ExcelUtil {
 
     @Autowired
     private BiCommonTablesService biCommonTablesService;
+
+    Pattern pattern = Pattern.compile("[\u4e00-\u9fa5]");
+
+    Pattern patternc = Pattern.compile("/|[\u4e00-\u9fa5]");
     /**
      * 导出Excel
      * @param sheetName sheet名称
@@ -24,7 +28,7 @@ public class ExcelUtil {
      * @param wb HSSFWorkbook对象
      * @return
      */
-    public static HSSFWorkbook getHSSFWorkbook(String sheetName, String []title, String [][]values, HSSFWorkbook wb){
+    public static HSSFWorkbook getHssFWorkBook(String sheetName, String []title, String [][]values, HSSFWorkbook wb){
 
         // 第一步，创建一个HSSFWorkbook，对应一个Excel文件
         if(wb == null){
@@ -180,7 +184,7 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("eva_repor".equals(tableName)){
-                if(!isChinese(arr.get(0))||!isNum(arr.get(1))){
+                if(!isChinese(arr.get(0),pattern)||!isNum(arr.get(1))){
                     mark = "第"+i+"条数据错误,请校验:重点门店名称只能为中文，门店编码只能为数字";
                     return mark;
                 }
@@ -195,7 +199,7 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("dim_map_brand_locate".equals(tableName)){
-                if(!isCaxg(arr.get(0))||!isEahg(arr.get(1))||!isNum(arr.get(2))||!isNumVal(arr.get(3))||!isNum(arr.get(4))||!isNum(arr.get(6))||arr.get(4).length()!=6||arr.get(6).length()!=6){
+                if(!isCaxg(arr.get(0),patternc)||!isEahg(arr.get(1))||!isNum(arr.get(2))||!isNumVal(arr.get(3))||!isNum(arr.get(4))||!isNum(arr.get(6))||arr.get(4).length()!=6||arr.get(6).length()!=6){
                     mark = "第"+i+"条数据错误,请校验:分类为中文或/，店铺号为数字、大写英文和-，落位ID为数字，店铺面积为数值，柜组编码和品牌编码为六位数字";
                     return mark;
                 }
@@ -245,7 +249,7 @@ public class ExcelUtil {
                     return mark;
                 }*/
             }else if("dim_unit_channel_gcp".equals(tableName)){
-                if(arr.get(0).isEmpty() || arr.get(1).isEmpty() || arr.get(2).isEmpty() || arr.get(3).isEmpty() || arr.get(5).isEmpty() || !isDateym(arr.get(0)) || !isChinese(arr.get(1)) || !isChinese(arr.get(3)) || !isCak(arr.get(2)) || !isYay(arr.get(5)) ){
+                if(arr.get(0).isEmpty() || arr.get(1).isEmpty() || arr.get(2).isEmpty() || arr.get(3).isEmpty() || arr.get(5).isEmpty() || !isDateym(arr.get(0)) || !isChinese(arr.get(1),pattern) || !isChinese(arr.get(3),pattern) || !isCak(arr.get(2)) || !isYay(arr.get(5)) ){
                     mark = "第"+i+"条数据错误,注意：日期、渠道名称、门店名称、九其门店名称、模块（月报、预算）必填，并且日期格式为：201901";
                     return mark;
                 }
@@ -291,9 +295,7 @@ public class ExcelUtil {
     /*
      * 这是中文验证
      * */
-    public static boolean isChinese(String str){
-        //noinspection AlibabaAvoidPatternCompileInMethod
-        Pattern pattern = Pattern.compile("[\u4e00-\u9fa5]");
+    public static boolean isChinese(String str,Pattern pattern){
         char c[] = str.toCharArray();
         for(int i=0;i<c.length;i++){
             Matcher matcher = pattern.matcher(String.valueOf(c[i]));
@@ -306,9 +308,7 @@ public class ExcelUtil {
     /*
      * 这是中文验证
      * */
-    public static boolean isCaxg(String str){
-        //noinspection AlibabaAvoidPatternCompileInMethod
-        Pattern pattern = Pattern.compile("/|[\u4e00-\u9fa5]");
+    public static boolean isCaxg(String str,Pattern pattern){
         char c[] = str.toCharArray();
         for(int i=0;i<c.length;i++){
             Matcher matcher = pattern.matcher(String.valueOf(c[i]));
