@@ -12,7 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * 通用字典表Entity
+ * @author ljw
+ * @version 2019-06-17
+ */
 public class ExcelUtil {
 
     @Autowired

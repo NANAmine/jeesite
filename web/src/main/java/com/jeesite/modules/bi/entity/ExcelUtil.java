@@ -11,7 +11,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * 通用字典表Entity
+ * @author ljw
+ * @version 2019-06-17
+ */
 public class ExcelUtil {
 
     @Autowired
@@ -161,8 +165,10 @@ public class ExcelUtil {
         }
         return list;
     }
-    /*
+    /**
      *判断Excel单元格格式验证输入是否准确
+     * @param list
+     * @param tableName
      *  */
     public String list(List<Map<Integer,String>> list,String tableName){
         String mark = null;
@@ -292,8 +298,10 @@ public class ExcelUtil {
         }
         return mark;
     }
-    /*
+    /**
      * 这是中文验证
+     * @param str
+     * @param pattern
      * */
     public static boolean isChinese(String str,Pattern pattern){
         char c[] = str.toCharArray();
@@ -305,8 +313,10 @@ public class ExcelUtil {
         }
         return true;
     }
-    /*
+    /**
      * 这是中文验证
+     * @param str
+     * @param pattern
      * */
     public static boolean isCaxg(String str,Pattern pattern){
         char c[] = str.toCharArray();
@@ -318,49 +328,58 @@ public class ExcelUtil {
         }
         return true;
     }
-    /*这是英文验证*/
+    /**这是英文验证
+     * @param charaString
+     * */
     public static boolean isEahg(String charaString){
 
         return charaString.matches("^(-|[A-Z]|[0-9])+");
 
     }
-    /*这是英文验证*/
+    /**这是英文验证
+     * @param charaString*/
     public static boolean isEnglish(String charaString){
 
         return charaString.matches("^[a-zA-Z]+");
 
     }
-    /*这是英文空格验证*/
+    /**这是英文空格验证
+     * @param charaString*/
     public static boolean isEnglishKg(String charaString){
 
         return charaString.matches("^(([a-zA-Z]\\s)|[a-zA-Z])+");
 
     }
-    /*这是英文和数字验证*/
+    /**这是英文和数字验证
+     * @param charaString*/
     public static boolean isEN(String charaString){
 
         return charaString.matches("^[A-Za-z0-9]+");
 
     }
-    /*这是数字验证*/
+    /**这是数字验证
+     * @param charaString*/
     public static boolean isNum(String charaString){
 
         return charaString.matches("[0-9]+");
 
     }
-    /*这是数值验证*/
+    /**这是数值验证
+     * @param charaString*/
     public static boolean isNumVal(String charaString){
 
         return charaString.matches("^([1-9][0-9]*)(\\.[0-9]*)?$|^(0\\.[0-9]*)+");
 
     }
-    /*这是日期验证如：20190501*/
+    /**这是日期验证如：20190501
+     * @param charaString*/
     public static boolean isDate(String charaString){
 
         return charaString.matches("^((?!0000)[0-9]{4}((0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])|(0[13-9]|1[0-2])-(29|30)|(0[13578]|1[02])-31)|([0-9]{2}(0[48]|[2468][048]|[13579][26])|(0[48]|[2468][048]|[13579][26])00)0229)");
 
     }
-    /*这是日期验证如：2019/05/01*/
+    /**这是日期验证如：2019/05/01
+     * @param charaString*/
     public static boolean isymd(String charaString){
 
         return charaString.matches("^((?!0000)[0-9]{4}[/]((0[1-9]|1[0-2])[/](0[1-9]|1[0-9]|2[0-8])|(0[13-9]|1[0-2])-(29|30)|(0[13578]|1[02])-31)|([0-9]{2}(0[48]|[2468][048]|[13579][26])|(0[48]|[2468][048]|[13579][26])00)0229)$");
@@ -368,95 +387,110 @@ public class ExcelUtil {
 
     }
 
-    /*日期年验证 如：2019*/
+    /**日期年验证 如：2019
+     * @param charaString*/
     public static boolean dateYear(String charaString){
 
         return charaString.matches("^\\d{4}$");
 
     }
 
-    /*日期年验证 如：2019-05*/
+    /**日期年验证 如：2019-05
+     * @param charaString*/
     public static boolean isDateym(String charaString){
 
         return charaString.matches("^\\d{4}[-]((0([1-9]))|(1(0|1|2)))$");
 
     }
-    /*日期年验证 如：2019-01-01*/
+    /**日期年验证 如：2019-01-01
+     * @param charaString*/
     public static boolean isDateymd(String charaString){
 
         return charaString.matches("^((((19|20|99)\\d{2})[-](0?[13-9]|1[012])[-](0?[1-9]|[12]\\d|30))|(((19|20|99)\\d{2})[-](0?[13578]|1[02])[-]31)|(((19|20|99)\\d{2})[-]0?2[-](0?[1-9]|1\\d|2[0-8]))|((((19|20|99)([13579][26]|[2468][048]|0[48]))|(2000))[-]0?2[-]29))$");
 
     }
-    /*日期年验证 如：201905*/
+    /**日期年验证 如：201905
+     * @param charaString*/
     public static boolean isDateYM(String charaString){
 
         return charaString.matches("^\\d{4}((0([1-9]))|(1(0|1|2)))$");
 
     }
-    /*中文和括号验证 如：广州（机场）*/
+    /**中文和括号验证 如：广州（机场）
+     * @param charaString*/
     public static boolean isCak(String charaString){
 
         return charaString.matches("^([\\u4e00-\\u9fa5]|\\（|\\）)+$");
 
     }
-    /*月报或者预算 如：月报*/
+    /**月报或者预算 如：月报
+     * @param charaString*/
     public static boolean isYay(String charaString){
 
         return charaString.matches("^(月报|预算)$");
 
     }
-    /*月报或者预算 如：月报*/
+    /**月报或者预算 如：月报
+     * @param charaString*/
     public static boolean isLah(String charaString){
 
         return charaString.matches("^(旅行社|会展)$");
 
     }
-    /*中文或数字 如：海棠湾3号*/
+    /**中文或数字 如：海棠湾3号
+     * @param charaString*/
     public static boolean isCas(String charaString){
 
         return charaString.matches("^(([0-9]*[\\u4e00-\\u9fa5][0-9]*)|[\\u4e00-\\u9fa5])+$");
 
     }
-    /*明细或者汇总 如：明细*/
+    /**明细或者汇总 如：明细
+     * @param charaString*/
     public static boolean isMah(String charaString){
 
         return charaString.matches("^(明细|汇总)$");
 
     }
-    /*境内或者境外 如：境内*/
+    /**境内或者境外 如：境内
+     * @param charaString*/
     public static boolean isJaj(String charaString){
 
         return charaString.matches("^(境内|境外)$");
 
     }
 
-    /*是或者否 如：是*/
+    /**是或者否 如：是
+     * @param charaString*/
     public static boolean iskg(String charaString){
 
         return charaString.matches("^(是|否)$");
 
     }
-    /*离岛类型 如：02火车离岛*/
+    /**离岛类型 如：02火车离岛
+     * @param charaString*/
     public static boolean isLdlx(String charaString){
 
         return charaString.matches("^(01博鳌离岛|02火车离岛|03三亚离境|04三亚离岛|05海口离岛|06轮渡离岛|07海口离境)$");
 
     }
 
-    /*是或者否 如：是*/
+    /**是或者否 如：是
+     * @param charaString*/
     public static boolean gylck(String charaString){
 
         return charaString.matches("^(上海库|大连库|深圳库|青岛库)$");
 
     }
 
-    /*是或者否 如：是*/
+    /**是或者否 如：是
+     * @param charaString*/
     public static boolean zsl(String charaString){
 
         return charaString.matches("^(香港机场|广州机场|柬中免|邮轮)$");
 
     }
-    /*判断日期是否大于当前时间*/
+    /**判断日期是否大于当前时间
+     * @param charaString*/
     public static boolean ltedate(String charaString){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM");//注意月份是MM
         Date date = null;
@@ -469,7 +503,8 @@ public class ExcelUtil {
         }
         return date.before(now);
     }
-    /*判断日期是否大于当前时间*/
+    /**判断日期是否大于当前时间
+     * @param charaString*/
     public static boolean ltedateym(String charaString){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMM");//注意月份是MM
         Date date = null;

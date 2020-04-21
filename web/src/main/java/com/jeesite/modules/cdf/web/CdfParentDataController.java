@@ -59,6 +59,8 @@ public class CdfParentDataController extends BaseController {
 	public String list(CdfParentData cdfParentData, Model model,  HttpServletRequest request) {
 		model.addAttribute("cdfParentData", cdfParentData);
         model.addAttribute("shopname", GetStory.getstory(request.getRemoteUser()));
+        model.addAttribute("flag", GetStory.getstory(request.getRemoteUser())!=""?true:false);
+
 		return "modules/cdf/cdfParentDataList";
 	}
 	
