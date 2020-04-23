@@ -172,7 +172,7 @@ public class ExcelUtil {
      *  */
     public String list(List<Map<Integer,String>> list,String tableName){
         String mark = null;
-        int i = 0;
+        int i = 1;
         for (Map<Integer,String> arr: list
         ) {
             i++;
@@ -181,117 +181,132 @@ public class ExcelUtil {
             biCommonTables.setTableName(tableName);
             if("bi_jsc_jdldrs".equals(tableName)){
                 if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0))||!isNum(arr.get(1))||!isNum(arr.get(2))){
-                    mark = "第"+i+"条数据错误,请校验:日期格式：年月（201904），日期不大于当前年月，进店离岛人数为正整数";
+                    mark = "第"+i+"行数据错误,请校验:日期格式：年月（201904），日期不大于当前年月，进店离岛人数为正整数";
                     return mark;
                 }
             }else if("dim_hk_passenger_flow".equals(tableName)){
                 if(!isDateym(arr.get(0))||!isNum(arr.get(1))||!isNum(arr.get(2))||!isNum(arr.get(3))||!isNum(arr.get(4))){
-                    mark = "第"+i+"条数据错误,请校验：日期格式：年月（2019-04），人数为正整数";
+                    mark = "第"+i+"行数据错误,请校验：日期格式：年月（2019-04），人数为正整数";
                     return mark;
                 }
             }else if("eva_repor".equals(tableName)){
                 if(!isChinese(arr.get(0),pattern)||!isNum(arr.get(1))){
-                    mark = "第"+i+"条数据错误,请校验:重点门店名称只能为中文，门店编码只能为数字";
+                    mark = "第"+i+"行数据错误,请校验:重点门店名称只能为中文，门店编码只能为数字";
                     return mark;
                 }
             }else if("external_wholesale_report".equals(tableName)){
-                if(!isDateYM(arr.get(0))||!isNumVal(arr.get(4))||!isNumVal(arr.get(5))||!isNumVal(arr.get(6))){
-                    mark = "第"+i+"条数据错误,请校验:日期格式：年月（201904），营业收入本年累计，全年预算，上年同期为数值";
+                if(!isDateYM(arr.get(0))||!isNumVal(arr.get(4))||!isNumVal(arr.get(5))||(!isNumVal(arr.get(6))&&!arr.get(6).isEmpty())){
+                    mark = "第"+i+"行数据错误,请校验:日期格式：年月（201904），营业收入本年累计，全年预算，上年同期为数值";
                     return mark;
                 }
             }else if("dim_hotel".equals(tableName)){
                 if(arr.get(0).isEmpty()||!isDateym(arr.get(0))||arr.get(1).isEmpty()||arr.get(2).isEmpty()||arr.get(3).isEmpty()||arr.get(4).isEmpty()||!isNumVal(arr.get(5))||!isNumVal(arr.get(6))||!isCas(arr.get(1))||!isCas(arr.get(2))){
-                    mark = "第"+i+"条数据错误,请校验:是否存在空值,客房数数字,入住率为百分制（例：81）,日期格式（年-月），酒店名称和位置为中文和数字";
+                    mark = "第"+i+"行数据错误,请校验:是否存在空值,客房数数字,入住率为百分制（例：81）,日期格式（年-月），酒店名称和位置为中文和数字";
                     return mark;
                 }
             }else if("dim_map_brand_locate".equals(tableName)){
                 if(!isCaxg(arr.get(0),patternc)||!isEahg(arr.get(1))||!isNum(arr.get(2))||!isNumVal(arr.get(3))||!isNum(arr.get(4))||!isNum(arr.get(6))||arr.get(4).length()!=6||arr.get(6).length()!=6){
-                    mark = "第"+i+"条数据错误,请校验:分类为中文或/，店铺号为数字、大写英文和-，落位ID为数字，店铺面积为数值，柜组编码和品牌编码为六位数字";
+                    mark = "第"+i+"行数据错误,请校验:分类为中文或/，店铺号为数字、大写英文和-，落位ID为数字，店铺面积为数值，柜组编码和品牌编码为六位数字";
                     return mark;
                 }
             }else if("dim_sale_target_yyy".equals(tableName)){
                 if(!isDateym(arr.get(0))||!isNum(arr.get(4))||!isNum(arr.get(1))||!isNum(arr.get(4))||!isNum(arr.get(2))||!isNum(arr.get(3))||!isNumVal(arr.get(6))||arr.get(3).length()!=8||arr.get(2).length()!=6||arr.get(1).length()!=4){
-                    mark = "第"+i+"条数据错误,请校验:日期为年月：2019-01，销售目标为数值，营业员号为数字，门店编码为4位数字，店面为6位数字，柜组为8位数字";
+                    mark = "第"+i+"行数据错误,请校验:日期为年月：2019-01，销售目标为数值，营业员号为数字，门店编码为4位数字，店面为6位数字，柜组为8位数字";
                     return mark;
                 }
             }else if("dim_lxs_yyrs".equals(tableName)){
                 if(!isDateYM(arr.get(0))||!isNumVal(arr.get(4))||!isNum(arr.get(3))||!isLah(arr.get(5))||arr.get(1).isEmpty()||arr.get(2).isEmpty()){
-                    mark = "第"+i+"条数据错误,请校验:日期为年月：201901，旅行社或会展编码不为空，名称不为空，预约人数为数字，服务费为数值，类型为旅行社或会展";
+                    mark = "第"+i+"行数据错误,请校验:日期为年月：201901，旅行社或会展编码不为空，名称不为空，预约人数为数字，服务费为数值，类型为旅行社或会展";
                     return mark;
                 }
             }else if("dim_instructions_detail".equals(tableName)){
                 System.out.println(arr.get(0));
                 if(!isEN(arr.get(0)) || arr.get(0).isEmpty()) {
                     if (!isEN(arr.get(0)) || arr.get(0).isEmpty()) {
-                        mark = "第" + i + "条数据错误,请校验:商品编码只能为数字和英文。您实际输入的内容为：" + arr.get(0);
+                        mark = "第" + i + "行数据错误,请校验:商品编码只能为数字和英文。您实际输入的内容为：" + arr.get(0);
                         return mark;
                     } else {
-                        //mark = "第" + i + "条数据错误,请校验:厂商货号只能为数字和英文。您实际输入的内容为：" + arr.get(1);
-                        mark = "第" + i + "条数据错误,请校验";
+                        //mark = "第" + i + "行数据错误,请校验:厂商货号只能为数字和英文。您实际输入的内容为：" + arr.get(1);
+                        mark = "第" + i + "行数据错误,请校验";
                         return mark;
                     }
                 }else if(arr.get(3).length() > 10000 || arr.get(4).length() > 10000 || arr.get(10).length() > 10000){
-                    mark = "第" + i + "条数据个别字段太长,长度超过10000";
+                    mark = "第" + i + "行数据个别字段太长,长度超过10000";
                     return mark;
                 }
             }else if("dim_texchange_rate".equals(tableName)){
                 if(!dateYear(arr.get(0)) || !zsl(arr.get(1)) || !isNum(arr.get(2)) || !isNumVal(arr.get(3)) || !isNumVal(arr.get(4))){
-                    mark = "第"+i+"条数据错误,请校验:日期格式为年，门店名称（香港机场、广州机场、柬中免或邮轮）大类编码为数字，折算率和毛利额折算率为有效数值";
+                    mark = "第"+i+"行数据错误,请校验:日期格式为年，门店名称（香港机场、广州机场、柬中免或邮轮）大类编码为数字，折算率和毛利额折算率为有效数值";
                     return mark;
                 }
             }else if("dim_gys_ppdz".equals(tableName)){
                 if(!isNum(arr.get(2))){
-                    mark = "第"+i+"条数据错误,请校验:品牌编码为数字，长度为6位";
+                    mark = "第"+i+"行数据错误,请校验:品牌编码为数字，长度为6位";
                     return mark;
                 }
             }else if("bi_ds_pvuv".equals(tableName)){
                 if(!isDateym(arr.get(0)) || !"6874".equals(arr.get(1)) || !isNumVal(arr.get(2)) || !isNumVal(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
-                    mark = "第"+i+"条数据错误,注意：日期格式为：2019-01，门店编码固定为6874，其它均为数值";
+                    mark = "第"+i+"行数据错误,注意：日期格式为：2019-01，门店编码固定为6874，其它均为数值";
                     return mark;
                 }
             }else if("dim_area_gz_map".equals(tableName)){
                 /*if(arr.get(1).length()!= 6 || arr.get(2).length()!= 8 || !isNumVal(arr.get(1)) || !isNumVal(arr.get(2)) ){
-                    mark = "第"+i+"条数据错误,注意：店面6位数字，柜组位8位数字";
+                    mark = "第"+i+"行数据错误,注意：店面6位数字，柜组位8位数字";
                     return mark;
                 }*/
             }else if("dim_unit_channel_gcp".equals(tableName)){
                 if(arr.get(0).isEmpty() || arr.get(1).isEmpty() || arr.get(2).isEmpty() || arr.get(3).isEmpty() || arr.get(5).isEmpty() || !isDateym(arr.get(0)) || !isChinese(arr.get(1),pattern) || !isChinese(arr.get(3),pattern) || !isCak(arr.get(2)) || !isYay(arr.get(5)) ){
-                    mark = "第"+i+"条数据错误,注意：日期、渠道名称、门店名称、九其门店名称、模块（月报、预算）必填，并且日期格式为：201901";
+                    mark = "第"+i+"行数据错误,注意：日期、渠道名称、门店名称、九其门店名称、模块（月报、预算）必填，并且日期格式为：201901";
                     return mark;
                 }
             }else if("dim_xhgysbg_md".equals(tableName)){
                 if(arr.get(0).isEmpty() || arr.get(1).isEmpty() || !isNum(arr.get(2)) || !isMah(arr.get(3))){
-                    mark = "第"+i+"条数据错误,注意：内容均必填，并且门店编码为整数，类型选填：汇总或明细";
+                    mark = "第"+i+"行数据错误,注意：内容均必填，并且门店编码为整数，类型选填：汇总或明细";
                     return mark;
                 }
             }else if("dim_pp_sell_report_exchangrate".equals(tableName)){
                 if(!isNum(arr.get(0)) || arr.get(0).length()!=6 || !isNum(arr.get(2)) || arr.get(2).length()!=4 || !isEnglishKg(arr.get(3)) || !isNumVal(arr.get(4)) || !((isDateymd(arr.get(5))&&isDateymd(arr.get(6)))||(arr.get(5).isEmpty()&&arr.get(6).isEmpty()))){
-                    mark = "第"+i+"条数据错误,注意：品牌编码（数字6位，必填），品牌名称（未校验，非必填），门店编码（数字4位，必填），门店英文名称（英文和空格，必填），汇率（数值，必填），开始时间和结束时间成对填写（格式2020-01-01，未知可填9999-12-31，非必填）";
+                    mark = "第"+i+"行数据错误,注意：品牌编码（数字6位，必填），品牌名称（未校验，非必填），门店编码（数字4位，必填），门店英文名称（英文和空格，必填），汇率（数值，必填），开始时间和结束时间成对填写（格式2020-01-01，未知可填9999-12-31，非必填）";
                     return mark;
                 }
             }else if("bi_sy_ldtype_ldrs".equals(tableName)){
                 if(!isDateym(arr.get(0)) || !ltedate(arr.get(0))|| !isNum(arr.get(1)) || arr.get(1).length()!=4 || !isLdlx(arr.get(2)) || !isNum(arr.get(3))){
-                    mark = "第"+i+"条数据错误,注意：日期格式年-月，日期不大于当前年月，门店默认6868(4位数字)，离岛类型选一种（01博鳌离岛 02火车离岛 03三亚离境 04三亚离岛 05海口离岛 06轮渡离岛 07海口离境），离岛人数有效数字";
+                    mark = "第"+i+"行数据错误,注意：日期格式年-月，日期不大于当前年月，门店默认6868(4位数字)，离岛类型选一种（01博鳌离岛 02火车离岛 03三亚离境 04三亚离岛 05海口离岛 06轮渡离岛 07海口离境），离岛人数有效数字";
                     return mark;
                 }
             }else if("bi_gyl_gslx".equals(tableName)){
                 if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0))|| !isEN(arr.get(1)) || !isJaj(arr.get(3)) || !iskg(arr.get(4))){
-                    mark = "第"+i+"条数据错误,注意：日期格式年月，日期不大于当前年月，公司编码（数字和英文），公司类型（境内、境外），是否控股（是、否）";
+                    mark = "第"+i+"行数据错误,注意：日期格式年月，日期不大于当前年月，公司编码（数字和英文），公司类型（境内、境外），是否控股（是、否）";
                     return mark;
                 }
             }else if("bi_gyl_kczz".equals(tableName)){
                 if(!isDateYM(arr.get(0)) || !ltedateym(arr.get(0)) || !isNum(arr.get(1))){
-                    mark = "第"+i+"条数据错误,注意：日期格式年月，日期不大于当前年月,库存组织编码为数字";
+                    mark = "第"+i+"行数据错误,注意：日期格式年月，日期不大于当前年月,库存组织编码为数字";
                     return mark;
                 }
             }else if("dim_rssh_ppmap_xh".equals(tableName)){
                 /*if(!isNum(arr.get(1)) || !isEN(arr.get(3))){
-                    mark = "第"+i+"条数据错误,注意：中免品牌编码为数字，中免供应商编码为英文和数字";
+                    mark = "第"+i+"行数据错误,注意：中免品牌编码为数字，中免供应商编码为英文和数字";
                     return mark;
                 }*/
             }else if("bi_gyl_WMS_dlmrkc".equals(tableName)){
                 if(!isDateymd(arr.get(0)) || !gylck(arr.get(1)) || !isEnglish(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
-                    mark = "第"+i+"条数据错误,注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字";
+                    mark = "第"+i+"行数据错误,注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字";
+                    return mark;
+                }
+            }else if("bi_gcp_bjshjc".equals(tableName)){
+                if(!isDateYM(arr.get(0)) || !isEN(arr.get(2)) || !isEN(arr.get(3)) || !isNum(arr.get(6)) || !isNumVal(arr.get(8)) || !isNumVal(arr.get(9)) || !isNumVal(arr.get(10)) || !isNumVal(arr.get(11))){
+                    mark = "第"+i+"行数据错误,注意：日期格式年月，商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字，所有字段都必填";
+                    return mark;
+                }
+            }else if("bi_qdb_mdys_fl1".equals(tableName)){
+                if(arr.get(0).isEmpty() || arr.get(1).isEmpty() || arr.get(3).isEmpty() || arr.get(4).isEmpty() || arr.get(5).isEmpty()){
+                    mark = "第"+i+"行数据错误,注意：除了机场渠道柜组字段，其它字段均必填";
+                    return mark;
+                }
+            }else if("bi_qdb_mdys_fl2".equals(tableName)){
+                if(arr.get(0).isEmpty() || arr.get(1).isEmpty()){
+                    mark = "第"+i+"行数据错误,注意：门店编码及门店名称,门店分类 必填";
                     return mark;
                 }
             }
@@ -368,7 +383,7 @@ public class ExcelUtil {
      * @param charaString*/
     public static boolean isNumVal(String charaString){
 
-        return charaString.matches("^([1-9][0-9]*)(\\.[0-9]*)?$|^(0\\.[0-9]*)+");
+        return charaString.matches("^([1-9][0-9]*)(\\.[0-9]*)?$|^(0\\.[0-9]*)+|0");
 
     }
     /**这是日期验证如：20190501

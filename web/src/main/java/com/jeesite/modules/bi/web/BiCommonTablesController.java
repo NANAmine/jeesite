@@ -91,6 +91,12 @@ public class BiCommonTablesController extends BaseController {
             biCommonTables.setTableName("dim_rssh_ppmap_xh");
         }else if("21".equals(id)){
             biCommonTables.setTableName("bi_gyl_WMS_dlmrkc");
+        }else if("22".equals(id)){
+            biCommonTables.setTableName("bi_gcp_bjshjc");
+        }else if("23".equals(id)){
+            biCommonTables.setTableName("bi_qdb_mdys_fl2");
+        }else if("24".equals(id)){
+            biCommonTables.setTableName("bi_qdb_mdys_fl1");
         }
 		model.addAttribute("biCommonTables", biCommonTables);
 		return "modules/bi/biCommonTablesList";
@@ -144,7 +150,8 @@ public class BiCommonTablesController extends BaseController {
 	        String commonC=biCommonTables.getCommonC();
             String[] words2 = commonC.split("\\,");
             biCommonTables.setCommonC(words2[words2.length-1]);
-        }else{
+        }else if(biCommonTables.getCommonC()!=null && biCommonTables.getCommonC()!=""){
+
             String commonC=biCommonTables.getCommonC();
             String[] words2 = commonC.split("\\,");
             if(words2.length>=1){

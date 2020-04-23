@@ -260,6 +260,42 @@ public class BiReportFormController extends BaseController {
             mark = "注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字";
             //excel标题
             title = new String[]{commona, commonb, commonc,commond,commone,commonf, mark};
+        } else if ("bi_gcp_bjshjc".equals(id)) {
+            commona = "日期（年月）";
+            commonb = "门店名称";
+            commonc = "外部数据商品编码";
+            commond = "商品编码";
+            commone = "规格";
+            commonf = "商品名称";
+            commong = "品牌编码";
+            commonh = "品牌名称";
+            commoni = "销量";
+            commonj = "销售金额";
+            commonk = "库存数量";
+            commonl = "库存金额";
+            etitle = "国产品上海北京机场填报";
+            mark = "注意：日期格式年月，商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字，所有字段都必填";
+            //excel标题
+            title = new String[]{commona, commonb, commonc,commond,commone,commonf,commong, commonh, commoni,commonj,commonk,commonl, mark};
+        } else if ("bi_qdb_mdys_fl1".equals(id)) {
+            commona = "门店编码及门店名称";
+            commonb = "机场渠道店面";
+            commonc = "机场渠道柜组";
+            commond = "合并门店名称";
+            commone = "机场渠道分类";
+            commonf = "机场渠道细分类";
+            etitle = "渠道部门店映射--机场渠道";
+            mark = "注意：除了机场渠道柜组字段，其它字段均必填";
+            //excel标题
+            title = new String[]{commona, commonb, commonc,commond,commone,commonf, mark};
+        } else if ("bi_qdb_mdys_fl2".equals(id)) {
+            commona = "门店编码及门店名称";
+            commonb = "门店分类";
+            commonc = "全渠道分类";
+            etitle = "渠道部门店映射--全渠道";
+            mark = "注意：门店编码及门店名称、门店分类必填";
+            //excel标题
+            title = new String[]{commona, commonb, commonc, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -469,6 +505,38 @@ public class BiReportFormController extends BaseController {
                 content[i][4] = obj.getCommonE();
             }
         }  else if ("bi_gyl_WMS_dlmrkc".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+            }
+        } else if ("bi_gcp_bjshjc".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+                content[i][2] = obj.getCommonC();
+                content[i][3] = obj.getCommonD();
+                content[i][4] = obj.getCommonE();
+                content[i][5] = obj.getCommonF();
+                content[i][6] = obj.getCommonG();
+                content[i][7] = obj.getCommonH();
+                content[i][8] = obj.getCommonI();
+                content[i][9] = obj.getCommonJ();
+                content[i][10] = obj.getCommonK();
+                content[i][11] = obj.getCommonL();
+            }
+        } else if ("bi_qdb_mdys_fl2".equals(id)) {
+            for (int i = 0; i < list.size(); i++) {
+                BiCommonTables obj = list.get(i);
+                content[i][0] = obj.getCommonA();
+                content[i][1] = obj.getCommonB();
+            }
+        } else if ("bi_qdb_mdys_fl1".equals(id)) {
             for (int i = 0; i < list.size(); i++) {
                 BiCommonTables obj = list.get(i);
                 content[i][0] = obj.getCommonA();
