@@ -138,7 +138,7 @@ public class ExcelUtil {
                     if (row.getCell(j) != null && !"".equals(row.getCell(j).getStringCellValue())) {
                         row.getCell(j).setCellType(HSSFCell.CELL_TYPE_STRING);
                     }
-                    if (row.getCell(j) == null || row.getCell(j).getStringCellValue() == null) {
+                    if (row.getCell(j) == null || row.getCell(j).getStringCellValue() == null || row.getCell(j).getStringCellValue().isEmpty()) {
                         if(j==(colNum-1)){
                             break;
                         }else {
@@ -295,8 +295,8 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("bi_gcp_bjshjc".equals(tableName)){
-                if(!isDateYM(arr.get(0)) || !isEN(arr.get(2)) || !isEN(arr.get(3)) || !isNum(arr.get(6)) || !isNumVal(arr.get(8)) || !isNumVal(arr.get(9)) || !isNumVal(arr.get(10)) || !isNumVal(arr.get(11))){
-                    mark = "第"+i+"行数据错误,注意：日期格式年月，商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字，所有字段都必填";
+                if(!dateYear(arr.get(0)) || !dateMon(arr.get(1)) || (!isEN(arr.get(4))&&!arr.get(4).isEmpty()) || !isEN(arr.get(5)) || (!isNum(arr.get(8))&&!arr.get(8).isEmpty()) || !isNumVal(arr.get(10)) || !isNumVal(arr.get(11)) || !isNumVal(arr.get(12)) || !isNumVal(arr.get(13))){
+                    mark = "第"+i+"行数据错误,注意：年格式4位（2020），月2位（01），商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字";
                     return mark;
                 }
             }else if("bi_qdb_mdys_fl1".equals(tableName)){
@@ -305,8 +305,8 @@ public class ExcelUtil {
                     return mark;
                 }
             }else if("bi_qdb_mdys_fl2".equals(tableName)){
-                if(arr.get(0).isEmpty() || arr.get(1).isEmpty()){
-                    mark = "第"+i+"行数据错误,注意：门店编码及门店名称,门店分类 必填";
+                if(arr.get(0).isEmpty()){
+                    mark = "第"+i+"行数据错误,注意：门店编码及门店名称必填";
                     return mark;
                 }
             }
@@ -407,6 +407,13 @@ public class ExcelUtil {
     public static boolean dateYear(String charaString){
 
         return charaString.matches("^\\d{4}$");
+
+    }
+    /**离岛类型 如：02火车离岛
+     * @param charaString*/
+    public static boolean dateMon(String charaString){
+
+        return charaString.matches("^(01|02|03|04|05|06|07|08|09|10|11|12)$");
 
     }
 

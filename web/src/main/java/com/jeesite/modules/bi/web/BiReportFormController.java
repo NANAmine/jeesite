@@ -37,7 +37,7 @@ public class BiReportFormController extends BaseController {
     @ResponseBody
     public void export(HttpServletRequest request, HttpServletResponse response, String id, String status) {
         BiCommonTables biCommonTables = new BiCommonTables();
-        String commona = "", commonb = "", commonc = "", commond = "", commone = "", commonf = "", commong = "", commonh = "", commoni = "", commonj = "", commonk = "", commonl = "", commonm = "", commonn = "", etitle = "", mark = "";
+        String commona = "", commonb = "", commonc = "", commond = "", commone = "", commonf = "", commong = "", commonh = "", commoni = "", commonj = "", commonk = "", commonl = "", commonm = "", commonn = "", commono = "", etitle = "", mark = "";
         String[] title = null;
         if ("bi_jsc_jdldrs".equals(id)) {
             commona = "日期";
@@ -261,22 +261,24 @@ public class BiReportFormController extends BaseController {
             //excel标题
             title = new String[]{commona, commonb, commonc,commond,commone,commonf, mark};
         } else if ("bi_gcp_bjshjc".equals(id)) {
-            commona = "日期（年月）";
-            commonb = "门店名称";
-            commonc = "外部数据商品编码";
-            commond = "商品编码";
-            commone = "规格";
-            commonf = "商品名称";
-            commong = "品牌编码";
-            commonh = "品牌名称";
-            commoni = "销量";
-            commonj = "销售金额";
-            commonk = "库存数量";
-            commonl = "库存金额";
-            etitle = "国产品上海北京机场填报";
-            mark = "注意：日期格式年月，商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字，所有字段都必填";
+            commona = "年";
+            commonb = "月";
+            commonc = "门店名称";
+            commond = "品类名称";
+            commone = "外部数据商品编码";
+            commonf = "商品编码";
+            commong = "规格";
+            commonh = "商品名称";
+            commoni = "品牌编码";
+            commonj = "品牌名称";
+            commonk = "销量";
+            commonl = "销售金额";
+            commonm = "库存数量";
+            commonn = "库存金额";
+            etitle = "重点门店外部数据填报";
+            mark = "注意：年格式4位（2020），月2位（01），商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字，所有字段都必填";
             //excel标题
-            title = new String[]{commona, commonb, commonc,commond,commone,commonf,commong, commonh, commoni,commonj,commonk,commonl, mark};
+            title = new String[]{commona, commonb, commonc,commond,commone,commonf,commong, commonh, commoni,commonj,commonk,commonl,commonm,commonn, mark};
         } else if ("bi_qdb_mdys_fl1".equals(id)) {
             commona = "门店编码及门店名称";
             commonb = "机场渠道店面";
@@ -290,12 +292,11 @@ public class BiReportFormController extends BaseController {
             title = new String[]{commona, commonb, commonc,commond,commone,commonf, mark};
         } else if ("bi_qdb_mdys_fl2".equals(id)) {
             commona = "门店编码及门店名称";
-            commonb = "门店分类";
-            commonc = "全渠道分类";
+            commonb = "全渠道分类";
             etitle = "渠道部门店映射--全渠道";
-            mark = "注意：门店编码及门店名称、门店分类必填";
+            mark = "注意：门店编码及门店名称必填";
             //excel标题
-            title = new String[]{commona, commonb, commonc, mark};
+            title = new String[]{commona, commonb, mark};
         }
         //获取数据
         List<BiCommonTables> list = null;
@@ -529,6 +530,8 @@ public class BiReportFormController extends BaseController {
                 content[i][9] = obj.getCommonJ();
                 content[i][10] = obj.getCommonK();
                 content[i][11] = obj.getCommonL();
+                content[i][12] = obj.getCommonM();
+                content[i][13] = obj.getCommonN();
             }
         } else if ("bi_qdb_mdys_fl2".equals(id)) {
             for (int i = 0; i < list.size(); i++) {

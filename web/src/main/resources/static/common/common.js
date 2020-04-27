@@ -1225,7 +1225,11 @@ jQuery.validator.addMethod("datey-m-d", function (c, b) {
 jQuery.validator.addMethod("datey", function (c, b) {
     var a = /^\d{4}$/;
     return this.optional(b) || (a.test(c))
-}, "请输入正确日期!格式:年");
+}, "请输入正确日期!格式:年(4位)");
+jQuery.validator.addMethod("datem", function (c, b) {
+    var a = /^(01|02|03|04|05|06|07|08|09|10|11|12)$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入正确日期!格式:月(2位)");
 jQuery.validator.addMethod("number", function (c, b) {
     var a = /^(0|[1-9][0-9]*)(\.[0-9]*)?$|^(0\.[0-9]*)$/;
     return this.optional(b) || (a.test(c))
