@@ -30,6 +30,20 @@ public class GetStory {
                 return "三亚海棠湾免税城";
             case "xajc_lng1":
                 return "西安机场";
+            case "jzma_wg56":
+                return "柬中免";
+            case "amjc_tchl":
+                return "澳门机场";
+            case "xmjc_5bls":
+                return "厦门机场";
+            case "syjc_fije":
+                return "沈阳机场";
+            case "njjc_imh0":
+                return "南京机场";
+            case "cqjc_u45y":
+                return "重庆机场";
+            case "kmjc_ncpl":
+                return "昆明机场";
             default:
                 return "";
         }

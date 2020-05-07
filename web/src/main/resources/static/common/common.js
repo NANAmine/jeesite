@@ -1189,6 +1189,11 @@ jQuery.validator.addMethod("Eakg", function (c, b) {
     var a = /^(([a-zA-Z]\s)|[a-zA-Z])+$/;
     return this.optional(b) || (a.test(c))
 }, "请输入英文或空格!");
+jQuery.validator.addMethod("zfnum", function (c, b) {
+    var a = /^(\-|\+)?\d+(\.\d+)?$/;
+    return this.optional(b) || (a.test(c))
+}, "请输入数值!");
+
 jQuery.validator.addMethod("date", function (c, b) {
     var a=  /^((((19|20)\d{2})(0?[13-9]|1[012])(0?[1-9]|[12]\d|30))|(((19|20)\d{2})(0?[13578]|1[02])31)|(((19|20)\d{2})0?2(0?[1-9]|1\d|2[0-8]))|((((19|20)([13579][26]|[2468][048]|0[48]))|(2000))0?229))$/;
     //var a = /^((?!0000)[0-9]{4}((0[1-9]|1[0-2])(0[1-9]|1[0-9]|2[0-8])|(0[13-9]|1[0-2])-(29|30)|(0[13578]|1[02])-31)|([0-9]{2}(0[48]|[2468][048]|[13579][26])|(0[48]|[2468][048]|[13579][26])00)0229)$/;
@@ -1227,9 +1232,9 @@ jQuery.validator.addMethod("datey", function (c, b) {
     return this.optional(b) || (a.test(c))
 }, "请输入正确日期!格式:年(4位)");
 jQuery.validator.addMethod("datem", function (c, b) {
-    var a = /^(01|02|03|04|05|06|07|08|09|10|11|12)$/;
+    var a = /^(1|2|3|4|5|6|7|8|9|10|11|12)$/;
     return this.optional(b) || (a.test(c))
-}, "请输入正确日期!格式:月(2位)");
+}, "请输入正确日期!格式:月(1-12)");
 jQuery.validator.addMethod("number", function (c, b) {
     var a = /^(0|[1-9][0-9]*)(\.[0-9]*)?$|^(0\.[0-9]*)$/;
     return this.optional(b) || (a.test(c))
@@ -1275,9 +1280,9 @@ jQuery.validator.addMethod("sfkg", function (c, b) {
     return this.optional(b) || (a.test(c))
 }, "请输入是或否!");
 jQuery.validator.addMethod("gylck", function (c, b) {
-    var a = /^(上海库|大连库|深圳库|青岛库)$/;
+    var a = /^(上海库|大连库|深圳库|青岛库|中免国际烟酒库)$/;
     return this.optional(b) || (a.test(c))
-}, "请输入上海库、大连库、大连库或青岛库!");
+}, "请输入上海库、大连库、深圳库、青岛库或中免国际烟酒库!");
 jQuery.validator.addMethod("zsl", function (c, b) {
     var a = /^(香港机场|广州机场|柬中免|邮轮)$/;
     return this.optional(b) || (a.test(c))

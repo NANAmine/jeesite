@@ -291,12 +291,12 @@ public class ExcelUtil {
                 }*/
             }else if("bi_gyl_WMS_dlmrkc".equals(tableName)){
                 if(!isDateymd(arr.get(0)) || !gylck(arr.get(1)) || !isEnglish(arr.get(3)) || !isNumVal(arr.get(4)) || !isNumVal(arr.get(5))){
-                    mark = "第"+i+"行数据错误,注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库），部门为英文，件数和箱数为数字";
+                    mark = "第"+i+"行数据错误,注意：日期格式年-月-日，仓库为（上海库|大连库|深圳库|青岛库|中免国际烟酒库），部门为英文，件数和箱数为数字";
                     return mark;
                 }
             }else if("bi_gcp_bjshjc".equals(tableName)){
-                if(!dateYear(arr.get(0)) || !dateMon(arr.get(1)) || (!isEN(arr.get(4))&&!arr.get(4).isEmpty()) || !isEN(arr.get(5)) || (!isNum(arr.get(8))&&!arr.get(8).isEmpty()) || !isNumVal(arr.get(10)) || !isNumVal(arr.get(11)) || !isNumVal(arr.get(12)) || !isNumVal(arr.get(13))){
-                    mark = "第"+i+"行数据错误,注意：年格式4位（2020），月2位（01），商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字";
+                if(!dateYear(arr.get(0)) || !dateMon(arr.get(1)) || !isEN(arr.get(4))  || (!isNum(arr.get(8))&&!arr.get(8).isEmpty()) || !isZfNum(arr.get(10)) || !isZfNum(arr.get(11)) || !isZfNum(arr.get(12)) || !isZfNum(arr.get(13))){
+                    mark = "第"+i+"行数据错误,注意：年格式4位（2020），月（1），商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字，所有标❤字段都必填";
                     return mark;
                 }
             }else if("bi_qdb_mdys_fl1".equals(tableName)){
@@ -386,6 +386,13 @@ public class ExcelUtil {
         return charaString.matches("^([1-9][0-9]*)(\\.[0-9]*)?$|^(0\\.[0-9]*)+|0");
 
     }
+    /**这是正负数验证
+     * @param charaString*/
+    public static boolean isZfNum(String charaString){
+
+        return charaString.matches("^(\\-|\\+)?\\d+(\\.\\d+)?$");
+
+    }
     /**这是日期验证如：20190501
      * @param charaString*/
     public static boolean isDate(String charaString){
@@ -409,11 +416,11 @@ public class ExcelUtil {
         return charaString.matches("^\\d{4}$");
 
     }
-    /**离岛类型 如：02火车离岛
+    /**月份 如：1
      * @param charaString*/
     public static boolean dateMon(String charaString){
 
-        return charaString.matches("^(01|02|03|04|05|06|07|08|09|10|11|12)$");
+        return charaString.matches("^(1|2|3|4|5|6|7|8|9|10|11|12)$");
 
     }
 
@@ -500,7 +507,7 @@ public class ExcelUtil {
      * @param charaString*/
     public static boolean gylck(String charaString){
 
-        return charaString.matches("^(上海库|大连库|深圳库|青岛库)$");
+        return charaString.matches("^(上海库|大连库|深圳库|青岛库|中免国际烟酒库)$");
 
     }
 

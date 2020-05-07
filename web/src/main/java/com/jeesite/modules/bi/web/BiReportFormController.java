@@ -276,7 +276,7 @@ public class BiReportFormController extends BaseController {
             commonm = "库存数量";
             commonn = "库存金额";
             etitle = "重点门店外部数据填报";
-            mark = "注意：年格式4位（2020），月2位（01），商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字，所有字段都必填";
+            mark = "注意：年格式4位（2020），月（1），商品编码为数字和英文，品牌编码为数字，销售、销售金额、库存数量、库存金额都为数字,所有标❤字段都必填";
             //excel标题
             title = new String[]{commona, commonb, commonc,commond,commone,commonf,commong, commonh, commoni,commonj,commonk,commonl,commonm,commonn, mark};
         } else if ("bi_qdb_mdys_fl1".equals(id)) {
