@@ -5,16 +5,14 @@ package com.jeesite.modules.db.dao;
 
 import com.jeesite.common.dao.CrudDao;
 import com.jeesite.common.mybatis.annotation.MyBatisDao;
-import com.jeesite.modules.db.entity.TbDbCommonTables;
-
-import java.util.List;
+import com.jeesite.modules.db.entity.TbDbUpfile;
 
 /**
- * tb_db_common_tablesDAO接口
+ * tb_db_upfileDAO接口
  * @author liangjiawei
  * @version 2020-05-09
  */
 @MyBatisDao
-public interface TbDbCommonTablesDao extends CrudDao<TbDbCommonTables> {
-    List<TbDbCommonTables> findListByFileName(TbDbCommonTables tbDbCommonTables);
+public interface TbDbUpfileDao extends CrudDao<TbDbUpfile> {
+	
 }

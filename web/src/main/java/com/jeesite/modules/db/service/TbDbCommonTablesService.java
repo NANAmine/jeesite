@@ -3,16 +3,16 @@
  */
 package com.jeesite.modules.db.service;
 
-import java.util.List;
-
+import com.jeesite.common.entity.Page;
+import com.jeesite.common.service.CrudService;
+import com.jeesite.modules.db.dao.TbDbCommonTablesDao;
+import com.jeesite.modules.db.entity.TbDbCommonTables;
+import com.jeesite.modules.file.utils.FileUploadUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.jeesite.common.entity.Page;
-import com.jeesite.common.service.CrudService;
-import com.jeesite.modules.db.entity.TbDbCommonTables;
-import com.jeesite.modules.db.dao.TbDbCommonTablesDao;
-import com.jeesite.modules.file.utils.FileUploadUtils;
+import java.util.List;
 
 /**
  * tb_db_common_tablesService
@@ -22,7 +22,9 @@ import com.jeesite.modules.file.utils.FileUploadUtils;
 @Service
 @Transactional(readOnly=true)
 public class TbDbCommonTablesService extends CrudService<TbDbCommonTablesDao, TbDbCommonTables> {
-	
+
+    @Autowired
+    private TbDbCommonTablesDao tbDbCommonTablesDao;
 	/**
 	 * 获取单条数据
 	 * @param tbDbCommonTables
@@ -36,7 +38,6 @@ public class TbDbCommonTablesService extends CrudService<TbDbCommonTablesDao, Tb
 	/**
 	 * 查询分页数据
 	 * @param tbDbCommonTables 查询条件
-	 * @param tbDbCommonTables.page 分页对象
 	 * @return
 	 */
 	@Override
@@ -75,5 +76,14 @@ public class TbDbCommonTablesService extends CrudService<TbDbCommonTablesDao, Tb
 	public void delete(TbDbCommonTables tbDbCommonTables) {
 		super.delete(tbDbCommonTables);
 	}
-	
+
+    /**
+     * 删除全部数据
+     * @param tbDbCommonTables
+     * @return
+     */
+    @Transactional(readOnly=false)
+    public List<TbDbCommonTables> findListByFileName(TbDbCommonTables tbDbCommonTables) {
+        return tbDbCommonTablesDao.findListByFileName(tbDbCommonTables);
+    }
 }

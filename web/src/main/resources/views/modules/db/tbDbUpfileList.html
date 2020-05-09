@@ -1,0 +1,75 @@
+<% layout('/layouts/default.html', {title: 'tb_db_upfile管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa fa-list-alt"></i> ${text('tb_db_upfile管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('db:tbDbUpfile:edit')){ %>
+					<a href="${ctx}/db/tbDbUpfile/form" class="btn btn-default btnTool" title="${text('新增tb_db_upfile')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${tbDbUpfile}" action="${ctx}/db/tbDbUpfile/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label">${text('团队')}：</label>
+					<div class="control-inline width-120">
+						<#form:select path="teamName" dictType="fashionBrandCode" blankOption="true" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('最近更新人')}：</label>
+					<div class="control-inline">
+						<#form:input path="updateBy" maxlength="100" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('最近更新时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="updateDate_gte" readonly="true" maxlength="20" class="form-control Wdate-date"
+							dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false,onpicked:function(){updateDate_lte.click()}});"/>
+						&nbsp;--&nbsp;
+						<#form:input path="updateDate_lte" readonly="true" maxlength="20" class="form-control Wdate-date"
+							dataFormat="date" onclick="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:false});"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("团队")}', name:'teamName', index:'a.team_name', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/db/tbDbUpfile/form?id='+row.id+'" class="btnList" data-title="${text("编辑tb_db_upfile")}">'+(val||row.id)+'</a>';
+		}},
+		{header:'${text("最近更新人")}', name:'updateBy', index:'a.update_by', width:150, align:"left"},
+		{header:'${text("最近更新时间")}', name:'updateDate', index:'a.update_date', width:150, align:"center"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('db:tbDbUpfile:edit')){ %>
+				actions.push('<a href="${ctx}/db/tbDbUpfile/form?id='+row.id+'" class="btnList" title="${text("编辑tb_db_upfile")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/db/tbDbUpfile/delete?id='+row.id+'" class="btnList" title="${text("删除tb_db_upfile")}" data-confirm="${text("确认要删除该tb_db_upfile吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		
+	}
+});
+</script>

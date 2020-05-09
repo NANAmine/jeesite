@@ -11,5 +11,11 @@
 		</where>
 		ORDER BY ${sqlMap.order.toSql()}
 	</select> -->
-	
+    <select id="findListByFileName" resultType="TbDbUpfile">
+        SELECT *
+        FROM tb_db_common_tables
+        <where>
+            common_c = #{commonC} or common_d = #{commonD} or common_e = #{commonE}
+        </where>
+    </select>
 </mapper>
