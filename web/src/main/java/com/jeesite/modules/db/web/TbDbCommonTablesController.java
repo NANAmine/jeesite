@@ -3,9 +3,11 @@
  */
 package com.jeesite.modules.db.web;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.jeesite.common.config.Global;
+import com.jeesite.common.entity.Page;
+import com.jeesite.common.web.BaseController;
+import com.jeesite.modules.db.entity.TbDbCommonTables;
+import com.jeesite.modules.db.service.TbDbCommonTablesService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,11 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jeesite.common.config.Global;
-import com.jeesite.common.entity.Page;
-import com.jeesite.common.web.BaseController;
-import com.jeesite.modules.db.entity.TbDbCommonTables;
-import com.jeesite.modules.db.service.TbDbCommonTablesService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * tb_db_common_tablesController
@@ -31,7 +30,10 @@ import com.jeesite.modules.db.service.TbDbCommonTablesService;
 @RequestMapping(value = "${adminPath}/db/tbDbCommonTables")
 public class TbDbCommonTablesController extends BaseController {
 
-	@Autowired
+    public static final String STRING = "1";
+    public static final String STRING1 = "2";
+    public static final String STRING2 = "3";
+    @Autowired
 	private TbDbCommonTablesService tbDbCommonTablesService;
 	
 	/**
@@ -47,7 +49,20 @@ public class TbDbCommonTablesController extends BaseController {
 	 */
 	@RequiresPermissions("db:tbDbCommonTables:view")
 	@RequestMapping(value = {"list", ""})
-	public String list(TbDbCommonTables tbDbCommonTables, Model model) {
+	public String list(TbDbCommonTables tbDbCommonTables, Model model, String id) {
+        if(STRING.equals(id)){
+            tbDbCommonTables.setTeamName("fashion");
+            model.addAttribute("tbDbCommonTables", tbDbCommonTables);
+            return "modules/db/tbDbCommonTablesListFashion";
+        }else if(STRING1.equals(id)){
+            tbDbCommonTables.setTeamName("watch");
+            model.addAttribute("tbDbCommonTables", tbDbCommonTables);
+            return "modules/db/tbDbCommonTablesListWatch";
+        }else if(STRING2.equals(id)){
+            tbDbCommonTables.setTeamName("jew");
+            model.addAttribute("tbDbCommonTables", tbDbCommonTables);
+            return "modules/db/tbDbCommonTablesListJew";
+        }
 		model.addAttribute("tbDbCommonTables", tbDbCommonTables);
 		return "modules/db/tbDbCommonTablesList";
 	}
@@ -69,7 +84,20 @@ public class TbDbCommonTablesController extends BaseController {
 	 */
 	@RequiresPermissions("db:tbDbCommonTables:view")
 	@RequestMapping(value = "form")
-	public String form(TbDbCommonTables tbDbCommonTables, Model model) {
+	public String form(TbDbCommonTables tbDbCommonTables, Model model, String id) {
+        if(STRING.equals(id)){
+            tbDbCommonTables.setTeamName("fashion");
+            model.addAttribute("tbDbCommonTables", tbDbCommonTables);
+            return "modules/db/tbDbCommonTablesFormFashion";
+        }else if(STRING1.equals(id)){
+            tbDbCommonTables.setTeamName("watch");
+            model.addAttribute("tbDbCommonTables", tbDbCommonTables);
+            return "modules/db/tbDbCommonTablesFormWatch";
+        }else if(STRING2.equals(id)){
+            tbDbCommonTables.setTeamName("jew");
+            model.addAttribute("tbDbCommonTables", tbDbCommonTables);
+            return "modules/db/tbDbCommonTablesFormJew";
+        }
 		model.addAttribute("tbDbCommonTables", tbDbCommonTables);
 		return "modules/db/tbDbCommonTablesForm";
 	}
